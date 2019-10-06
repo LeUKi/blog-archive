@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://lafish.fun/</id>
-    <title>Lafish</title>
-    <updated>2019-10-06T08:46:17.793Z</updated>
+    <title>辣鱼的部落格</title>
+    <updated>2019-10-06T11:07:52.665Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://lafish.fun/"/>
     <link rel="self" href="https://lafish.fun//atom.xml"/>
-    <subtitle>辣鱼的部落格</subtitle>
+    <subtitle>Lafish</subtitle>
     <logo>https://lafish.fun//images/avatar.png</logo>
     <icon>https://lafish.fun//favicon.ico</icon>
-    <rights>All rights reserved 2019, Lafish</rights>
+    <rights>All rights reserved 2019, 辣鱼的部落格</rights>
     <entry>
         <title type="html"><![CDATA[关于我]]></title>
         <id>https://lafish.fun//post/about</id>
