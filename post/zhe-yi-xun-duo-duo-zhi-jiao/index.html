@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>文章归档 | 辣鱼的部落格</title>
+<title>这一旬，多多指教！ | 辣鱼的部落格</title>
 <meta name="description" content="&lt;p id=&#34;hitokoto&#34;&gt;辣鱼本鱼啦&lt;/p&gt;
 &lt;script src=&#34;https://v1.hitokoto.cn/?c=a&amp;encode=js&amp;select=%23hitokoto&#34; defer&gt;&lt;/script&gt;">
 
@@ -16,6 +16,12 @@
 <link rel="stylesheet" href="https://lafish.fun//styles/main.css">
 
 
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
 
 
@@ -24,6 +30,7 @@
 
   </head>
   <body>
+  
     <nav class="navbar border fixed split-nav">
   <div class="nav-brand">
     <h3><a href="https://lafish.fun/">辣鱼的部落格</a></h3>
@@ -85,56 +92,38 @@
   </div>
 </nav>
 
-    
     <div id="top" class="row site">
       <div class="sm-12 md-8 col">
         <div class="paper">
+          <article class="article">
+            <h1>这一旬，多多指教！</h1>
+            <p class="article-meta">
+              2019-10-06
+              
+            </p>
+            
+            <div class="post-content">
+              <p>这些年陆陆续续整了几十个域名，七八个空间，四五台主机，两三个博客系统，很遗憾没一个能长久。到了高三，巨大学习压力使我不得不放弃。到如今高考结束，长大成年了，却发现自己没有了当年折腾的热情。直到某天逛到一个Github托管网站的贴，下定决心，再次出发。<br>
+Github是个好东西，原谅我玩了这么久才意识到，把网站托管在这，永久运行，这是以前穷学生的我不敢想象的。域名当然也可以用免费的一二级域名，诸如<input type="button" value=".tk">、<input type="button" value=".eu.org">，但始终不是属于自己，被人拿捏的感觉始终是难受的。考虑再三，还是入了一个，正好阿里云搞优惠，170元10年的<input type="button" value=".fun">域名，足够长也足够划算。<br>
+往后10年，我想在此写写学习上的心得、生活中的趣事，不为谁而写作，只希望10年后的我能回看这一旬青春，一路成长。</p>
+
+            </div>
+          </article>
+        </div>
+        <div class="paper" data-aos="fade-in">
+          
+        </div>
+        
+          
+            <div class="paper" data-aos="fade-in">
+              <div id="gitalk-container"></div>
+            </div>
           
 
-          <h2 class="archives-title">文章归档</h2>
-          <div class="archives-container">
-            
-              <h3 class="year" data-aos-delay="500">2019</h3>
-              
-                
-                  <article class="post">
-                    <a href="https://lafish.fun//post/hello-world">
-                      <h4 class="post-title">
-                        这一旬，请多指教！
-                      </h4>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://lafish.fun//post/you-yi-ge-xi-wang-shi-zui-hou-yi-ge">
-                      <h4 class="post-title">
-                        又一个，希望是最后一个！
-                      </h4>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://lafish.fun//post/zhe-yi-xun-duo-duo-zhi-jiao">
-                      <h4 class="post-title">
-                        这一旬，多多指教！
-                      </h4>
-                    </a>
-                  </article>
-                
-              
-            
-          </div>
-        </div>
-        <div class="row flex-edges">
-  
-  
-</div>
-
+          
+        
       </div>
+
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
     <img src="https://lafish.fun//images/avatar.png?v=1570367471845" class="no-responsive avatar">
@@ -196,6 +185,8 @@
 </div>
 
 
+    </div>
+
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 
 <script type="application/javascript">
@@ -205,6 +196,29 @@ AOS.init();
 hljs.initHighlightingOnLoad()
 
 </script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '71fffbb2e623d5ca9d9a',
+        clientSecret: '12607742acf5d4d5c38e377f8f7fd4fb91f69931',
+        repo: 'LFcomment',
+        owner: 'LeUKi',
+        admin: ['LeUKi'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
 
 
 

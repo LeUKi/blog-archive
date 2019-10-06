@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://lafish.fun/</id>
     <title>辣鱼的部落格</title>
-    <updated>2019-10-06T12:02:13.180Z</updated>
+    <updated>2019-10-06T13:11:14.767Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://lafish.fun/"/>
     <link rel="self" href="https://lafish.fun//atom.xml"/>
@@ -11,4 +11,25 @@
     <logo>https://lafish.fun//images/avatar.png</logo>
     <icon>https://lafish.fun//favicon.ico</icon>
     <rights>All rights reserved 2019, 辣鱼的部落格</rights>
+    <entry>
+        <title type="html"><![CDATA[这一旬，请多指教！]]></title>
+        <id>https://lafish.fun//post/hello-world</id>
+        <link href="https://lafish.fun//post/hello-world">
+        </link>
+        <updated>2019-10-06T12:03:18.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[又一个，希望是最后一个！]]></title>
+        <id>https://lafish.fun//post/you-yi-ge-xi-wang-shi-zui-hou-yi-ge</id>
+        <link href="https://lafish.fun//post/you-yi-ge-xi-wang-shi-zui-hou-yi-ge">
+        </link>
+        <updated>2019-10-06T12:03:18.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[这一旬，多多指教！]]></title>
+        <id>https://lafish.fun//post/zhe-yi-xun-duo-duo-zhi-jiao</id>
+        <link href="https://lafish.fun//post/zhe-yi-xun-duo-duo-zhi-jiao">
+        </link>
+        <updated>2019-10-06T12:03:18.000Z</updated>
+    </entry>
 </feed>
