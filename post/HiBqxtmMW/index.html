@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>大学团支书，真的不一样... | Lafish的部落格</title>
+<title>关于C语言数组排序的一点想法 | Lafish的部落格</title>
 <meta name="description" content="&lt;p id=&#34;hitokoto&#34;&gt;辣鱼本鱼啦&lt;/p&gt;
 &lt;script src=&#34;https://v1.hitokoto.cn/?c=a&amp;encode=js&amp;select=%23hitokoto&#34; defer&gt;&lt;/script&gt;">
 
@@ -114,23 +114,34 @@
       <div class="sm-12 md-8 col">
         <div class="paper">
           <article class="article">
-            <h1>大学团支书，真的不一样...</h1>
+            <h1>关于C语言数组排序的一点想法</h1>
             <p class="article-meta">
-              2019-11-02
+              2019-11-16
               
-                <a href="https://lafish.fun//tag/RC" class="badge ">
-                  日常
+                <a href="https://lafish.fun//tag/XX" class="badge secondary">
+                  学习
                 </a>
               
             </p>
             
-              <img src="https://lafish.fun//post-images/6pu2g-gw-.png" alt="大学团支书，真的不一样...">
-            
             <div class="post-content">
-              <p>  初中高中所见的团支书，很清闲，很安逸。到大学，信心满满当选上团支书，才知道理想和现实天差地别。<br>
-  可能海大是特例吧，海大团支书的黑暗11月不是吹的，“精品团日”、“活力在基层”、“团支书培训班”，全部活动都堆在这两个月，每天睡觉都在想怎么搞活动、怎么把任务分配下去、活动地点活动时间怎么安排。院团支书群和培训班群需要时刻留意通知，一有活动就需要更进处理。每天的学习时间总是被挤压，参加社团和学生组织根本不敢想，休闲娱乐已然成为奢侈。<br>
-  团支书最害怕的不是上级任务的多少，而是团支部团员们不配合，上级不批准，团支书夹在中间两头难，最后这锅还得自己背。目前感觉有些苗头，希望以后不要真的遇到。🙏<br>
-  团支书大群里常有人吐苦水，只能说，自己竞选上的团支书，跪着也要做好。</p>
+              <p>普遍的方法是先用for语句输入数组的值，再用for与for的嵌套语句实现历遍并排序，这一整套下来使用了三次for语句，特别是最后的两个让人头大。</p>
+<pre><code>    for(i=0; i&lt;10-1; i++){ //每一轮比较前 n-1-i 个，也就是说，已经排序好的最后 i 个不用比较
+        for(j=0; j&lt;10-1-i; j++){
+            if(nums[j] &gt; nums[j+1]){
+                temp = nums[j];
+                nums[j] = nums[j+1];
+                nums[j+1] = temp;}}}
+</code></pre>
+<p>我的想法是，不如在输入后立刻排序，减少了语句使用，而且更加直观。</p>
+<pre><code>int a[20],i,j,temp;
+    for(i=0;i&lt;=19;i++){
+        printf(&quot;请输入第%d个数:&quot;,i+1);
+        scanf(&quot;%d&quot;,&amp;a[i]);
+        for(j=i;j&gt;0;j--)
+            if(a[j]&lt;a[j-1]){temp=a[j];a[j]=a[j-1];a[j-1]=temp;}}
+</code></pre>
+<p>其实两者差别不大，结合第后一个方法很容易就把前一个看懂了。</p>
 
             </div>
           </article>
@@ -141,9 +152,9 @@
               <div class="next">
                 下一篇
               </div>
-              <a href="https://lafish.fun//post/hello-world">
+              <a href="https://lafish.fun//post/6pu2g-gw-">
                 <h3 class="post-title">
-                  往后一旬，请多指教！
+                  大学团支书，真的不一样...
                 </h3>
               </a>
             </div>
@@ -213,11 +224,11 @@
     </div>
     <div class="row">
       
-        <a href="https://lafish.fun//tag/XX" class="badge success">
+        <a href="https://lafish.fun//tag/XX" class="badge secondary">
           学习
         </a>
       
-        <a href="https://lafish.fun//tag/RC" class="badge success">
+        <a href="https://lafish.fun//tag/RC" class="badge warning">
           日常
         </a>
       

@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://lafish.fun/</id>
     <title>Lafish的部落格</title>
-    <updated>2019-11-03T00:24:36.200Z</updated>
+    <updated>2019-11-16T02:16:46.505Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://lafish.fun/"/>
     <link rel="self" href="https://lafish.fun//atom.xml"/>
@@ -11,6 +11,13 @@
     <logo>https://lafish.fun//images/avatar.png</logo>
     <icon>https://lafish.fun//favicon.ico</icon>
     <rights>All rights reserved 2019, Lafish的部落格</rights>
+    <entry>
+        <title type="html"><![CDATA[关于C语言数组排序的一点想法]]></title>
+        <id>https://lafish.fun//post/HiBqxtmMW</id>
+        <link href="https://lafish.fun//post/HiBqxtmMW">
+        </link>
+        <updated>2019-11-16T01:59:16.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[大学团支书，真的不一样...]]></title>
         <id>https://lafish.fun//post/6pu2g-gw-</id>
