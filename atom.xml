@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://lafish.fun/</id>
     <title>Lafish的部落格</title>
-    <updated>2019-12-01T01:30:45.169Z</updated>
+    <updated>2019-12-01T01:32:01.566Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://lafish.fun/"/>
     <link rel="self" href="https://lafish.fun//atom.xml"/>
@@ -11,6 +11,13 @@
     <logo>https://lafish.fun//images/avatar.png</logo>
     <icon>https://lafish.fun//favicon.ico</icon>
     <rights>All rights reserved 2019, Lafish的部落格</rights>
+    <entry>
+        <title type="html"><![CDATA[高数课绝对不能睡啊啊啊啊]]></title>
+        <id>https://lafish.fun//post/qouTlDpCi</id>
+        <link href="https://lafish.fun//post/qouTlDpCi">
+        </link>
+        <updated>2019-12-01T01:30:52.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[关于C语言printf函数的易错点]]></title>
         <id>https://lafish.fun//post/yZ1fm-el0</id>
