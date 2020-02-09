@@ -3,14 +3,14 @@
   <head>
     <meta charset="utf-8" >
 
-<title>关于Minecraft(Java1.12.2)服务器中“删除”作浮空字盔甲架的新方法 | Lafish的部落格</title>
+<title>关于C语言数组排序的一点想法 | Lafish的部落格</title>
 <meta name="description" content="&lt;p id=&#34;hitokoto&#34;&gt;辣鱼本鱼啦&lt;/p&gt;
 &lt;script src=&#34;https://v1.hitokoto.cn/?c=a&amp;encode=js&amp;select=%23hitokoto&#34; defer&gt;&lt;/script&gt;">
 
 <meta name="Keywords" content="lafish,Lafish,辣鱼">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://lafish.fun//favicon.ico?v=1581253868818">
+<link rel="shortcut icon" href="https://lafish.fun//favicon.ico?v=1581255400578">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -85,15 +85,15 @@
         
           <li>
             
-              <a href="/post/links/" class="menu">
-                链接
+              <a href="/links/" class="menu">
+                朋友
               </a>
             
           </li>
         
           <li>
             
-              <a href="/post/about" class="menu">
+              <a href="/about" class="menu">
                 关于
               </a>
             
@@ -108,31 +108,34 @@
       <div class="sm-12 md-8 col">
         <div class="paper">
           <article class="article">
-            <h1>关于Minecraft(Java1.12.2)服务器中“删除”作浮空字盔甲架的新方法</h1>
+            <h1>关于C语言数组排序的一点想法</h1>
             <p class="article-meta">
-              2020-02-06
+              2019-11-16
               
-                <a href="https://lafish.fun/tag/XX" class="badge ">
+                <a href="https://lafish.fun/tag/XX" class="badge secondary">
                   学习
                 </a>
               
             </p>
             
-              <img src="https://gamepedia.cursecdn.com/minecraft_zh_gamepedia/thumb/c/c0/Armor_Stand_Revision_2.png/150px-Armor_Stand_Revision_2.png" alt="关于Minecraft(Java1.12.2)服务器中“删除”作浮空字盔甲架的新方法">
-            
             <div class="post-content">
-              <blockquote>
-<p>单机作弊模式下也可参考！急的跳过前言看后面</p>
-</blockquote>
-<h1 id="前言">前言</h1>
-<p>利用summon指令生成了一个浮空字，原理是生成一个隐形的盔甲架并把其名字做常显示。</p>
-<p><code>/summon minecraft:armor_stand ~ ~2 ~ {Marker:1,NoGravity:1,Invisible:1,CustomNameVisible:1,CustomName:&quot;这是串浮空的字&quot;}</code></p>
-<p>但当我们想删除它时，输入<code>/kill @e[type=armor_stand,c=10]</code>指令可能会出现<code>Error: Player not found.</code>的报错论坛也有说用‘/killall’指令的，但实测无用。</p>
-<p>网上也没用人给出删除的办法，似乎这是个bug。有人给出下下策，删除区块甚至删除存档。我想这条生成指令正常玩家大概率不会用到。使用的大多数是地图制作者和服务器op，前者可以回档重来，后者一般用相关插件管理，用的人寥寥无几。似乎没有删除的需求，但真遇上了也是件恶心的事，所以下面给出方法。</p>
-<h1 id="新方法">新方法</h1>
-<p>利用<code>entitydata</code>指令更改实体的属性参数，这是1.8版本中加入的指令，一般用作给全地图怪物加装备。</p>
-<p><code>/entitydata @e[type=Armor_Stand,r=10] {CustomNameVisible:0}</code></p>
-<p>将CustomNameVisible(名字可见度)设置为不可见(0)，实际上这个实体并没有被删除，而是完全隐藏了。</p>
+              <p>普遍的方法是先用for语句输入数组的值，再用for与for的嵌套语句实现历遍并排序，这一整套下来使用了三次for语句，特别是最后的两个让人头大。</p>
+<pre><code>    for(i=0; i&lt;10-1; i++){ 
+        for(j=0; j&lt;10-1-i; j++){
+            if(nums[j] &gt; nums[j+1]){
+                temp = nums[j];
+                nums[j] = nums[j+1];
+                nums[j+1] = temp;}}}
+</code></pre>
+<p>我的想法是，不如在输入后立刻排序，减少了语句使用，而且更加直观。</p>
+<pre><code>int a[20],i,j,temp;
+    for(i=0;i&lt;=19;i++){
+        printf(&quot;请输入第%d个数:&quot;,i+1);
+        scanf(&quot;%d&quot;,&amp;a[i]);
+        for(j=i;j&gt;0;j--)
+            if(a[j]&lt;a[j-1]){temp=a[j];a[j]=a[j-1];a[j-1]=temp;}}
+</code></pre>
+<p>其实两者差别不大，结合第后一个方法很容易就把前一个看懂了。</p>
 
             </div>
           </article>
@@ -143,9 +146,9 @@
               <div class="next">
                 下一篇
               </div>
-              <a href="https://lafish.fun/post/fGZB0vOKh">
+              <a href="https://lafish.fun/6pu2g-gw-">
                 <h3 class="post-title">
-                  行列式与矩阵的区别-线性代数学习小记
+                  大学团支书，真的不一样...
                 </h3>
               </a>
             </div>
@@ -156,7 +159,7 @@
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://lafish.fun//images/avatar.png?v=1581253868818" class="no-responsive avatar">
+    <img src="https://lafish.fun//images/avatar.png?v=1581255400578" class="no-responsive avatar">
     <div class="text-muted"><p id="hitokoto">辣鱼本鱼啦</p>
 <script src="https://v1.hitokoto.cn/?c=a&encode=js&select=%23hitokoto" defer></script></div>
     <div class="social-container">
@@ -182,55 +185,55 @@
         
           
             <li>
-              <a href="https://lafish.fun/post/TCGjGElL3">关于Minecraft(Java1.12.2)服务器中“删除”作浮空字盔甲架的新方法</a>
+              <a href="https://lafish.fun/TCGjGElL3">关于Minecraft(Java1.12.2)服务器中“删除”作浮空字盔甲架的新方法</a>
             </li>
           
         
           
             <li>
-              <a href="https://lafish.fun/post/fGZB0vOKh">行列式与矩阵的区别-线性代数学习小记</a>
+              <a href="https://lafish.fun/fGZB0vOKh">行列式与矩阵的区别-线性代数学习小记</a>
             </li>
           
         
           
             <li>
-              <a href="https://lafish.fun/post/qouTlDpCi">高数课绝对不能睡啊啊啊啊</a>
+              <a href="https://lafish.fun/qouTlDpCi">高数课绝对不能睡啊啊啊啊</a>
             </li>
           
         
           
             <li>
-              <a href="https://lafish.fun/post/yZ1fm-el0">关于C语言printf函数的易错点</a>
+              <a href="https://lafish.fun/yZ1fm-el0">关于C语言printf函数的易错点</a>
             </li>
           
         
           
             <li>
-              <a href="https://lafish.fun/post/HiBqxtmMW">关于C语言数组排序的一点想法</a>
+              <a href="https://lafish.fun/HiBqxtmMW">关于C语言数组排序的一点想法</a>
             </li>
           
         
           
             <li>
-              <a href="https://lafish.fun/post/6pu2g-gw-">大学团支书，真的不一样...</a>
+              <a href="https://lafish.fun/6pu2g-gw-">大学团支书，真的不一样...</a>
             </li>
           
         
           
             <li>
-              <a href="https://lafish.fun/post/hello-world">往后一旬，请多指教！</a>
+              <a href="https://lafish.fun/hello-world">往后一旬，请多指教！</a>
             </li>
           
         
           
             <li>
-              <a href="https://lafish.fun/post/links">朋友们</a>
+              <a href="https://lafish.fun/links">朋友们</a>
             </li>
           
         
           
             <li>
-              <a href="https://lafish.fun/post/about">关于我</a>
+              <a href="https://lafish.fun/about">关于我</a>
             </li>
           
         
@@ -247,7 +250,7 @@
           学习
         </a>
       
-        <a href="https://lafish.fun/tag/RC" class="badge secondary">
+        <a href="https://lafish.fun/tag/RC" class="badge success">
           日常
         </a>
       
