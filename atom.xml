@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://lafish.fun/</id>
     <title>Lafish的部落格</title>
-    <updated>2019-12-31T11:58:10.033Z</updated>
+    <updated>2020-02-09T12:52:03.753Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://lafish.fun/"/>
     <link rel="self" href="https://lafish.fun/atom.xml"/>
@@ -10,7 +10,14 @@
 &lt;script src=&quot;https://v1.hitokoto.cn/?c=a&amp;encode=js&amp;select=%23hitokoto&quot; defer&gt;&lt;/script&gt;</subtitle>
     <logo>https://lafish.fun/images/avatar.png</logo>
     <icon>https://lafish.fun/favicon.ico</icon>
-    <rights>All rights reserved 2019, Lafish的部落格</rights>
+    <rights>All rights reserved 2020, Lafish的部落格</rights>
+    <entry>
+        <title type="html"><![CDATA[关于Minecraft(Java1.12.2)服务器中“删除”作浮空字盔甲架的新方法]]></title>
+        <id>https://lafish.fun/post/TCGjGElL3</id>
+        <link href="https://lafish.fun/post/TCGjGElL3">
+        </link>
+        <updated>2020-02-06T03:24:04.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[行列式与矩阵的区别-线性代数学习小记]]></title>
         <id>https://lafish.fun/post/fGZB0vOKh</id>
