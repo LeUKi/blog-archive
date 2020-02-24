@@ -1971,26 +1971,26 @@ body {
       color: #eee;
       border-bottom-color: #eee;
     }.markdownIt-TOC a:hover {
-      color: #fff;
-      border-bottom-color: #fff;
+      color: #a9e34b;
+      border-bottom-color: #a9e34b;
     }.active-current > a {
-      color: #fc6423 !important;
-      border-bottom-color: #fc6423 !important;
+      color: #66d9e8 !important;
+      border-bottom-color: #66d9e8 !important;
     }
     .sidebar-title-active {
-      color: #fc6423 !important;
-      border-bottom-color: #fc6423 !important;
+      color: #66d9e8;
+      border-bottom-color: #66d9e8;
     }
     .sidebar-title-item:hover {
-      color: #fc6423 !important;
+      color: #66d9e8 !important;
     }
     .active-show > a {
-      color: #fc6423;
-      border-bottom-color: #fc6423;
+      color: #66d9e8;
+      border-bottom-color: #66d9e8;
     }
     .active-hidden > a {
-      color: #fc6423;
-      border-bottom-color: #fc6423;
+      color: #66d9e8;
+      border-bottom-color: #66d9e8;
     }
       .site-meta {
         background: #121518 !important;
