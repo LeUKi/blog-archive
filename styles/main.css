@@ -2006,6 +2006,6 @@ body {
     }
     .mist .site-title i {
       background: #fff;
-    }.box-shadow-wrapper {
+    }code{border:  2px solid aqua;}.box-shadow-wrapper {
       box-shadow: none !important;
     }
