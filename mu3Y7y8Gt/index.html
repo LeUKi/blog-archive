@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-      <meta charset="UTF-8"/>
+    <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <meta name="keywords" content="lafish,LeUKi,leuki,blog">
 <meta name="description" content="这里是Lafish的自留地，记录一个前端小白的成长历程。">
 <meta name="theme-color" content="#121518">
-<title>Lafish的部落格</title>
+<title>DW1820A黑苹果网卡简单折腾记录 | Lafish的部落格</title>
 <link rel="shortcut icon" href="https://lafish.fun/favicon.ico?v=1583074130668">
 <link rel="stylesheet" href="https://lafish.fun/styles/main.css">
 
@@ -25,6 +25,8 @@
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
     onload="renderMathInElement(document.body);"></script>
 
+    <meta name="description" content="DW1820A黑苹果网卡简单折腾记录" />
+    <meta name="keywords" content="" />
   </head>
   <body>
     <div class="head-top-line"></div>
@@ -122,10 +124,16 @@
     </div>
     <div class="main-continer">
       
-      <div class="section-layout  gemini">
+      <div class="section-layout gemini ">
         <div class="section-layout-wrapper">
-          <div class="sidebar">
-    
+          
+
+<div class="sidebar">
+    <div class="sidebar-box box-shadow-wrapper bg-color right-motion" id="sidebar">
+      
+      <div class="sidebar-body gemini" id="sidebar_body">
+        
+          
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="https://lafish.fun/images/avatar.png"/>
@@ -179,120 +187,167 @@
   </div>
 
 </div>
-</div>
-            <div class="section-box tag-line">
-              <div class="box-shadow-wrapper">
-                <div class="bg-color">
-                  <section class="section posts-expand">
-                    <div class="padding-wrapper">
-  <div class="tag-timeline-box">
-    <div class="tag-timeline-wrapper">
-      <div class="tag-timeline-title">
-        <h2>
-          学习
-          <small>标签</small>
-        </h2>
+        
       </div>
-      
-        
-      
-        
-      
-        
-          
-            <a href="https://lafish.fun/my2020Goal/">
-              <div class="motion-warpper">
-                <div class="tag-post-node">
-                  <h1>
-                    02-24
-                    <small>2020 给自己定个小目标</small>
-                  </h1>
-                </div>  
+    </div>
+</div>
+<script>
+  const SIDEBAR_TITLE_ACTIVE = 'sidebar-title-active';
+  const SIDEBAR_BODY_ACTIVE = 'sidebar-body-active';
+  const SLIDE_UP_IN = 'slide-up-in';
+
+  let sidebar = document.querySelector('#sidebar'),
+  tocSideBar = document.querySelector('#tocSideBar'),
+  metaSideBar = document.querySelector('#metaSideBar'),
+  postToc = document.querySelector('#post_toc'),
+  postSiteMeta = document.querySelector('#post_side_meta'),
+  sidebarTitle = document.querySelector('.sidebar-title'),
+  sidebarBody = document.querySelector('#sidebar_body');
+
+  tocSideBar && tocSideBar.addEventListener('click', (e) => {
+    toggleSidebar(e);
+  });
+
+  metaSideBar && metaSideBar.addEventListener('click', (e) => {
+    toggleSidebar(e);
+  });
+
+  function toggleSidebar(e) {
+    let currentTitle = document.querySelector("."+SIDEBAR_TITLE_ACTIVE);
+    if (currentTitle == e.srcElement) {
+      return ;
+    }
+    let current, showElement, hideElement;
+    if (e.srcElement == metaSideBar) {
+      showElement = postSiteMeta;
+      hideElement = postToc;
+    } else if (e.srcElement == tocSideBar){
+      showElement = postToc;
+      hideElement = postSiteMeta;
+    }
+    currentTitle.classList.remove(SIDEBAR_TITLE_ACTIVE);
+    e.srcElement.classList.add(SIDEBAR_TITLE_ACTIVE);
+
+    window.Velocity(hideElement, 'stop');
+    window.Velocity(hideElement, 'transition.slideUpOut', {
+      display: 'none',
+      duration: 200,
+      complete: function () {
+        window.Velocity(showElement, 'transition.slideDownIn', {
+          duration: 200
+        });
+      }
+    })
+    hideElement.classList.remove(SIDEBAR_BODY_ACTIVE);
+    showElement.classList.add(SIDEBAR_BODY_ACTIVE);
+  }
+
+  postToc.addEventListener('transitionend', function() {
+    this.classList.remove(SLIDE_UP_IN);
+  });
+
+
+  if (sidebarBody.classList.contains('pisces') || sidebarBody.classList.contains('gemini')) {
+    let hasFix = false;
+    let scrollEl = document.querySelector('.main-continer');
+    let limitTop = document.querySelector('#nav_ul').children.length * 42 + 162;
+    window.addEventListener('scroll', function(e) {
+    if (document.scrollingElement.scrollTop >= limitTop) {
+      if (!hasFix) {
+        sidebar.classList.add('sidebar-fixed');
+        hasFix = true;
+      }
+    } else {
+      if (hasFix) {
+        sidebar.classList.remove('sidebar-fixed');
+        hasFix = false;
+      }
+    }
+  });
+  }
+  
+</script>
+          <div class="section-box box-shadow-wrapper">
+            <div class="section bg-color post post-page">
+              <div class="article-box">
+    <header class="post-header">
+  <h1 class="post-title">
+    <a class="post-title-link" href="https://lafish.fun/mu3Y7y8Gt/">
+      DW1820A黑苹果网卡简单折腾记录
+    </a>
+  </h1>
+  <div class="post-meta">
+    
+    <span class="meta-item pc-show">
+      <i class="fa fa-calendar-o"></i>
+      <span>发布于</span>
+      <span>2020-03-01</span>
+      <span class="post-meta-divider pc-show">|</span>
+    </span>
+    
+    <span class="meta-item">
+      <i class="fa fa-clock-o"></i>
+      <span>2分钟</span>
+    </span>
+    <span class="meta-item">
+      <span class="post-meta-divider">|</span>
+      <i class="fa fa-file-word-o"></i>
+      <span>309<span class="pc-show">字数</span></span>
+    </span>
+  </div>
+</header>
+</div>
+              <div class="post-body next-md-body" id="post_body">
+                <p>哪个男孩不想拥有一张完美的黑苹果网卡？（误）<br>
+无奈钱包瘪瘪，DW1830和DW1560对于目前学生的我实在太过昂贵。直到某天，在闲鱼上让我刷到了这“物美价廉”玩意。竟然只要1/4的价钱，就能体验到msata免驱的WiFi加蓝牙。<br>
+到货装上后WiFi能免驱显示，但蓝牙却没反应。远景上也有人发过类似的帖子，顺着帖子找到了小兵大佬在<br>
+19年8月份发的博客：<a href="https://blog.daliansky.net/DW1820A_BCM94350ZAE-driver-inserts-the-correct-posture.html">DW1820A...插入的正确姿势</a><br>
+来回折腾了几次，稳定版2.2.10文件和10.14测试版2.5.1文件在macOS1.14.6中只支持airdrop和handoff，并不能连接耳机和触控板等外设。只有10.15测试版2.5.1能近完美驱动这张网卡。<br>
+<img src="https://lafish.fun/post-images/1583073715577.png" alt="" loading="lazy"><br>
+<img src="https://lafish.fun/post-images/1583073720233.png" alt="" loading="lazy"><br>
+<img src="https://lafish.fun/post-images/1583073724880.png" alt="" loading="lazy"><br>
+这张廉价网卡也是有缺点的，WiFi蓝牙共用2.4G会导致蓝牙不稳定，也不能连接5GWiFi的信号，虽然还能折腾下，但能用就行，觉得再弄下去没完没了。</p>
+<hr>
+<p>记录几个还没有试过的方法：</p>
+<ul>
+<li>从Windows热重启到macOS</li>
+<li>关机拔掉电源，等待5分钟再加电开机（但我这笔记本把电源不靠谱）</li>
+</ul>
+
               </div>
-            </a>
-          
-        
+              <div class="post-footer">
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      Lafish的部落格
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://lafish.fun/mu3Y7y8Gt/" title="DW1820A黑苹果网卡简单折腾记录">DW1820A黑苹果网卡简单折腾记录</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      本博客所有文章除特别声明外，转载请注明出处！
+    </li>
+  </ul>
+  <div class="tags">
+    
+  </div>
+  <div class="nav">
+    <div class="nav-prev">
       
-        
-          
-            <a href="https://lafish.fun/TCGjGElL3/">
-              <div class="motion-warpper">
-                <div class="tag-post-node">
-                  <h1>
-                    02-06
-                    <small>关于Minecraft(Java1.12.2)服务器中“删除”作浮空字盔甲架的新方法</small>
-                  </h1>
-                </div>  
-              </div>
-            </a>
-          
-        
+    </div>
+    <div class="nav-next">
       
-        
-          
-            <a href="https://lafish.fun/fGZB0vOKh/">
-              <div class="motion-warpper">
-                <div class="tag-post-node">
-                  <h1>
-                    12-02
-                    <small>行列式与矩阵的区别-线性代数学习小记</small>
-                  </h1>
-                </div>  
-              </div>
-            </a>
-          
-        
-      
-        
-          
-        
-      
-        
-          
-            <a href="https://lafish.fun/yZ1fm-el0/">
-              <div class="motion-warpper">
-                <div class="tag-post-node">
-                  <h1>
-                    12-01
-                    <small>关于C语言printf函数的易错点</small>
-                  </h1>
-                </div>  
-              </div>
-            </a>
-          
-        
-      
-        
-          
-            <a href="https://lafish.fun/HiBqxtmMW/">
-              <div class="motion-warpper">
-                <div class="tag-post-node">
-                  <h1>
-                    11-16
-                    <small>关于C语言数组排序的一点想法</small>
-                  </h1>
-                </div>  
-              </div>
-            </a>
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
+        <a class="nav-pc-next" title="一次在jQuery中input绑定keyup等事件的错误记录" href="https://lafish.fun/Fd2bot3Xf/">一次在jQuery中input绑定keyup等事件的错误记录</a>
+        <a class="nav-mobile-next" title="一次在jQuery中input绑定keyup等事件的错误记录" href="https://lafish.fun/Fd2bot3Xf/">下一篇</a>
+        <i class="fa fa-chevron-right"></i>
       
     </div>
   </div>
 </div>
-                  </section>
-                </div>
-              </div>
+              
+            </div>
           </div>
         </div>
       </div>
