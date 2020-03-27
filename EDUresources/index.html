@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="keywords" content="lafish,LeUKi,leuki,blog">
+<meta name="description" content="这里是Lafish的自留地，记录一个前端小白的成长历程。">
+<meta name="theme-color" content="#121518">
+<title>目前互联网可支持教育优惠的产品汇集 | Lafish的部落格</title>
+<link rel="shortcut icon" href="https://lafish.fun/favicon.ico?v=1585271747386">
+<link rel="stylesheet" href="https://lafish.fun/styles/main.css">
+
+<link rel="stylesheet" href="/media/css/gemini.css">
+
+<link rel="stylesheet" href="/media/fonts/font-awesome.css">
+<link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Rosario:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+<link href="/media/hljs/styles/atom-one-dark.css" rel="stylesheet">  
+
+<script src="/media/hljs/highlight.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.0/velocity.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.0/velocity.ui.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+
+    <meta name="description" content="目前互联网可支持教育优惠的产品汇集" />
+    <meta name="keywords" content="分享" />
+  </head>
+  <body>
+    <div class="head-top-line"></div>
+    <div class="header-box">
+      
+<div class=" gemini">
+  <header class="header bg-color ">
+    <div class="blog-header box-shadow-wrapper bg-color " id="header">
+      <div class="nav-toggle" id="nav_toggle">
+        <div class="toggle-box">
+          <div class="line line-top"></div>
+          <div class="line line-center"></div>
+          <div class="line line-bottom"></div>
+        </div>
+      </div>
+      <div class="site-meta">       
+        <div class="site-title">
+          
+            <a href="/" class="brand">
+              <span>Lafish的部落格</span>
+            </a>  
+          
+        </div>
+        
+          <p class="subtitle">记录一个前端小白的成长历程</p>
+        
+      </div>
+      <nav class="site-nav" id="site_nav">
+        <ul id="nav_ul">
+          
+            <li class="nav-item ">
+              
+                <a href="/">
+                  <i class="fa fa-home"></i> 首页
+                </a>
+              
+            </li>
+          
+            <li class="nav-item ">
+              
+                <a href="/archives">
+                  <i class="fa fa-archive"></i> 归档
+                </a>
+              
+            </li>
+          
+            <li class="nav-item ">
+              
+                <a href="/tags">
+                  <i class="fa fa-tags"></i> 标签
+                </a>
+              
+            </li>
+          
+            <li class="nav-item ">
+              
+                <a href="/about">
+                  <i class="fa fa-globe"></i> 关于
+                </a>
+              
+            </li>
+          
+          <li class="nav-item">
+            <a>
+              <i class="fa fa-search"></i> 搜索
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+</div>
+
+<script type="text/javascript"> 
+ 
+  let showNav = true;
+
+  let navToggle = document.querySelector('#nav_toggle'),
+  siteNav = document.querySelector('#site_nav');
+  
+  function navClick() {
+    let sideBar = document.querySelector('.sidebar');
+    let navUl = document.querySelector('#nav_ul');
+    navToggle.classList.toggle('nav-toggle-active');
+    siteNav.classList.toggle('nav-menu-active');
+    if (siteNav.classList.contains('nav-menu-active')) {
+      siteNav.style = "height: " + (navUl.children.length * 42) +"px !important";
+    } else {
+      siteNav.style = "";
+    }
+  }
+
+  navToggle.addEventListener('click',navClick);  
+</script>
+    </div>
+    <div class="main-continer">
+      
+      <div class="section-layout gemini ">
+        <div class="section-layout-wrapper">
+          
+
+<div class="sidebar">
+    <div class="sidebar-box box-shadow-wrapper bg-color right-motion" id="sidebar">
+      
+      <div class="sidebar-body gemini" id="sidebar_body">
+        
+          
+<div class="sidebar-wrapper box-shadow-wrapper bg-color">
+  <div class="sidebar-item">
+    <img class="site-author-image right-motion" src="https://lafish.fun/images/avatar.png"/>
+    <p class="site-author-name">Lafish的部落格</p>
+    <p class="site-description right-motion">码码新手，掉线码码</p>
+  </div>
+
+  
+    
+      <div class="sidebar-item">
+        <span class="site-item-rss">
+            <i class="fa fa-rss"></i>
+            <a href="https://lafish.fun/atom.xml" target="_blank">RSS</a>
+        </span>
+      </div>
+    
+  
+  
+    <div class="sidebar-item sidebar-item-social">
+      <div class="social-item">
+        
+          
+            <a href="https://shang.qq.com/open_webaio.html?sigt=f47cf1c210bb76a6c7c8fe8a88e16646e874eac824e583cd02fd50c271770551450310fc60f4fe908366cbff57ca358f&amp;sigu=af54842993bf7d7aba10552c0a8ffed066d9eb0c37d36e3278dd3b97d88b75442388a8b2099cb638&amp;tuin=1409286026">
+              <i class="fa fa-qq"></i> QQ
+            </a>
+          
+            <a href="https://github.com/LeUKi">
+              <i class="fa fa-github-alt"></i> GitHub
+            </a>
+          
+            <a href="https://u.wechat.com/EK7VIo3hXTKW1dtNdIBKozw">
+              <i class="fa fa-wechat"></i> WeChat
+            </a>
+          
+        
+        
+      </div>
+    </div>
+  
+
+
+  <div class="sidebar-item right-motion sidebar-item-friends">
+    <p class="friends-title"><i class="fa fa-globe"></i> 志同伙伴</p>
+    <div class="friends-box">
+      
+        <p>
+          <a href="https://ai10.xyz/">【亚历克斯情报10处】</a>
+        </p>
+      
+    </div>
+  </div>
+
+</div>
+        
+      </div>
+    </div>
+</div>
+<script>
+  const SIDEBAR_TITLE_ACTIVE = 'sidebar-title-active';
+  const SIDEBAR_BODY_ACTIVE = 'sidebar-body-active';
+  const SLIDE_UP_IN = 'slide-up-in';
+
+  let sidebar = document.querySelector('#sidebar'),
+  tocSideBar = document.querySelector('#tocSideBar'),
+  metaSideBar = document.querySelector('#metaSideBar'),
+  postToc = document.querySelector('#post_toc'),
+  postSiteMeta = document.querySelector('#post_side_meta'),
+  sidebarTitle = document.querySelector('.sidebar-title'),
+  sidebarBody = document.querySelector('#sidebar_body');
+
+  tocSideBar && tocSideBar.addEventListener('click', (e) => {
+    toggleSidebar(e);
+  });
+
+  metaSideBar && metaSideBar.addEventListener('click', (e) => {
+    toggleSidebar(e);
+  });
+
+  function toggleSidebar(e) {
+    let currentTitle = document.querySelector("."+SIDEBAR_TITLE_ACTIVE);
+    if (currentTitle == e.srcElement) {
+      return ;
+    }
+    let current, showElement, hideElement;
+    if (e.srcElement == metaSideBar) {
+      showElement = postSiteMeta;
+      hideElement = postToc;
+    } else if (e.srcElement == tocSideBar){
+      showElement = postToc;
+      hideElement = postSiteMeta;
+    }
+    currentTitle.classList.remove(SIDEBAR_TITLE_ACTIVE);
+    e.srcElement.classList.add(SIDEBAR_TITLE_ACTIVE);
+
+    window.Velocity(hideElement, 'stop');
+    window.Velocity(hideElement, 'transition.slideUpOut', {
+      display: 'none',
+      duration: 200,
+      complete: function () {
+        window.Velocity(showElement, 'transition.slideDownIn', {
+          duration: 200
+        });
+      }
+    })
+    hideElement.classList.remove(SIDEBAR_BODY_ACTIVE);
+    showElement.classList.add(SIDEBAR_BODY_ACTIVE);
+  }
+
+  postToc.addEventListener('transitionend', function() {
+    this.classList.remove(SLIDE_UP_IN);
+  });
+
+
+  if (sidebarBody.classList.contains('pisces') || sidebarBody.classList.contains('gemini')) {
+    let hasFix = false;
+    let scrollEl = document.querySelector('.main-continer');
+    let limitTop = document.querySelector('#nav_ul').children.length * 42 + 162;
+    window.addEventListener('scroll', function(e) {
+    if (document.scrollingElement.scrollTop >= limitTop) {
+      if (!hasFix) {
+        sidebar.classList.add('sidebar-fixed');
+        hasFix = true;
+      }
+    } else {
+      if (hasFix) {
+        sidebar.classList.remove('sidebar-fixed');
+        hasFix = false;
+      }
+    }
+  });
+  }
+  
+</script>
+          <div class="section-box box-shadow-wrapper">
+            <div class="section bg-color post post-page">
+              <div class="article-box">
+    <header class="post-header">
+  <h1 class="post-title">
+    <a class="post-title-link" href="https://lafish.fun/EDUresources/">
+      目前互联网可支持教育优惠的产品汇集
+    </a>
+  </h1>
+  <div class="post-meta">
+    
+    <span class="meta-item pc-show">
+      <i class="fa fa-calendar-o"></i>
+      <span>发布于</span>
+      <span>2020-03-27</span>
+      <span class="post-meta-divider pc-show">|</span>
+    </span>
+    
+      <span class="meta-item">
+        <i class="fa fa-folder-o"></i>
+        <span class="pc-show">分类于</span>
+        
+          
+            <a href="https://lafish.fun/tag/fen-xiang/">
+              <span>分享</span>
+            </a>
+          
+        
+      </span>
+      <span class="post-meta-divider">|</span>
+    
+    <span class="meta-item">
+      <i class="fa fa-clock-o"></i>
+      <span>6分钟</span>
+    </span>
+    <span class="meta-item">
+      <span class="post-meta-divider">|</span>
+      <i class="fa fa-file-word-o"></i>
+      <span>1363<span class="pc-show">字数</span></span>
+    </span>
+  </div>
+</header>
+</div>
+              <div class="post-body next-md-body" id="post_body">
+                <blockquote>
+<p>海大终于有教育邮箱啦！昨天刚刚上传学生证认证Apple Music，今天突然就有教育邮箱了。所以收集了些免费的教育资源分享给有教育邮箱的小可爱们！</p>
+</blockquote>
+<div class="entry-content" itemprop="articleBody">
+<h4 style="font-size: 16px; color: #24292e; font-family: -apple-system, BlinkMacSystemFont, &quot;background-color:#FFFFFF;">软件</h4>
+<ul style="color: #24292e; font-family: -apple-system, BlinkMacSystemFont, &quot;font-size:16px; background-color: #ffffff;">
+<li><a href="https://setapp.com/educational-discount">Setapp</a>&nbsp;– 5折优惠，每月4.99刀，订阅制应用商店。查看<a href="https://setapp.com/apps">可用软件列表</a></li>
+<li><a href="https://www.jetbrains.com/student/">JetBrains</a>&nbsp;– 免费使用旗下大部分软件，如IntelliJ IDEA、WebStorm 等</li>
+<li><a href="https://education.github.com/">Github 高级账户</a>&nbsp;– Github教育礼包，免费两年高级账户</li>
+<li><a href="https://paw.cloud/purchase/students">Paw</a>&nbsp;– 7折，API调试工具</li>
+<li><a href="https://www.sketchapp.com/store/edu/">Sketch</a>&nbsp;– 5折，设计工具</li>
+<li><a href="https://ulyssesapp.com/students/">Ulysses</a>&nbsp;– 5折，Markdown写作软件</li>
+<li><a href="https://www.studentappcentre.com/discounts/paste">Paste</a>&nbsp;– 7折，剪切板工具，查找复制记录</li>
+<li><a href="https://www.xmind.cn/pricing/">XMind Pro</a>&nbsp;– 419人民币，原价899，思维导图软件</li>
+<li><a href="https://www.toketaware.com/discounts">iThoughts</a>&nbsp;– 5折，思维导图软件</li>
+<li><a href="https://tumult.com/store-edu/">Hype</a>&nbsp;– 6折，HTML5动画制作工具</li>
+<li><a href="https://imazing.com/store/educational">iMazing</a>&nbsp;– 7折，iOS设备数据管理软件</li>
+<li><a href="https://www.studentappcentre.com/discounts/1password">1Password</a>&nbsp;– 6个月免费试用, 密码管理</li>
+<li><a href="https://lastpass.com/edupromo.php">LastPass</a>&nbsp;– 6个月免费高级账户, 密码管理</li>
+<li><a href="https://todoist.com/education">TodoList</a>&nbsp;– 商务版5折优惠</li>
+<li><a href="https://support.apple.com/zh-cn/HT205928">Apple Music</a>&nbsp;– 5元/月</li>
+<li><a href="https://www.apple.com/cn-k12/shop/product/BMGE2CH/A/pro-app-%E6%95%99%E8%82%B2%E5%A5%97%E8%A3%85">Apple Pro App</a>&nbsp;– 1598元</li>
+<li><a href="https://www.studentappcentre.com/discounts/sanebox">SaneBox</a>&nbsp;– 15刀优惠劵，邮件管理</li>
+<li><a href="https://www.studentappcentre.com/discounts/activedock">ActiveDock</a>&nbsp;– 6.5折，Dock管理工具</li>
+<li><a href="https://www.studentappcentre.com/discounts/iringg">iRingg</a>&nbsp;– 9折，iPhone铃声制作工具</li>
+<li><a href="https://www.studentappcentre.com/discounts/command-tabplus">Command-Tab Plus</a>&nbsp;– 6.5折，应用程序切换增强式工具</li>
+<li><a href="https://www.studentappcentre.com/discounts/undistracted">UnDistracted</a>&nbsp;– 6.5折，效率工具</li>
+<li><a href="https://www.autodesk.com.cn/education/free-software/featured">AutoDesk</a>&nbsp;– 免费使用大部分软件</li>
+<li><a href="https://www.browserstack.com/open-source?ref=pricing">browserstack</a>&nbsp;– 开源项目免费</li>
+<li><a href="https://www.adriangranados.com/educational-discount">WiFi Explorer</a>&nbsp;– 5折，WiFi无线网络管理工具</li>
+<li><a href="https://community.findingsapp.com/t/student-discount-40/119">Findings</a>&nbsp;– 6折，笔记软件，侧重用实验记录</li>
+<li><a href="https://timingapp.com/contact">Timing</a>&nbsp;– 6折，时间管理软件</li>
+<li><a href="http://www.netsarang.com/download/free_license.html">Xshell</a>&nbsp;– 免费, 终端工具</li>
+<li><a href="http://www.netsarang.com/download/free_license.html">Xftp</a>&nbsp;– 免费，FTP工具</li>
+<li><a href="https://www.belightsoft.com/store/nonprofit">Printworks</a>&nbsp;– 7折，设计软件</li>
+<li><a href="https://www.belightsoft.com/store/nonprofit">Disc Cover</a>&nbsp;– 7折，CD设计软件</li>
+<li><a href="https://www.belightsoft.com/store/nonprofit">Swift Publisher</a>&nbsp;– 7折，版面设计工具</li>
+<li><a href="https://www.belightsoft.com/store/nonprofit">Business Card Composer</a>&nbsp;– 7折，名片设计软件</li>
+<li><a href="https://www.belightsoft.com/store/nonprofit">Art Text</a>&nbsp;– 7折，艺术字快速创作工具</li>
+<li><a href="https://www.belightsoft.com/store/nonprofit">Labels &amp; Addresses</a>&nbsp;– 7折，设计工具</li>
+<li><a href="https://www.belightsoft.com/store/nonprofit">Concealer</a>&nbsp;– 7折，加密软件</li>
+<li><a href="https://www.belightsoft.com/store/nonprofit">Image Tricks Pro</a>&nbsp;– 7折，图片编辑工具</li>
+<li><a href="https://www.belightsoft.com/store/nonprofit">Get Backup Pro</a>&nbsp;– 7折，数据备份软件</li>
+<li><a href="https://www.allegorithmic.com/buy/education">Substance</a>&nbsp;– 免费，游戏制作</li>
+<li><a href="https://www.studentappcentre.com/discounts/deskcoverpro">DeskCover Pro</a>&nbsp;– 6.5折</li>
+<li><a href="https://www.studentappcentre.com/discounts/maxsnap">MaxSnap</a>&nbsp;– 6.5折</li>
+<li><a href="https://www.decksetapp.com/edu/">Deckset</a>&nbsp;– 5折</li>
+<li><a href="https://www.studentappcentre.com/discounts/waltr2">WALTR 2</a>&nbsp;– 7折</li>
+<li><a href="https://www.studentappcentre.com/discounts/youtubeconverter2">Softorino YouTube Converter 2</a>&nbsp;– 8折</li>
+<li><a href="https://www.studentappcentre.com/discounts/betterzip">BetterZip</a>&nbsp;– 7折</li>
+<li><a href="https://www.studentappcentre.com/discounts/daisydisk">DaisyDisk</a>&nbsp;– 5折</li>
+<li><a href="http://www.acqualia.com/store/soulver?coupon=EduDiscount">Soulver</a>&nbsp;– 8折</li>
+<li><a href="https://www.studentappcentre.com/discounts/downie">Downie</a>&nbsp;– 5折</li>
+<li><a href="https://www.studentappcentre.com/discounts/witch">Witch</a>&nbsp;– 7.5折</li>
+<li><a href="https://www.studentappcentre.com/discounts/moom">Moom</a>&nbsp;– 7.5折</li>
+<li><a href="https://www.studentappcentre.com/discounts/timesink">Time Sink</a>&nbsp;– 7.5折</li>
+<li><a href="https://www.studentappcentre.com/discounts/desktopcurtain">Desktop Curtain</a>&nbsp;– 7.5折</li>
+<li><a href="https://www.studentappcentre.com/discounts/keymo">Keymo</a>&nbsp;– 7.5折</li>
+<li><a href="https://www.studentappcentre.com/discounts/leech">Leech</a>&nbsp;– 7.5折</li>
+<li><a href="https://www.studentappcentre.com/discounts/resolutionator">Resolutionator</a>&nbsp;– 7.5折</li>
+<li><a href="https://www.studentappcentre.com/discounts/butler">Butler</a>&nbsp;– 7.5折</li>
+<li><a href="https://www.studentappcentre.com/discounts/focus1">Focus</a>&nbsp;– 5折</li>
+<li><a href="https://www.studentappcentre.com/discounts/launchbar">LaunchBar</a>&nbsp;– 7折</li>
+<li><a href="https://www.studentappcentre.com/discounts/littlesnitch">Little Snitch</a>&nbsp;– 7折</li>
+<li><a href="https://www.studentappcentre.com/discounts/microsnitch">Micro Snitch</a>&nbsp;– 7折</li>
+<li><a href="https://www.studentappcentre.com/discounts/imageframer">ImageFramer</a>&nbsp;– 7折</li>
+<li><a href="https://www.studentappcentre.com/discounts/cashculator">Cashculator</a>&nbsp;– 7折</li>
+<li><a href="https://www.studentappcentre.com/discounts/trickster">Trickster</a>&nbsp;– 7折</li>
+<li><a href="https://www.studentappcentre.com/discounts/pdfexpert">PDF Expert</a>&nbsp;– 5折</li>
+<li><a href="https://cforum.marginnote.com/t/topic/457/48">MarginNote 3</a>&nbsp;– 6折, 国人开发的 PDF/EPUD 记录笔记、翻译、导出学习卡片的学习软件</li>
+<li><a href="https://www.studentappcentre.com/discounts/marked">Marked</a>&nbsp;– 5折</li>
+<li><a href="https://www.studentappcentre.com/discounts/noteplan">NotePlan</a>&nbsp;– 7折</li>
+<li><a href="https://www.studentappcentre.com/discounts/permute">Permute</a>&nbsp;– 5折</li>
+<li><a href="https://www.studentappcentre.com/discounts/soundsource">SoundSource</a>&nbsp;– 8.5折</li>
+<li><a href="https://www.studentappcentre.com/discounts/piezo">Piezo</a>&nbsp;– 8.5折</li>
+<li><a href="https://www.studentappcentre.com/discounts/loopback">Loopback</a>&nbsp;– 8.5折</li>
+<li><a href="https://www.studentappcentre.com/discounts/fission">Fission</a>&nbsp;– 8.5折</li>
+<li><a href="https://www.studentappcentre.com/discounts/audiohijack">Audio Hijack</a>&nbsp;– 8.5折</li>
+<li><a href="https://www.studentappcentre.com/discounts/airfoil">Airfoil</a>&nbsp;– 8.5折</li>
+<li><a href="https://www.studentappcentre.com/discounts/iconjar">IconJar</a>&nbsp;– 8折</li>
+<li><a href="https://www.zengobi.com/curio/#buyacademic">Curio Professional</a>&nbsp;– 6.5折</li>
+<li><a href="https://www.realmacsoftware.com/store/">RapidWeaver</a>&nbsp;– 5折</li>
+<li><a href="https://www.cleverfiles.com/noprofit.html">Disk Drill Pro</a>&nbsp;– 8折</li>
+<li><a href="https://www.studentappcentre.com/discounts/flume">Flume Pro</a>&nbsp;– 3折</li>
+<li><a href="https://sites.fastspring.com/smile/product/catalog?coupon=EDUDISC2">PDFpen Pro</a>&nbsp;– 7折</li>
+<li><a href="https://www.iggsoftware.com/contact_support.php">Banktivity</a>&nbsp;– 8折</li>
+<li><a href="https://www.studentappcentre.com/discounts/mailmate">MailMate</a>&nbsp;– 7.5折</li>
+<li><a href="https://www.git-tower.com/support/contact?category=Sales%20Issue">Tower</a>&nbsp;– 5折</li>
+<li><a href="https://www.studentappcentre.com/discounts/apptamer">App Tamer</a>&nbsp;– 5折</li>
+<li><a href="https://www.studentappcentre.com/discounts/defaultfolderx">Default Folder X</a>&nbsp;– 5折</li>
+<li><a href="https://www.studentappcentre.com/discounts/boom?rq=boom">Boom 2</a>&nbsp;– 7折</li>
+<li><a href="https://macpaw.com/macpaw-educational-discount">CleanMyMac</a>&nbsp;– 7折</li>
+<li><a href="https://macpaw.com/macpaw-educational-discount">CleanMyPC</a>&nbsp;– 7折</li>
+<li><a href="https://macpaw.com/macpaw-educational-discount">Gemini</a>&nbsp;– 7折</li>
+<li><a href="https://macpaw.com/macpaw-educational-discount">Wallpaper Wizard 2</a>&nbsp;– 7折</li>
+<li><a href="https://macpaw.com/macpaw-educational-discount">Hider 2</a>&nbsp;– 7折</li>
+<li><a href="https://evernote.com/students">Evernote</a>&nbsp;– 5折</li>
+<li><a href="https://www.studentappcentre.com/discounts/hazel">Hazel 4</a>&nbsp;– 8折</li>
+<li><a href="https://store.omnigroup.com/edu/f9120b1a58d1d6e1ffffffff">OmniOutliner</a>&nbsp;– 6折</li>
+<li><a href="https://store.omnigroup.com/edu/f91f0b1a58d1d6e1ffffffff">OmniPlan</a>&nbsp;– 5.5折</li>
+<li><a href="https://store.omnigroup.com/edu/f9150b1a58d1d6e1ffffffff">OmniFocus</a>&nbsp;– 6折</li>
+<li><a href="https://store.omnigroup.com/edu/f9130b1a58d1d6e1ffffffff">OmniGraffle</a>&nbsp;– 6折</li>
+<li><a href="https://flexibits.com/store?coupon=education">Fantastical</a>&nbsp;– 8折</li>
+<li>Namecheap – Github教育礼包，免费一年SSL证书，一年.me域名</li>
+<li><a href="https://www.globaldelight.com/capto/educators">Capto</a>&nbsp;– 屏幕录像与视频编辑</li>
+<li><a href="https://trello.com/education">Trello</a>&nbsp;– 免费</li>
+<li><a href="https://get.slack.help/hc/en-us/articles/206646877-Slack-for-Education">Slack</a>&nbsp;– 1.5折</li>
+<li><a href="https://www.goabstract.com/pricing/">abstract</a>&nbsp;– 非商业与教育需用邮件申请</li>
+<li><a href="https://ww2.mathworks.cn/academia/tah-support-program/eligibility.html?s_tid=tfa_student_licenseCheck">MATLAB</a>&nbsp;– 高校授权</li>
+<li><a href="https://ww2.mathworks.cn/academia/tah-support-program/eligibility.html?s_tid=tfa_student_licenseCheck">Simulink</a>&nbsp;– 高校授权</li>
+<li><a href="https://www.netlify.com/education/">Netlify</a></li>
+<li><a href="https://www.dropbox.com/education">dropbox</a></li>
+<li><a href="http://www.gurobi.com/academia/for-universities">Gurobi</a></li>
+<li><a href="https://coding.net/campus">Coding.net</a>&nbsp;– 99元/年黄金会员，Git代码托管服务</li>
+<li><a href="https://www.axure.com/edu">Axure</a>&nbsp;– 免费，产品原型工具</li>
+</ul>
+<h4 style="font-size: 16px; color: #24292e; font-family: -apple-system, BlinkMacSystemFont, &quot;background-color:#FFFFFF;"><a id="user-content-vps" class="anchor" href="https://github.com/wowlusitong/awesome-education#vps"></a>VPS</h4>
+<ul style="color: #24292e; font-family: -apple-system, BlinkMacSystemFont, &quot;font-size:16px; background-color: #ffffff;">
+<li><a href="https://www.digitalocean.com/github-students">DigitalOcean</a>&nbsp;– 使用Github教育包赠送50美元优惠码，现在用信用卡认证不需要额外冲5美元了，直接可用</li>
+<li><a href="https://cloud.tencent.com/act/campus">腾讯云</a>&nbsp;– 10元/月</li>
+<li><a href="https://promotion.aliyun.com/ntms/campus2017.html">阿里云</a>&nbsp;– 9.5元/月</li>
+<li><a href="https://developer.huaweicloud.com/campus">华为云</a>&nbsp;– 可以以9元/月的价格购买云服务器（1C2G1M40G）。并可购买数据库/容器等服务</li>
+<li><a href="https://www.ctyun.cn/esurfing/index">天翼云</a>&nbsp;– 可以以9.9元/月的价格购买云服务器（1C2G1M40G）</li>
+<li><a href="https://cloud.baidu.com/campaign/campus-2018/index.html">百度云</a>&nbsp;– 可以以18元/3月的价格购买云服务器（1C2G1M40G）</li>
+</ul>
+<h4 style="font-size: 16px; color: #24292e; font-family: -apple-system, BlinkMacSystemFont, &quot;background-color:#FFFFFF;"><a id="user-content-github" class="anchor" href="https://github.com/wowlusitong/awesome-education#github"></a><a href="https://education.github.com/">Github</a></h4>
+<ul style="color: #24292e; font-family: -apple-system, BlinkMacSystemFont, &quot;font-size:16px; background-color: #ffffff;">
+<li>Github 高级账户</li>
+<li>DigitalOcean</li>
+<li>Travis CI</li>
+<li>ATOM</li>
+<li>AWS Educate</li>
+<li>Bitnami</li>
+<li>CARTO</li>
+<li>CrowdFlower</li>
+<li>Datadog</li>
+<li>Flatiron School</li>
+<li>GitKraken</li>
+<li>HackHands</li>
+<li>Microsoft Imagine</li>
+<li>Namecheap</li>
+<li>SendGrid</li>
+<li>Sentry</li>
+<li>Stripe</li>
+<li>Taplytics</li>
+<li>Thinkful</li>
+<li>transifex</li>
+<li>Unreal Engine</li>
+</ul>
+<h4 style="font-size: 16px; color: #24292e; font-family: -apple-system, BlinkMacSystemFont, &quot;background-color:#FFFFFF;"><a id="user-content-会员资格" class="anchor" href="https://github.com/wowlusitong/awesome-education#%E4%BC%9A%E5%91%98%E8%B5%84%E6%A0%BC"></a>会员资格</h4>
+<ul style="color: #24292e; font-family: -apple-system, BlinkMacSystemFont, &quot;font-size:16px; background-color: #ffffff;">
+<li><a href="https://www.ccf.org.cn/c/2017-02-22/582915.shtml">中国计算机学会（CCF）</a>&nbsp;– 学生可以以优惠价格加入会员，并免费获取学会通讯电子版。
+<ul>
+<li><a href="https://www.ccf.org.cn/tjjracm/">美国计算机学会（ACM）</a>&nbsp;– 在成为CCF会员后，学生会员可以以优惠价格成为ACM会员。</li>
+<li><a href="https://www.ccf.org.cn/membership/tjjrieeecs-acm/">美国电子与电气工程师协会计算机学会（IEEE CS）</a>&nbsp;– 在成为CCF会员后，学生会员可以以优惠价格成为IEEE CS会员。</li>
+</ul>
+</li>
+</ul>
+<h4 style="font-size: 16px; color: #24292e; font-family: -apple-system, BlinkMacSystemFont, &quot;background-color:#FFFFFF;"><a id="user-content-阅读教育" class="anchor" href="https://github.com/wowlusitong/awesome-education#%E9%98%85%E8%AF%BB%E6%95%99%E8%82%B2"></a>阅读/教育</h4>
+<ul style="color: #24292e; font-family: -apple-system, BlinkMacSystemFont, &quot;font-size:16px; background-color: #ffffff;">
+<li><a href="https://www.safaribooksonline.com/">Safari Books Online</a>&nbsp;– O’Reilly（动物书的出版社）创办的在线教育平台。成为ACM会员后可以免费使用</li>
+</ul>
+<h4 style="font-size: 16px; color: #24292e; font-family: -apple-system, BlinkMacSystemFont, &quot;background-color:#FFFFFF;"><a id="user-content-其他" class="anchor" href="https://github.com/wowlusitong/awesome-education#%E5%85%B6%E4%BB%96"></a>其他</h4>
+<ul style="color: #24292e; font-family: -apple-system, BlinkMacSystemFont, &quot;font-size:16px; background-color: #ffffff;">
+<li><a href="https://www.apple.com/cn-k12/shop">Apple 教育商店</a>&nbsp;以优惠价格购买苹果产品
+<ul>
+<li>台式电脑或笔记本：每学年共可以购买两（2）台</li>
+<li>Mac mini：每学年可以购买一（1）台</li>
+<li>iPad: 每学年可以购买两（2）台</li>
+<li>显示器：每学年最多可以购买两（2）台</li>
+<li>iPod：每学年购买 iPod 没有数量限制</li>
+</ul>
+</li>
+<li><a href="https://www.microsoftstore.com.cn/student">Microsoft 教育商店</a>&nbsp;以优惠价格购买微软产品</li>
+<li><a href="https://imagine.microsoft.com/zh-cn">Microsoft 教育优惠</a>&nbsp;可获取部分免费开发工具以及教育资源</li>
+<li><a href="https://signup.microsoft.com/signup?sku=Education">Office 365教育版</a>&nbsp;– OneDrive 1TB免费存储</li>
+<li><a href="https://store.dji.com/cn/education">大疆商城</a>&nbsp;– 可领产品优惠码</li>
+</ul>
+
+              </div>
+              <div class="post-footer">
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      Lafish的部落格
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://lafish.fun/EDUresources/" title="目前互联网可支持教育优惠的产品汇集">目前互联网可支持教育优惠的产品汇集</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      本博客所有文章除特别声明外，转载请注明出处！
+    </li>
+  </ul>
+  <div class="tags">
+    
+      <a href="https://lafish.fun/tag/fen-xiang/"># 分享</a>
+    
+  </div>
+  <div class="nav">
+    <div class="nav-prev">
+      
+    </div>
+    <div class="nav-next">
+      
+        <a class="nav-pc-next" title="DW1820A黑苹果网卡简单折腾记录" href="https://lafish.fun/mu3Y7y8Gt/">DW1820A黑苹果网卡简单折腾记录</a>
+        <a class="nav-mobile-next" title="DW1820A黑苹果网卡简单折腾记录" href="https://lafish.fun/mu3Y7y8Gt/">下一篇</a>
+        <i class="fa fa-chevron-right"></i>
+      
+    </div>
+  </div>
+</div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-box">
+  <footer class="footer">
+    <div class="copyright">
+      © 2019-2020 Made with Gridea by <strong>Lafish</strong>,<br>Theme by HsxyHao.Power by GitHub.
+    </div>
+    <div class="poweredby">
+      <script type="text/javascript" src="https://s9.cnzz.com/z_stat.php?id=1278649515&web_id=1278649515"></script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?7a1c192df90f105512e0f212164f1da3";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    </div>
+  </footer>
+  
+  
+  <div class="gemini back-to-top" id="back_to_top">
+    <i class="fa fa-arrow-up"></i>
+    
+    <span class="scrollpercent">
+      <span id="back_to_top_text">0</span>%
+    </span>
+    
+  </div>
+  
+  
+  
+</div>
+<script>
+
+  let sideBarOpen = 'sidebar-open';
+  let body = document.body;
+  let back2Top = document.querySelector('#back_to_top'),
+  back2TopText = document.querySelector('#back_to_top_text'),
+  drawerBox = document.querySelector('#drawer_box'),
+  rightSideBar = document.querySelector('.sidebar'),
+  viewport = document.querySelector('body');
+
+  function scrollAnimation(currentY, targetY) {
+   
+    let needScrollTop = targetY - currentY
+    let _currentY = currentY
+    setTimeout(() => {
+      const dist = Math.ceil(needScrollTop / 10)
+      _currentY += dist
+      window.scrollTo(_currentY, currentY)
+      if (needScrollTop > 10 || needScrollTop < -10) {
+        scrollAnimation(_currentY, targetY)
+      } else {
+        window.scrollTo(_currentY, targetY)
+      }
+    }, 1)
+  }
+
+  back2Top.addEventListener("click", function(e) {
+    scrollAnimation(document.scrollingElement.scrollTop, 0);
+    e.stopPropagation();
+    return false;
+  });
+  
+  window.addEventListener('scroll', function(e) {
+    let percent = document.scrollingElement.scrollTop / (document.scrollingElement.scrollHeight - document.scrollingElement.clientHeight) * 100;
+    if (percent > 1 && !back2Top.classList.contains('back-top-active')) {
+      back2Top.classList.add('back-top-active');
+    }
+    if (percent == 0) {
+      back2Top.classList.remove('back-top-active');
+    }
+    if (back2TopText) {
+      back2TopText.textContent = Math.floor(percent);
+    }
+  });
+
+  
+  let hasCacu = false;
+  window.onresize = function() {
+    if (window.width > 991) {
+      calcuHeight();
+    } else {
+      hasCacu = false;
+    }
+  }
+
+  function calcuHeight() {
+    // 动态调整站点概览高度
+    if (!hasCacu && back2Top.classList.contains('pisces') || back2Top.classList.contains('gemini')) {
+      let sideBar = document.querySelector('.sidebar');
+      let navUl = document.querySelector('#site_nav');
+      sideBar.style = 'margin-top:' + (navUl.offsetHeight + navUl.offsetTop + 15) + 'px;';
+      hasCacu = true;
+    }
+  }
+  calcuHeight();
+  
+  let open = false, MOTION_TIME = 300, RIGHT_MOVE_DIS = '320px';
+
+  if (drawerBox) {
+    let rightMotions = document.querySelectorAll('.right-motion');
+    let right = drawerBox.classList.contains('right');
+
+    let transitionDir = right ? "transition.slideRightIn" : "transition.slideLeftIn";
+
+    let openProp, closeProp;
+    if (right) {
+      openProp = {
+        paddingRight: RIGHT_MOVE_DIS 
+      };
+      closeProp = {
+        paddingRight: '0px'
+      };
+    } else {
+      openProp = {
+        paddingLeft: RIGHT_MOVE_DIS 
+      };
+      closeProp = {
+        paddingLeft: '0px'
+      };
+    }
+
+    drawerBox.onclick = function() {
+      open = !open;
+      window.Velocity(rightSideBar, 'stop');
+      window.Velocity(viewport, 'stop');
+      window.Velocity(rightMotions, 'stop');
+      if (open) {
+        window.Velocity(rightSideBar, {
+          width: RIGHT_MOVE_DIS
+        }, {
+          duration: MOTION_TIME,
+          begin: function() {
+            window.Velocity(rightMotions, transitionDir,{ });
+          }
+        })
+        window.Velocity(viewport, openProp,{
+          duration: MOTION_TIME
+        });
+      } else {
+        window.Velocity(rightSideBar, {
+          width: '0px'
+        }, {
+          duration: MOTION_TIME,
+          begin: function() {
+            window.Velocity(rightMotions, {
+              opacity: 0
+            });
+          }
+        })
+        window.Velocity(viewport, closeProp ,{
+          duration: MOTION_TIME
+        });
+      }
+      for (let i = 0; i < drawerBox.children.length; i++) {
+        drawerBox.children[i].classList.toggle('muse-line');
+      }
+      drawerBox.classList.toggle(sideBarOpen);
+    }
+  }
+
+  // 代码高亮
+  hljs.initHighlightingOnLoad();
+
+</script>
+    </div>
+  </body>
+  <script src="/media/js/motion.js"></script>
+</html>
