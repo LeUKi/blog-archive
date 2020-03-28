@@ -2007,6 +2007,7 @@ body {
     .mist .site-title i {
       background: #fff;
     }code{border:  2px solid aqua;}
-blockquote:before{color: rgba(255, 255, 255, 0.6)}.box-shadow-wrapper {
+blockquote:before{color: rgba(255, 255, 255, 0.6)}
+.next-md-body pre {background-color: #ffffff24;}.box-shadow-wrapper {
       box-shadow: none !important;
     }
