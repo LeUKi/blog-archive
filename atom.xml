@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://m73ys9.coding-pages.com</id>
     <title>Lafish的部落格</title>
-    <updated>2020-04-22T09:10:32.289Z</updated>
+    <updated>2020-04-22T09:19:35.741Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://m73ys9.coding-pages.com"/>
     <link rel="self" href="https://m73ys9.coding-pages.com/atom.xml"/>
@@ -10,6 +10,13 @@
     <logo>https://m73ys9.coding-pages.com/images/avatar.png</logo>
     <icon>https://m73ys9.coding-pages.com/favicon.ico</icon>
     <rights>All rights reserved 2020, Lafish的部落格</rights>
+    <entry>
+        <title type="html"><![CDATA[coding]]></title>
+        <id>https://m73ys9.coding-pages.com/WhXg4Rwsr/</id>
+        <link href="https://m73ys9.coding-pages.com/WhXg4Rwsr/">
+        </link>
+        <updated>2020-04-22T09:19:14.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[记录第一次黑苹果主机的组装历程]]></title>
         <id>https://m73ys9.coding-pages.com/HackintoshDiary/</id>
@@ -72,12 +79,5 @@
         <link href="https://m73ys9.coding-pages.com/yZ1fm-el0/">
         </link>
         <updated>2019-12-01T00:48:51.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[关于C语言数组排序的一点想法]]></title>
-        <id>https://m73ys9.coding-pages.com/HiBqxtmMW/</id>
-        <link href="https://m73ys9.coding-pages.com/HiBqxtmMW/">
-        </link>
-        <updated>2019-11-16T01:59:16.000Z</updated>
     </entry>
 </feed>
