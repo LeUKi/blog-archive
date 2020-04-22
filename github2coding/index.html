@@ -6,7 +6,7 @@
 <meta name="keywords" content="lafish,LeUKi,leuki,blog">
 <meta name="description" content="这里是Lafish的自留地，记录一个前端小白的成长历程。">
 <meta name="theme-color" content="#121518">
-<title>DW1820A黑苹果网卡简单折腾记录 | Lafish的部落格</title>
+<title>把博客从github搬到coding | Lafish的部落格</title>
 <link rel="shortcut icon" href="https://lafish.fun/favicon.ico?v=1587549257725">
 <link rel="stylesheet" href="https://lafish.fun/styles/main.css">
 
@@ -25,8 +25,8 @@
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
     onload="renderMathInElement(document.body);"></script>
 
-    <meta name="description" content="DW1820A黑苹果网卡简单折腾记录" />
-    <meta name="keywords" content="黑苹果,学习" />
+    <meta name="description" content="把博客从github搬到coding" />
+    <meta name="keywords" content="日常" />
   </head>
   <body>
     <div class="head-top-line"></div>
@@ -277,8 +277,8 @@
               <div class="article-box">
     <header class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://lafish.fun/mu3Y7y8Gt/">
-      DW1820A黑苹果网卡简单折腾记录
+    <a class="post-title-link" href="https://lafish.fun/github2coding/">
+      把博客从github搬到coding
     </a>
   </h1>
   <div class="post-meta">
@@ -286,7 +286,7 @@
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span>发布于</span>
-      <span>2020-03-01</span>
+      <span>2020-04-22</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
@@ -295,14 +295,8 @@
         <span class="pc-show">分类于</span>
         
           
-            <a href="https://lafish.fun/tag/hei-ping-guo/">
-              <span>黑苹果</span>
-            </a>、
-          
-        
-          
-            <a href="https://lafish.fun/tag/XX/">
-              <span>学习</span>
+            <a href="https://lafish.fun/tag/RC/">
+              <span>日常</span>
             </a>
           
         
@@ -311,56 +305,19 @@
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>3分钟</span>
+      <span>1分钟</span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>621<span class="pc-show">字数</span></span>
+      <span>148<span class="pc-show">字数</span></span>
     </span>
   </div>
 </header>
 </div>
               <div class="post-body next-md-body" id="post_body">
-                <blockquote>
-<p>更新了，前面的方法不完美，请看后面！</p>
-</blockquote>
-<p>哪个男孩不想拥有一张完美的黑苹果网卡？（误）<br>
-无奈钱包瘪瘪，DW1830和DW1560对于目前学生的我实在太过昂贵。直到某天，在闲鱼上让我刷到了这“物美价廉”玩意。竟然只要1/4的价钱，就能体验到msata免驱的WiFi加蓝牙。<br>
-到货装上后WiFi能免驱显示，但蓝牙却没反应。远景上也有人发过类似的帖子，顺着帖子找到了小兵大佬在19年8月份发的博客：<a href="https://blog.daliansky.net/DW1820A_BCM94350ZAE-driver-inserts-the-correct-posture.html">DW1820A...插入的正确姿势</a><br>
-来回折腾了几次，稳定版2.2.10文件和10.14测试版2.5.1文件在macOS1.14.6中只支持airdrop和handoff，并不能连接耳机和触控板等外设。只有10.15测试版2.5.1能近完美驱动这张网卡。<br>
-<img src="https://lafish.fun/post-images/1583073715577.png" alt="" loading="lazy"><br>
-<img src="https://lafish.fun/post-images/1583073720233.png" alt="" loading="lazy"><br>
-<img src="https://lafish.fun/post-images/1583073724880.png" alt="" loading="lazy"><br>
-这张廉价网卡也是有缺点的，WiFi蓝牙共用2.4G会导致蓝牙不稳定，也不能连接5GWiFi的信号，虽然还能折腾下，但能用就行，觉得再弄下去没完没了。<br>
-记录几个还没有试过的方法：</p>
-<ul>
-<li>从Windows热重启到macOS</li>
-<li>关机拔掉电源，等待5分钟再加电开机（但我这笔记本把电源不靠谱）</li>
-</ul>
-<hr>
-<blockquote>
-<p>20200328更新！找到了一个更好的方法，完美实现蓝牙功能，而且还解决了不能连接5Gwifi的问题，修复了开机几率掉蓝牙的问题。</p>
-</blockquote>
-<p>参考的是远景网友分享出来的方法：<a href="http://bbs.pcbeta.com/viewthread-1802647-1-1.html">关于DW1820A蓝牙连接问题解决方法，其它应该也可以。</a><br>
-很巧的是我买到的网卡和他的一样，在IOKitPersonalities添加子节后，把开头安装的2.5.1文件删除，重新下载稳定版本<a href="http://7.daliansky.net/DW1820A/BT_for_DW1820A_Ver.2.zip">v2.2.10</a>解压到<code>/EFI/CLOVER/kexts/Other</code>目录下，重启搞定！<br>
-需要注意的是远景教程里给出代码的第一行是多余的，重复添加可能会无法开机。<br>
-这里贴上我的Info.plist：</p>
-<pre><code>&lt;key&gt;Broadcom&lt;/key&gt;
-    &lt;dict&gt;
-        &lt;key&gt;CFBundleIdentifier&lt;/key&gt;
-            &lt;string&gt;com.apple.iokit.BroadcomBluetoothHostControllerUSBTransport&lt;/string&gt;
-        &lt;key&gt;IOClass&lt;/key&gt;
-            &lt;string&gt;BroadcomBluetoothHostControllerUSBTransport&lt;/string&gt;
-        &lt;key&gt;IOProviderClass&lt;/key&gt;
-            &lt;string&gt;IOUSBHostDevice&lt;/string&gt;
-        &lt;key&gt;idProduct&lt;/key&gt;
-            &lt;integer&gt;25618&lt;/integer&gt;
-        &lt;key&gt;idVendor&lt;/key&gt;
-            &lt;integer&gt;2652&lt;/integer&gt;
-    &lt;/dict&gt;
-</code></pre>
-<p>至此，我离完美的黑苹果更进一步啦！如果你看到这，也祝你成功。</p>
+                <p>虽然github很好，但百度蜘蛛不能抓取是个头疼的问题，而且不管是我上传还是访问，在国内的延迟十分感人，这在我开了cloudflare加速也是如此。想到博客这东西也不一定放到github上，估计没人会对你的博客源码感兴趣吧，最终还是搬到了coding。<br>
+可以说，这波体验非常好，由于coding依托腾讯云，服务器在国内，访问速度有很大提升。搬迁过程也十分顺利，不到1分钟DNS就全部解析好了。</p>
 
               </div>
               <div class="post-footer">
@@ -370,8 +327,8 @@
 		Lafish
     </li>
     <li class="post-copyright-link">
-      <strong>DW1820A黑苹果网卡简单折腾记录：</strong><br/>
-      <a href="https://lafish.fun/mu3Y7y8Gt/" title="DW1820A黑苹果网卡简单折腾记录">https://lafish.fun/mu3Y7y8Gt/</a>
+      <strong>把博客从github搬到coding：</strong><br/>
+      <a href="https://lafish.fun/github2coding/" title="把博客从github搬到coding">https://lafish.fun/github2coding/</a>
     </li>
     <li class="post-copyright-license">
       <strong>协议：MIT License</strong>
@@ -379,23 +336,17 @@
   </ul>
   <div class="tags">
     
-      <a href="https://lafish.fun/tag/hei-ping-guo/"># 黑苹果</a>
-    
-      <a href="https://lafish.fun/tag/XX/"># 学习</a>
+      <a href="https://lafish.fun/tag/RC/"># 日常</a>
     
   </div>
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="目前互联网可支持教育优惠的产品汇集" href="https://lafish.fun/EDUresources/">目前互联网可支持教育优惠的产品汇集</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="目前互联网可支持教育优惠的产品汇集" href="https://lafish.fun/EDUresources/">上一篇</a>
-      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="一次在jQuery中input绑定keyup等事件的错误记录" href="https://lafish.fun/Fd2bot3Xf/">一次在jQuery中input绑定keyup等事件的错误记录</a>
-        <a class="nav-mobile-next" title="一次在jQuery中input绑定keyup等事件的错误记录" href="https://lafish.fun/Fd2bot3Xf/">下一篇</a>
+        <a class="nav-pc-next" title="记录第一次黑苹果主机的组装历程" href="https://lafish.fun/HackintoshDiary/">记录第一次黑苹果主机的组装历程</a>
+        <a class="nav-mobile-next" title="记录第一次黑苹果主机的组装历程" href="https://lafish.fun/HackintoshDiary/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>
