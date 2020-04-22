@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://lafish.fun</id>
     <title>Lafish的部落格</title>
-    <updated>2020-04-22T04:02:16.216Z</updated>
+    <updated>2020-04-22T08:10:26.700Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://lafish.fun"/>
     <link rel="self" href="https://lafish.fun/atom.xml"/>
@@ -14,13 +14,6 @@
         <title type="html"><![CDATA[记录第一次黑苹果主机的组装历程]]></title>
         <id>https://lafish.fun/HackintoshDiary/</id>
         <link href="https://lafish.fun/HackintoshDiary/">
-        </link>
-        <updated>2020-04-22T01:59:14.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[记录第一次黑苹果主机的组装历程]]></title>
-        <id>https://lafish.fun/IYWyT_fOa/</id>
-        <link href="https://lafish.fun/IYWyT_fOa/">
         </link>
         <updated>2020-04-22T01:59:14.000Z</updated>
     </entry>
@@ -79,5 +72,12 @@
         <link href="https://lafish.fun/yZ1fm-el0/">
         </link>
         <updated>2019-12-01T00:48:51.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[关于C语言数组排序的一点想法]]></title>
+        <id>https://lafish.fun/HiBqxtmMW/</id>
+        <link href="https://lafish.fun/HiBqxtmMW/">
+        </link>
+        <updated>2019-11-16T01:59:16.000Z</updated>
     </entry>
 </feed>

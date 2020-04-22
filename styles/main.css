@@ -2009,6 +2009,10 @@ body {
     }code{border:  2px solid aqua;}
 blockquote:before{color: rgba(255, 255, 255, 0.6)}
 .next-md-body pre {background-color: #ffffff24;}
-.post-copyright {border-left: 3px solid #a9e34b;background-color: #ffffffc7;}.box-shadow-wrapper {
+.post-copyright {border-left: 3px solid #a9e34b;background-color: #ffffffc7;}
+tr {color: #fff;}
+.next-md-body table td, .next-md-body table th {border: 1px solid #ffffff33;}
+.next-md-body table tr:nth-child(2n) {background-color: #ffffff29;}
+.next-md-body table tr {background-color: #ffffff14;}.box-shadow-wrapper {
       box-shadow: none !important;
     }
