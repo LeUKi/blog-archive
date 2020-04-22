@@ -6,7 +6,7 @@
 <meta name="keywords" content="lafish,LeUKi,leuki,blog">
 <meta name="description" content="这里是Lafish的自留地，记录一个前端小白的成长历程。">
 <meta name="theme-color" content="#121518">
-<title>行列式与矩阵的区别-线性代数学习小记 | Lafish的部落格</title>
+<title>记录第一次黑苹果主机的组装历程 | Lafish的部落格</title>
 <link rel="shortcut icon" href="https://lafish.fun/favicon.ico?v=1587528132375">
 <link rel="stylesheet" href="https://lafish.fun/styles/main.css">
 
@@ -25,8 +25,8 @@
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
     onload="renderMathInElement(document.body);"></script>
 
-    <meta name="description" content="行列式与矩阵的区别-线性代数学习小记" />
-    <meta name="keywords" content="学习" />
+    <meta name="description" content="记录第一次黑苹果主机的组装历程" />
+    <meta name="keywords" content="黑苹果" />
   </head>
   <body>
     <div class="head-top-line"></div>
@@ -128,9 +128,17 @@
 <div class="sidebar">
     <div class="sidebar-box box-shadow-wrapper bg-color right-motion" id="sidebar">
       
+        <div class="post-list-sidebar">
+          <div class="sidebar-title">
+            <span id="tocSideBar" class="sidebar-title-item sidebar-title-active">文章目录</span>
+            <span id="metaSideBar" class="sidebar-title-item">站点概览</span>
+          </div>
+        </div>
+      
       <div class="sidebar-body gemini" id="sidebar_body">
         
-          
+          <div class="post-side-meta" id="post_side_meta">
+            
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="https://lafish.fun/images/avatar.png"/>
@@ -192,6 +200,182 @@
   </div>
 
 </div>
+          </div>
+          <div class="post-toc sidebar-body-active" id="post_toc" style="opacity: 1;">
+            <div class="toc-box right-motion">
+  <div class="toc-wrapper auto-number auto" id="toc_wrapper">
+    <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%89%8D%E8%A8%80">前言</a></li>
+<li><a href="#%E9%85%8D%E7%BD%AE%E4%B8%80%E8%A7%88">配置一览</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+</div>
+
+<script>
+
+let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1; 
+let active = 'active-show', activeClass = 'active-current';
+let tocWrapper = document.querySelector('#toc_wrapper');
+let tocContent = tocWrapper.children[0];
+let autoNumber = tocWrapper&&tocWrapper.classList.contains('auto-number');
+
+function addTocNumber(elem, deep) {
+  if (!elem) {
+    return;
+  }
+  let prop = elem.__proto__;
+
+  if (prop === HTMLUListElement.prototype) {
+    for (let i = 0; i < elem.children.length; i++) {
+      addTocNumber(elem.children[i], deep + (i + 1) + '.');
+    }
+  } else if (prop === HTMLLIElement.prototype) {
+    // 保存li元素
+    lList.push(elem);
+    for (let i = 0; i < elem.children.length; i++) {
+      let cur = elem.children[i];
+      if (cur.__proto__ === HTMLAnchorElement.prototype) {
+        if (autoNumber) {
+          cur.text =  deep + ' ' + cur.text;
+        }
+      } else if (cur.__proto__ === HTMLUListElement.prototype) {
+        addTocNumber(cur, deep);
+      }
+    }
+  }
+}
+
+
+document.addEventListener('scroll', function(e) {
+  if (lList.length <= 0) {
+    return;
+  }
+  let scrollTop = document.scrollingElement.scrollTop;
+  let dir;
+
+  if (lastTop - scrollTop > 0) {
+    dir = 'up';
+  } else {
+    dir = 'down';
+  }
+
+  lastTop = scrollTop;
+  if (scrollTop <= 0) {
+    if (lastIndex >= 0 && lastIndex < hList.length) {
+      lList[lastIndex].classList.remove(activeClass);
+    }
+    return;
+  }
+
+  let current = 0, hasFind = false;
+  for (let i = 0; i < hList.length; i++) {
+    if (hList[i].offsetTop > scrollTop) {
+      current = i;
+      hasFind = true;
+      break;
+    }
+  }
+  if (!hasFind && scrollTop > lList[lList.length - 1].offsetTop) {
+    current = hList.length - 1;
+  } else {
+    current--;
+  }
+  if (dir === 'down') {
+    if (current > lastIndex) {
+      addActiveClass(current);
+      removeActiveClass(lastIndex) 
+      lastIndex = current;
+      removeParentActiveClass();
+      lList[current] && addActiveLiElemment(lList[current].parentElement,tocContent);
+    }
+  } else {
+    if (current < lastIndex) {
+      addActiveClass(current);
+      removeActiveClass(lastIndex);
+      lastIndex = current;
+      removeParentActiveClass();
+      lList[current] && addActiveLiElemment(lList[current].parentElement,tocContent);
+    }
+  }
+});
+
+function removeParentActiveClass() {
+  let parents = tocContent.querySelectorAll('.'+active)
+  parents.forEach(function(elem) {
+    elem.classList.remove(active);
+  });
+}
+
+function addActiveClass(index) {
+  if (index >= 0 && index < hList.length) {
+    lList[index].classList.add(activeClass);
+  }
+}
+
+function removeActiveClass(index) {
+  if (index >= 0 && index < hList.length) {
+    lList[index].classList.remove(activeClass);
+  }
+}
+
+function addActiveLiElemment(elem, parent) {
+  if (!elem || elem === parent) {
+    return;
+  } else {
+    if (elem.__proto__ === HTMLLIElement.prototype) {
+      elem.classList.add(active);
+    }
+    addActiveLiElemment(elem.parentElement, parent);
+  }
+}
+
+function showToc() {
+  if (tocWrapper) {
+    postBody = document.querySelector('#post_body');
+    for (let i = 0; i < postBody.children.length; i++) {
+      if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
+        hList.push(postBody.children[i]);
+      }
+    }
+    if (tocWrapper.classList.contains('compress')) {
+        tocContent.classList.add('closed');
+    } else if (tocWrapper.classList.contains('no_compress')){
+      tocContent.classList.add('expanded');
+    } else {
+      if (hList.length > 10) {
+        active = 'active-hidden'
+        tocContent.classList.add('closed');
+      } else {
+        tocContent.classList.add('expanded');
+      }
+    }
+  }
+}
+addTocNumber(tocContent, '');
+
+window.addEventListener('load', function() {
+  showToc();
+  document.querySelector('#sidebar').style='display: block;';
+  tocWrapper.classList.add('toc-active');
+  setTimeout(function() {
+    if ("createEvent" in document) {
+      let evt = document.createEvent("HTMLEvents");
+      evt.initEvent("scroll", false, true);
+      document.dispatchEvent(evt);
+    }
+    else {
+      document.fireEvent("scroll");
+    }
+  }, 500)
+})
+
+</script>
+          </div>
         
       </div>
     </div>
@@ -277,8 +461,8 @@
               <div class="article-box">
     <header class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://lafish.fun/fGZB0vOKh/">
-      行列式与矩阵的区别-线性代数学习小记
+    <a class="post-title-link" href="https://lafish.fun/HackintoshDiary/">
+      记录第一次黑苹果主机的组装历程
     </a>
   </h1>
   <div class="post-meta">
@@ -286,7 +470,7 @@
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span>发布于</span>
-      <span>2019-12-02</span>
+      <span>2020-04-22</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
@@ -295,8 +479,8 @@
         <span class="pc-show">分类于</span>
         
           
-            <a href="https://lafish.fun/tag/XX/">
-              <span>学习</span>
+            <a href="https://lafish.fun/tag/hei-ping-guo/">
+              <span>黑苹果</span>
             </a>
           
         
@@ -305,25 +489,30 @@
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>1分钟</span>
+      <span>2分钟</span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>272<span class="pc-show">字数</span></span>
+      <span>488<span class="pc-show">字数</span></span>
     </span>
   </div>
 </header>
 </div>
               <div class="post-body next-md-body" id="post_body">
-                <ol>
-<li>矩阵是一个表格，行数和列数可以不一样；而行列式是一个数，且行数必须等于列数。只有方阵才可以定义它的行列式，而对于长方阵不能定义它的行列式。</li>
-<li>两个矩阵相等是指对应元素都相等；两个行列式相等不要求对应元素都相等，甚至阶数也可以不一样，只要运算代数和的结果一样就行了。</li>
-<li>两矩阵相加是将各对应元素相加；两行列式相加，是将运算结果相加，在特殊情况下(比如有行或列相同)，只能将一行(或列)的元素相加，其余元素照写。</li>
-<li>数乘矩阵是指该数乘以矩阵的每一个元素；而数乘行列式，只能用此数乘行列式的某一行或列，提公因数也如此。</li>
-<li>矩阵经初等变换，其秩不变；行列式经初等变换，其值可能改变：换法变换要变号，倍法变换差倍数；消法变换不改变。</li>
-</ol>
-
+                <h2 id="前言">前言</h2>
+<p>800闲鱼淘来的笔记本电脑，性能果然捉急，也被我装上黑苹果，录个屏直播CPU就跑满了，平时还跑个虚拟机，做项目也经常死机。五代的低压i5了，还在承受它这个年纪不该承受的我的摧残。<br>
+所以为了解放它，同时也为了放在团队实验室（为了正义！），特意献祭1K2红包钱（真的一滴都没有了）组装台能跑视频剪辑虚拟机等大型应用的黑苹果主机。定位是小钢炮（是不是像做梦），毕竟可能需要经常搬运，实验室也不大，</p>
+<h2 id="配置一览">配置一览</h2>
+<table>
+<tr><th>硬件</th><th>型号</th><th>价格</th><th>选择原因</th></tr>
+<tr><td>CPU</td><td>Intel E3 1230 v2</td><td>256</td><td>考虑到预算紧张，就选志强洋垃圾了，记得这U五年前要一千，一年前要500，到现在250就能到买到，在闲鱼蹲会应该还能便宜，但为了质保这个心理安慰从淘宝入手。</td></tr>
+<tr><td>主板</td><td>华南金牌B75</td><td>210<td>B75主板一二线基本是找不到新的了，毕竟是好多年前的板子，咬咬牙还是上了华南的，毕竟人家还有保修不是？华南这板子好像没什么人试过黑苹果，感觉有得搞了。</td></td></tr>
+<tr><td>显卡</td><td>微星GTX 650 ti 1G</td><td>0</td><td>这U没有核显，意味着必须上显卡了，1K预算还想要好显卡？不存在的，还是从杂物房拿出很久以前的650ti吧。网上对650ti是否免驱有挺多说法的，这次就来亲自试试，实在不行就...不存在的。</td></tr>
+<tr><td>内存</td><td>16g</td><td>300</td><td>三代内存已经算便宜了，8gx2塞满主板，直接花去两成预算。</td></tr>
+<tr><td>电源</td><td>航嘉400W</td><td>213</td></tr>
+<tr><td>机箱</td><td>乔思伯C2</td><td>100</td><td>机箱要小，所以在闲鱼找了家专门卖二手机箱的，看着挺小的，只不过风道可能需要调整下，不然很容易变闷罐。</td></tr>
+</table>
               </div>
               <div class="post-footer">
   <ul class="post-copyright">
@@ -332,8 +521,8 @@
 		Lafish
     </li>
     <li class="post-copyright-link">
-      <strong>行列式与矩阵的区别-线性代数学习小记：</strong><br/>
-      <a href="https://lafish.fun/fGZB0vOKh/" title="行列式与矩阵的区别-线性代数学习小记">https://lafish.fun/fGZB0vOKh/</a>
+      <strong>记录第一次黑苹果主机的组装历程：</strong><br/>
+      <a href="https://lafish.fun/HackintoshDiary/" title="记录第一次黑苹果主机的组装历程">https://lafish.fun/HackintoshDiary/</a>
     </li>
     <li class="post-copyright-license">
       <strong>协议：MIT License</strong>
@@ -341,21 +530,17 @@
   </ul>
   <div class="tags">
     
-      <a href="https://lafish.fun/tag/XX/"># 学习</a>
+      <a href="https://lafish.fun/tag/hei-ping-guo/"># 黑苹果</a>
     
   </div>
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="关于Minecraft(Java1.12.2)服务器中“删除”作浮空字盔甲架的新方法" href="https://lafish.fun/TCGjGElL3/">关于Minecraft(Java1.12.2)服务器中“删除”作浮空字盔甲架的新方法</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="关于Minecraft(Java1.12.2)服务器中“删除”作浮空字盔甲架的新方法" href="https://lafish.fun/TCGjGElL3/">上一篇</a>
-      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="高数课绝对不能睡啊啊啊啊" href="https://lafish.fun/qouTlDpCi/">高数课绝对不能睡啊啊啊啊</a>
-        <a class="nav-mobile-next" title="高数课绝对不能睡啊啊啊啊" href="https://lafish.fun/qouTlDpCi/">下一篇</a>
+        <a class="nav-pc-next" title="记录第一次黑苹果主机的组装历程" href="https://lafish.fun/IYWyT_fOa/">记录第一次黑苹果主机的组装历程</a>
+        <a class="nav-mobile-next" title="记录第一次黑苹果主机的组装历程" href="https://lafish.fun/IYWyT_fOa/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>
