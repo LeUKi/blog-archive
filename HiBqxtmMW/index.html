@@ -7,7 +7,7 @@
 <meta name="description" content="这里是Lafish的自留地，记录一个前端小白的成长历程。">
 <meta name="theme-color" content="#121518">
 <title>关于C语言数组排序的一点想法 | Lafish的部落格</title>
-<link rel="shortcut icon" href="https://lafish.fun/favicon.ico?v=1587606272785">
+<link rel="shortcut icon" href="https://lafish.fun/favicon.ico?v=1588037482272">
 <link rel="stylesheet" href="https://lafish.fun/styles/main.css">
 
 <link rel="stylesheet" href="/media/css/gemini.css">
@@ -317,7 +317,7 @@
 </div>
               <div class="post-body next-md-body" id="post_body">
                 <p>普遍的方法是先用for语句输入数组的值，再用for与for的嵌套语句实现历遍并排序，这一整套下来使用了三次for语句，特别是最后的两个让人头大。</p>
-<pre><code>    for(i=0; i&lt;10-1; i++){ 
+<pre><code class="language-c">    for(i=0; i&lt;10-1; i++){ 
         for(j=0; j&lt;10-1-i; j++){
             if(nums[j] &gt; nums[j+1]){
                 temp = nums[j];
@@ -325,7 +325,7 @@
                 nums[j+1] = temp;}}}
 </code></pre>
 <p>我的想法是，不如在输入后立刻排序，减少了语句使用，而且更加直观。</p>
-<pre><code>int a[20],i,j,temp;
+<pre><code class="language-c">int a[20],i,j,temp;
     for(i=0;i&lt;=19;i++){
         printf(&quot;请输入第%d个数:&quot;,i+1);
         scanf(&quot;%d&quot;,&amp;a[i]);
