@@ -7,7 +7,7 @@
 <meta name="description" content="这里是Lafish的自留地，记录一个前端小白的成长历程。">
 <meta name="theme-color" content="#121518">
 <title>记录第一次黑苹果主机的组装经历 | Lafish的部落格</title>
-<link rel="shortcut icon" href="https://lafish.fun/favicon.ico?v=1591179002159">
+<link rel="shortcut icon" href="https://lafish.fun/favicon.ico?v=1591184308131">
 <link rel="stylesheet" href="https://lafish.fun/styles/main.css">
 
 <link rel="stylesheet" href="/media/css/gemini.css">
@@ -491,12 +491,12 @@ window.addEventListener('load', function() {
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>4分钟</span>
+      <span>5分钟</span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>945<span class="pc-show">字数</span></span>
+      <span>1206<span class="pc-show">字数</span></span>
     </span>
   </div>
 </header>
@@ -521,14 +521,14 @@ window.addEventListener('load', function() {
 <tr><td>网卡</td><td>BCM94360CD</td><td>200</td><td>各设备联动就靠它了，随着黑苹果越来越多人玩，网卡方面价格真越来越高。我看到的涨多了一倍不止，说不定现在屯网卡明年就发了呢？</td></tr>
 </table>
 <h2 id="开整系统">开整系统</h2>
-<p>这次装机使用的是【19E266】版本，也可以参考黑果小兵最新的【<a href="https://blog.daliansky.net/macOS-Catalina-10.15.4-19E266-Release-version-with-Clover-5107-original-image-Double-EFI-Version-UEFI-and-MBR.html">10.15.4 19E287 双EFI分区版</a>】。</p>
+<p>这次装机使用的是【19E266】版本，也可以参考写稿时黑果小兵最新的【<a href="https://blog.daliansky.net/macOS-Catalina-10.15.4-19E266-Release-version-with-Clover-5107-original-image-Double-EFI-Version-UEFI-and-MBR.html">10.15.4 19E287 双EFI分区版</a>】。</p>
 <ul>
 <li>镜像用balenaEtcher刷进U盘</li>
 <li>在macos环境下用disktuil指令挂载U盘的EFI分区（Windows用第三方工具）</li>
 <li>替换U盘的EFI文件（驱动完善差不多了，需要最后自取）</li>
 <li>插到主板USB2.0接口，关闭应该关闭的BIOS选项，U盘启动</li>
 <li>如果正确替换了EFI就能进到安装界面了，剩下的就是常规流程</li>
-<li>安装完系统后，同样使用disktuil指令挂载安装盘的EFI分区，把U盘的EFI文件替换进去（这里可能涉及两次的分区挂卸载）</li>
+<li>安装完系统后，同样使用disktuil指令挂载安装盘的EFI分区，把U盘的EFI文件替换进去（这里可能涉及两次的分区挂卸载，在没有Clover configurator软件的时候只能这样手动输入）</li>
 </ul>
 <pre><code>disktuil list
 sudo disktuil mount diskXsX
@@ -537,6 +537,13 @@ sudo disktuil unmount diskXsX
 <h2 id="最后">最后</h2>
 <p>弄到这里整个安装过程就结束了，可能是选择了很多免驱硬件的缘故，比想象中的简单，年度TODO✔️✔️️。<br>
 【<a href="https://github.com/LeUKi/Hackintosh-EFI-huanan_B75">我的EFI分享</a>】，希望能帮到你。如果你的显卡原生支援macOS，可在启动参数添加**-wegoff**以提升显卡性能。</p>
+<hr>
+<p>##更新20200601<br>
+这次黑苹果组装经历踩了不少坑，<br>
+首先是网卡，在黑果小兵爆出有不良商家把4331冒充360cd后，一查直接踩雷。前者是不支持手表解锁的，当初我还傻傻一个劲问卖家为啥不行，现在长见识了，如果需要上驱动的网卡绝对是假的。如果你是真的360cd，请把efi中的网卡驱动删除。<br>
+然后是CPU，不是说买到假的了，而是在当初挑选硬件的时候没有仔细考虑，这款洋垃圾没有核显，所以随航是不能使用的。<br>
+电源方面我换了三个，京东服务是真的好，第一二次是嘉航，第三次价钱上振华，发现都有电流声，最后搞清楚不是产品问题，是家里电路设计问题。<br>
+这次一波三折， 下次配电脑应该是毕业后的事了吧。</p>
 
               </div>
               <div class="post-footer">
