@@ -7,7 +7,7 @@
 <meta name="description" content="这里是Lafish的自留地，记录一个前端小白的成长历程。">
 <meta name="theme-color" content="#121518">
 <title>目前互联网可支持教育优惠的产品汇集 | Lafish的部落格</title>
-<link rel="shortcut icon" href="https://lafish.fun/favicon.ico?v=1591187899925">
+<link rel="shortcut icon" href="https://lafish.fun/favicon.ico?v=1591188151515">
 <link rel="stylesheet" href="https://lafish.fun/styles/main.css">
 
 <link rel="stylesheet" href="/media/css/gemini.css">
@@ -128,9 +128,17 @@
 <div class="sidebar">
     <div class="sidebar-box box-shadow-wrapper bg-color right-motion" id="sidebar">
       
+        <div class="post-list-sidebar">
+          <div class="sidebar-title">
+            <span id="tocSideBar" class="sidebar-title-item sidebar-title-active">文章目录</span>
+            <span id="metaSideBar" class="sidebar-title-item">站点概览</span>
+          </div>
+        </div>
+      
       <div class="sidebar-body gemini" id="sidebar_body">
         
-          
+          <div class="post-side-meta" id="post_side_meta">
+            
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="https://lafish.fun/images/avatar.png"/>
@@ -192,6 +200,181 @@
   </div>
 
 </div>
+          </div>
+          <div class="post-toc sidebar-body-active" id="post_toc" style="opacity: 1;">
+            <div class="toc-box right-motion">
+  <div class="toc-wrapper auto-number auto" id="toc_wrapper">
+    <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E8%BD%AF%E4%BB%B6">软件</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+</div>
+
+<script>
+
+let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1; 
+let active = 'active-show', activeClass = 'active-current';
+let tocWrapper = document.querySelector('#toc_wrapper');
+let tocContent = tocWrapper.children[0];
+let autoNumber = tocWrapper&&tocWrapper.classList.contains('auto-number');
+
+function addTocNumber(elem, deep) {
+  if (!elem) {
+    return;
+  }
+  let prop = elem.__proto__;
+
+  if (prop === HTMLUListElement.prototype) {
+    for (let i = 0; i < elem.children.length; i++) {
+      addTocNumber(elem.children[i], deep + (i + 1) + '.');
+    }
+  } else if (prop === HTMLLIElement.prototype) {
+    // 保存li元素
+    lList.push(elem);
+    for (let i = 0; i < elem.children.length; i++) {
+      let cur = elem.children[i];
+      if (cur.__proto__ === HTMLAnchorElement.prototype) {
+        if (autoNumber) {
+          cur.text =  deep + ' ' + cur.text;
+        }
+      } else if (cur.__proto__ === HTMLUListElement.prototype) {
+        addTocNumber(cur, deep);
+      }
+    }
+  }
+}
+
+
+document.addEventListener('scroll', function(e) {
+  if (lList.length <= 0) {
+    return;
+  }
+  let scrollTop = document.scrollingElement.scrollTop;
+  let dir;
+
+  if (lastTop - scrollTop > 0) {
+    dir = 'up';
+  } else {
+    dir = 'down';
+  }
+
+  lastTop = scrollTop;
+  if (scrollTop <= 0) {
+    if (lastIndex >= 0 && lastIndex < hList.length) {
+      lList[lastIndex].classList.remove(activeClass);
+    }
+    return;
+  }
+
+  let current = 0, hasFind = false;
+  for (let i = 0; i < hList.length; i++) {
+    if (hList[i].offsetTop > scrollTop) {
+      current = i;
+      hasFind = true;
+      break;
+    }
+  }
+  if (!hasFind && scrollTop > lList[lList.length - 1].offsetTop) {
+    current = hList.length - 1;
+  } else {
+    current--;
+  }
+  if (dir === 'down') {
+    if (current > lastIndex) {
+      addActiveClass(current);
+      removeActiveClass(lastIndex) 
+      lastIndex = current;
+      removeParentActiveClass();
+      lList[current] && addActiveLiElemment(lList[current].parentElement,tocContent);
+    }
+  } else {
+    if (current < lastIndex) {
+      addActiveClass(current);
+      removeActiveClass(lastIndex);
+      lastIndex = current;
+      removeParentActiveClass();
+      lList[current] && addActiveLiElemment(lList[current].parentElement,tocContent);
+    }
+  }
+});
+
+function removeParentActiveClass() {
+  let parents = tocContent.querySelectorAll('.'+active)
+  parents.forEach(function(elem) {
+    elem.classList.remove(active);
+  });
+}
+
+function addActiveClass(index) {
+  if (index >= 0 && index < hList.length) {
+    lList[index].classList.add(activeClass);
+  }
+}
+
+function removeActiveClass(index) {
+  if (index >= 0 && index < hList.length) {
+    lList[index].classList.remove(activeClass);
+  }
+}
+
+function addActiveLiElemment(elem, parent) {
+  if (!elem || elem === parent) {
+    return;
+  } else {
+    if (elem.__proto__ === HTMLLIElement.prototype) {
+      elem.classList.add(active);
+    }
+    addActiveLiElemment(elem.parentElement, parent);
+  }
+}
+
+function showToc() {
+  if (tocWrapper) {
+    postBody = document.querySelector('#post_body');
+    for (let i = 0; i < postBody.children.length; i++) {
+      if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
+        hList.push(postBody.children[i]);
+      }
+    }
+    if (tocWrapper.classList.contains('compress')) {
+        tocContent.classList.add('closed');
+    } else if (tocWrapper.classList.contains('no_compress')){
+      tocContent.classList.add('expanded');
+    } else {
+      if (hList.length > 10) {
+        active = 'active-hidden'
+        tocContent.classList.add('closed');
+      } else {
+        tocContent.classList.add('expanded');
+      }
+    }
+  }
+}
+addTocNumber(tocContent, '');
+
+window.addEventListener('load', function() {
+  showToc();
+  document.querySelector('#sidebar').style='display: block;';
+  tocWrapper.classList.add('toc-active');
+  setTimeout(function() {
+    if ("createEvent" in document) {
+      let evt = document.createEvent("HTMLEvents");
+      evt.initEvent("scroll", false, true);
+      document.dispatchEvent(evt);
+    }
+    else {
+      document.fireEvent("scroll");
+    }
+  }, 500)
+})
+
+</script>
+          </div>
         
       </div>
     </div>
@@ -319,7 +502,7 @@
                 <blockquote>
 <p>海大终于有教育邮箱啦！昨天刚刚上传学生证认证Apple Music，今天突然就有教育邮箱了。所以收集了些免费的教育资源分享给有教育邮箱的小可爱们！</p>
 </blockquote>
-<h4>软件</h4>
+<h2 id="软件">软件</h2>
 <ul>
 <li><a href="https://setapp.com/educational-discount">Setapp</a>&nbsp;– 5折优惠，每月4.99刀，订阅制应用商店。查看<a href="https://setapp.com/apps">可用软件列表</a></li>
 <li><a href="https://www.jetbrains.com/student/">JetBrains</a>&nbsp;– 免费使用旗下大部分软件，如IntelliJ IDEA、WebStorm 等</li>
@@ -431,7 +614,7 @@
 <li><a href="https://coding.net/campus">Coding.net</a>&nbsp;– 99元/年黄金会员，Git代码托管服务</li>
 <li><a href="https://www.axure.com/edu">Axure</a>&nbsp;– 免费，产品原型工具</li>
 </ul>
-<h4><a id="user-content-vps" class="anchor" href="https://github.com/wowlusitong/awesome-education#vps"></a>VPS</h4>
+## VPS
 <ul>
 <li><a href="https://www.digitalocean.com/github-students">DigitalOcean</a>&nbsp;– 使用Github教育包赠送50美元优惠码，现在用信用卡认证不需要额外冲5美元了，直接可用</li>
 <li><a href="https://cloud.tencent.com/act/campus">腾讯云</a>&nbsp;– 10元/月</li>
@@ -440,7 +623,7 @@
 <li><a href="https://www.ctyun.cn/esurfing/index">天翼云</a>&nbsp;– 可以以9.9元/月的价格购买云服务器（1C2G1M40G）</li>
 <li><a href="https://cloud.baidu.com/campaign/campus-2018/index.html">百度云</a>&nbsp;– 可以以18元/3月的价格购买云服务器（1C2G1M40G）</li>
 </ul>
-<h4><a id="user-content-github" class="anchor" href="https://github.com/wowlusitong/awesome-education#github"></a><a href="https://education.github.com/">Github</a></h4>
+## Github
 <ul>
 <li>Github 高级账户</li>
 <li>DigitalOcean</li>
@@ -464,7 +647,7 @@
 <li>transifex</li>
 <li>Unreal Engine</li>
 </ul>
-<h4><a id="user-content-会员资格" class="anchor" href="https://github.com/wowlusitong/awesome-education#%E4%BC%9A%E5%91%98%E8%B5%84%E6%A0%BC"></a>会员资格</h4>
+## 会员资格
 <ul>
 <li><a href="https://www.ccf.org.cn/c/2017-02-22/582915.shtml">中国计算机学会（CCF）</a>&nbsp;– 学生可以以优惠价格加入会员，并免费获取学会通讯电子版。
 <ul>
@@ -473,11 +656,11 @@
 </ul>
 </li>
 </ul>
-<h4><a id="user-content-阅读教育" class="anchor" href="https://github.com/wowlusitong/awesome-education#%E9%98%85%E8%AF%BB%E6%95%99%E8%82%B2"></a>阅读/教育</h4>
+## 阅读/教育
 <ul>
 <li><a href="https://www.safaribooksonline.com/">Safari Books Online</a>&nbsp;– O’Reilly（动物书的出版社）创办的在线教育平台。成为ACM会员后可以免费使用</li>
 </ul>
-<h4><a id="user-content-其他" class="anchor" href="https://github.com/wowlusitong/awesome-education#%E5%85%B6%E4%BB%96"></a>其他</h4>
+## 其他
 <ul>
 <li><a href="https://www.apple.com/cn-k12/shop">Apple 教育商店</a>&nbsp;以优惠价格购买苹果产品
 <ul>
