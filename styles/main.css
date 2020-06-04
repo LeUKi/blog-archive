@@ -2014,6 +2014,7 @@ tr {color: #fff;}
 .next-md-body table td, .next-md-body table th {border: 1px solid #ffffff33;}
 .next-md-body table tr:nth-child(2n) {background-color: #ffffff29;}
 .next-md-body table tr {background-color: #ffffff14;}
-.footer a {border-bottom: 0;}.box-shadow-wrapper {
+.footer a {border-bottom: 0;color:#999}
+.footer a:hover {color:#66d9e8}.box-shadow-wrapper {
       box-shadow: none !important;
     }
