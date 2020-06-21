@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://lafish.fun</id>
     <title>Lafish的部落格</title>
-    <updated>2020-06-21T02:26:54.644Z</updated>
+    <updated>2020-06-21T03:00:27.051Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://lafish.fun"/>
     <link rel="self" href="https://lafish.fun/atom.xml"/>
@@ -10,6 +10,13 @@
     <logo>https://lafish.fun/images/avatar.png</logo>
     <icon>https://lafish.fun/favicon.ico</icon>
     <rights>All rights reserved 2020, Lafish的部落格</rights>
+    <entry>
+        <title type="html"><![CDATA[实现Gridea同步Coding与Github两地仓库]]></title>
+        <id>https://lafish.fun/JXuv5fwl9/</id>
+        <link href="https://lafish.fun/JXuv5fwl9/">
+        </link>
+        <updated>2020-06-21T02:59:34.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[记一个坑：黑苹果主机换硬盘、迁移系统]]></title>
         <id>https://lafish.fun/XopWfaM5l/</id>
@@ -72,12 +79,5 @@
         <link href="https://lafish.fun/fGZB0vOKh/">
         </link>
         <updated>2019-12-02T11:46:51.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[高数课绝对不能睡啊啊啊啊]]></title>
-        <id>https://lafish.fun/qouTlDpCi/</id>
-        <link href="https://lafish.fun/qouTlDpCi/">
-        </link>
-        <updated>2019-12-01T01:30:52.000Z</updated>
     </entry>
 </feed>
