@@ -7,7 +7,7 @@
 <meta name="description" content="这里是Lafish的自留地，记录某小白的一旬成长。">
 <meta name="theme-color" content="#121518">
 <title>记微信小程序开发踩过的坑 | Lafish的部落格</title>
-<link rel="shortcut icon" href="https://lafish.fun/favicon.ico?v=1603705006638">
+<link rel="shortcut icon" href="https://lafish.fun/favicon.ico?v=1603705178187">
 <link rel="stylesheet" href="https://lafish.fun/styles/main.css">
 
 <link rel="stylesheet" href="/media/css/gemini.css">
@@ -507,14 +507,14 @@ window.addEventListener('load', function() {
               <div class="post-body next-md-body" id="post_body">
                 <h1 id="如何获取用户标识-openid">如何获取用户标识--openid</h1>
 <p>刚开始上手项目，就被openid难住了，官方文档中对于openid的获取方式这对于还未接触到云函数的新手实在不友好。说明中提到的“开发者服务器”是个大麻烦，甚至还需要解密code才能获取到需要的数据。</p>
-<pre><code>官方文档：
+<pre><code class="language-text">官方文档：
 1.调用 wx.login() 获取 临时登录凭证code ，并回传到开发者服务器。
 2.调用 auth.code2Session 接口，换取 用户唯一标识 OpenID 和 会话密钥 session_key。
 </code></pre>
 <p>学到后面才知道，使用云函数就能很方便的获取到用户的openid，这足矣应付类似团队实验室打卡的简单小程序。有云函数加持，简单的小程序开发就不需要大动干戈使用服务器，同时免费云函数套餐质量也出奇的高，这样看来微信对于小型开发者还是很友好的。</p>
 <h1 id="如何在小程序中使用npm">如何在小程序中使用npm</h1>
 <p>对于不想使用微信简陋原生组件的开发者，官方的开发软件也很友好的提供了npm 支持。在第一步执行<code>npm i</code>指令时有个小坑，对于新手稍不注意就会敲错地方。</p>
-<pre><code>官方文档：
+<pre><code class="language-text">官方文档：
 1. 安装 npm 包
 在小程序 package.json 所在的目录中执行命令安装 npm 包
 </code></pre>
@@ -528,7 +528,7 @@ window.addEventListener('load', function() {
 这个环境的设置在“云开发控制台”-“云函数”-对应云函数的“版本管理”-“配置”，在弹出的窗口中设置环境变量的Key为“TZ”，Value为“Asia/Shanghai”即可。<br>
 有个取巧的方法，在小程序调用的时候就传入一个Date()。需要注意的是在云函数端需要用<code>new Date(event.time)</code>取出，在这里不能省略new，否则取出的值将会是字符串。</p>
 <h1 id="小程序端和云函数端在get数据库时的写法差异">小程序端和云函数端在get数据库时的写法差异</h1>
-<pre><code>小程序端：
+<pre><code class="language-js">小程序端：
 db.collection('xxx').where({xxx}).get({
     success:res=&gt;{
         console.log(res)
