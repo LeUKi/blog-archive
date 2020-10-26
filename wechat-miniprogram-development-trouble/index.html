@@ -6,7 +6,7 @@
 <meta name="keywords" content="lafish,辣鱼,秋刀辣鱼,LeUKi,leuki,blog">
 <meta name="description" content="这里是Lafish的自留地，记录某小白的一旬成长。">
 <meta name="theme-color" content="#121518">
-<title>实现Gridea同步Coding与Github两地仓库 | Lafish的部落格</title>
+<title>记微信小程序开发踩过的坑 | Lafish的部落格</title>
 <link rel="shortcut icon" href="https://lafish.fun/favicon.ico?v=1603705006638">
 <link rel="stylesheet" href="https://lafish.fun/styles/main.css">
 
@@ -25,8 +25,8 @@
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
     onload="renderMathInElement(document.body);"></script>
 
-    <meta name="description" content="实现Gridea同步Coding与Github两地仓库" />
-    <meta name="keywords" content="分享,学习" />
+    <meta name="description" content="记微信小程序开发踩过的坑" />
+    <meta name="keywords" content="微信,学习" />
   </head>
   <body>
     <div class="head-top-line"></div>
@@ -205,7 +205,11 @@
             <div class="toc-box right-motion">
   <div class="toc-wrapper auto-number auto" id="toc_wrapper">
     <ul class="markdownIt-TOC">
-<li><a href="#%E6%AD%A5%E9%AA%A4">步骤</a></li>
+<li><a href="#%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96%E7%94%A8%E6%88%B7%E6%A0%87%E8%AF%86-openid">如何获取用户标识--openid</a></li>
+<li><a href="#%E5%A6%82%E4%BD%95%E5%9C%A8%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B8%AD%E4%BD%BF%E7%94%A8npm">如何在小程序中使用npm</a></li>
+<li><a href="#%E5%A6%82%E4%BD%95%E4%B8%8A%E6%89%8B%E4%BA%91%E5%87%BD%E6%95%B0%E6%9C%AC%E5%9C%B0%E7%8E%AF%E5%A2%83%E8%B0%83%E8%AF%95">如何上手云函数本地环境调试</a></li>
+<li><a href="#%E5%A6%82%E4%BD%95%E5%9C%A8%E4%BA%91%E5%87%BD%E6%95%B0%E4%B8%AD%E8%8E%B7%E5%8F%96%E6%AD%A3%E7%A1%AE%E7%9A%84%E6%97%B6%E9%97%B4">如何在云函数中获取正确的时间</a></li>
+<li><a href="#%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%AB%AF%E5%92%8C%E4%BA%91%E5%87%BD%E6%95%B0%E7%AB%AF%E5%9C%A8get%E6%95%B0%E6%8D%AE%E5%BA%93%E6%97%B6%E7%9A%84%E5%86%99%E6%B3%95%E5%B7%AE%E5%BC%82">小程序端和云函数端在get数据库时的写法差异</a></li>
 </ul>
 
   </div>
@@ -456,8 +460,8 @@ window.addEventListener('load', function() {
               <div class="article-box">
     <header class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://lafish.fun/JXuv5fwl9/">
-      实现Gridea同步Coding与Github两地仓库
+    <a class="post-title-link" href="https://lafish.fun/wechat-miniprogram-development-trouble/">
+      记微信小程序开发踩过的坑
     </a>
   </h1>
   <div class="post-meta">
@@ -465,7 +469,7 @@ window.addEventListener('load', function() {
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span>发布于</span>
-      <span>2020-06-21</span>
+      <span>2020-10-23</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
@@ -474,8 +478,8 @@ window.addEventListener('load', function() {
         <span class="pc-show">分类于</span>
         
           
-            <a href="https://lafish.fun/tag/fen-xiang/">
-              <span>分享</span>
+            <a href="https://lafish.fun/tag/wei-xin/">
+              <span>微信</span>
             </a>、
           
         
@@ -490,52 +494,51 @@ window.addEventListener('load', function() {
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>2分钟</span>
+      <span>4分钟</span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>270<span class="pc-show">字数</span></span>
+      <span>1031<span class="pc-show">字数</span></span>
     </span>
   </div>
 </header>
 </div>
               <div class="post-body next-md-body" id="post_body">
-                <p>Gridea有一点不好，就是不能同时推送到两个仓库。下面这个方法可以实现Coding与Github两地仓库的同步，解决不能异仓备份博客的问题。</p>
-<h1 id="步骤">步骤</h1>
-<p>1.登录coding账户<br>
-2.进入Coding博客仓库-持续集成-构建计划-新建-简易模板<br>
-（<a href="https://xn--6qqv7i14ofosyrb.coding.net/p/%E5%8D%9A%E5%AE%A2%E4%BB%93%E5%BA%93%E5%90%8D/ci/job/create/simple">https://你的用户名.coding.net/p/博客仓库名/ci/job/create/simple</a>）<br>
-<img src="https://pic.lafish.fun/20200621104214.png" alt="" loading="lazy"><br>
-3.随意起名，选择仓库，创建构建计划<br>
-4.进入创建的计划-流程配置-文本编辑器<br>
-5.删除全部代码，粘贴下面的代码后保存</p>
-<pre><code>pipeline {
-  agent any
-  stages {
-    stage('检出') {
-      steps {
-        checkout([
-          $class: 'GitSCM',
-          branches: [[name: env.GIT_BUILD_REF]],
-          userRemoteConfigs: [[url: env.GIT_REPO_URL, credentialsId: env.CREDENTIALS_ID]]
-        ])
-      }
-    }
-    stage('推送部署') {
-      steps {
-        echo '正在推送文件...'
-        sh 'git fetch https://[Github用户名]:[Github令牌]@github.com/[Github用户名]/[Github博客仓库名].git'
-        sh 'git push -f https://[Github用户名]:[Github令牌]@github.com/[Github用户名]/[Github博客仓库名].git HEAD:master'
-        echo '已完成文件推送.'
-      }
-    }
-  }
-}
+                <h1 id="如何获取用户标识-openid">如何获取用户标识--openid</h1>
+<p>刚开始上手项目，就被openid难住了，官方文档中对于openid的获取方式这对于还未接触到云函数的新手实在不友好。说明中提到的“开发者服务器”是个大麻烦，甚至还需要解密code才能获取到需要的数据。</p>
+<pre><code>官方文档：
+1.调用 wx.login() 获取 临时登录凭证code ，并回传到开发者服务器。
+2.调用 auth.code2Session 接口，换取 用户唯一标识 OpenID 和 会话密钥 session_key。
 </code></pre>
-<p>6.设置触发规则：<br>
-<img src="https://pic.lafish.fun/20200621105155.png" alt="" loading="lazy"><br>
-7.在Gridea中同步一下，看看github上的仓库有没有同步吧！</p>
+<p>学到后面才知道，使用云函数就能很方便的获取到用户的openid，这足矣应付类似团队实验室打卡的简单小程序。有云函数加持，简单的小程序开发就不需要大动干戈使用服务器，同时免费云函数套餐质量也出奇的高，这样看来微信对于小型开发者还是很友好的。</p>
+<h1 id="如何在小程序中使用npm">如何在小程序中使用npm</h1>
+<p>对于不想使用微信简陋原生组件的开发者，官方的开发软件也很友好的提供了npm 支持。在第一步执行<code>npm i</code>指令时有个小坑，对于新手稍不注意就会敲错地方。</p>
+<pre><code>官方文档：
+1. 安装 npm 包
+在小程序 package.json 所在的目录中执行命令安装 npm 包
+</code></pre>
+<p>小程序开发的“项目文件夹”和“小程序主目录”并不是一回事，默认的小程序主目录是项目文件夹下的<code>miniprogram/</code>文件夹，同级的还有云函数文件夹<code>cloudfunctions/</code>。当我们想在小程序中引入第三方的包时，需要先<code>cd miniprogram/</code>再<code>npm i</code>。新手如果在项目文件夹中执行指令，就会出现npm构建失败的提示。</p>
+<h1 id="如何上手云函数本地环境调试">如何上手云函数本地环境调试</h1>
+<p>云函数和小程序端的js代码一样，都是运行在node环境中。小程序端的运行环境不一，过多的数据库操作放在小程序中会造成不同设备体验上的差异。<br>
+云函数生来就是解决这些问题的，但对于云函数再小的代码修改都需要上传部署才能测试，一个在本地模拟云端运行的云函数调试就显得很有必要。前面说过，云函数是基于node环境运行的，所以调试本地的云函数就需要先安装好各种包（特别是<code>wx-server-sdk</code>）。<br>
+对本地目录中的云函数文件夹右键，选择“在外部终端打开”，执行<code>npm i</code>就能在本地安装好调试云函数的所有环境。</p>
+<h1 id="如何在云函数中获取正确的时间">如何在云函数中获取正确的时间</h1>
+<p>如果在云函数中使用到了<code>Date()</code>，就特别需要注意，运行云函数的实例默认的环境时区是UTC+0，并不是中国时间，所以根据官方文档的要求，我们需要配置函数的环境变量，设置 TZ 为 Asia/Shanghai。<br>
+这个环境的设置在“云开发控制台”-“云函数”-对应云函数的“版本管理”-“配置”，在弹出的窗口中设置环境变量的Key为“TZ”，Value为“Asia/Shanghai”即可。<br>
+有个取巧的方法，在小程序调用的时候就传入一个Date()。需要注意的是在云函数端需要用<code>new Date(event.time)</code>取出，在这里不能省略new，否则取出的值将会是字符串。</p>
+<h1 id="小程序端和云函数端在get数据库时的写法差异">小程序端和云函数端在get数据库时的写法差异</h1>
+<pre><code>小程序端：
+db.collection('xxx').where({xxx}).get({
+    success:res=&gt;{
+        console.log(res)
+    }
+})
+小程序端、云函数端：
+const res = await db.collection('xxx').where({xxx}).get()
+console.log(res)
+</code></pre>
+<p>对于云函数端，get的参数不能放任何东西，需要用await，把返回的结果对象赋值给另一个变量才可使用，否则会报错，并且这个错误似乎没有人指出是什么造成的，当时反复测试对比才发现不能这样写，文档中似乎没有说明。</p>
 
               </div>
               <div class="post-footer">
@@ -545,8 +548,8 @@ window.addEventListener('load', function() {
 		Lafish
     </li>
     <li class="post-copyright-link">
-      <strong>实现Gridea同步Coding与Github两地仓库：</strong><br/>
-      <a href="https://lafish.fun/JXuv5fwl9/" title="实现Gridea同步Coding与Github两地仓库">https://lafish.fun/JXuv5fwl9/</a>
+      <strong>记微信小程序开发踩过的坑：</strong><br/>
+      <a href="https://lafish.fun/wechat-miniprogram-development-trouble/" title="记微信小程序开发踩过的坑">https://lafish.fun/wechat-miniprogram-development-trouble/</a>
     </li>
     <li class="post-copyright-license">
       <strong>协议：MIT License</strong>
@@ -554,7 +557,7 @@ window.addEventListener('load', function() {
   </ul>
   <div class="tags">
     
-      <a href="https://lafish.fun/tag/fen-xiang/"># 分享</a>
+      <a href="https://lafish.fun/tag/wei-xin/"># 微信</a>
     
       <a href="https://lafish.fun/tag/XX/"># 学习</a>
     
@@ -562,15 +565,11 @@ window.addEventListener('load', function() {
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="记微信小程序开发踩过的坑" href="https://lafish.fun/wechat-miniprogram-development-trouble/">记微信小程序开发踩过的坑</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="记微信小程序开发踩过的坑" href="https://lafish.fun/wechat-miniprogram-development-trouble/">上一篇</a>
-      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="记一个坑：黑苹果主机换硬盘、迁移系统" href="https://lafish.fun/XopWfaM5l/">记一个坑：黑苹果主机换硬盘、迁移系统</a>
-        <a class="nav-mobile-next" title="记一个坑：黑苹果主机换硬盘、迁移系统" href="https://lafish.fun/XopWfaM5l/">下一篇</a>
+        <a class="nav-pc-next" title="实现Gridea同步Coding与Github两地仓库" href="https://lafish.fun/JXuv5fwl9/">实现Gridea同步Coding与Github两地仓库</a>
+        <a class="nav-mobile-next" title="实现Gridea同步Coding与Github两地仓库" href="https://lafish.fun/JXuv5fwl9/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>
