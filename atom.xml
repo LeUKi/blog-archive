@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://lafish.fun</id>
     <title>Lafish的部落格</title>
-    <updated>2021-07-16T13:50:57.311Z</updated>
+    <updated>2021-08-09T15:43:23.914Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://lafish.fun"/>
     <link rel="self" href="https://lafish.fun/atom.xml"/>
@@ -10,6 +10,13 @@
     <logo>https://lafish.fun/images/avatar.png</logo>
     <icon>https://lafish.fun/favicon.ico</icon>
     <rights>All rights reserved 2021, Lafish的部落格</rights>
+    <entry>
+        <title type="html"><![CDATA[暑期算法 第一题]]></title>
+        <id>https://lafish.fun/sqsf-1/</id>
+        <link href="https://lafish.fun/sqsf-1/">
+        </link>
+        <updated>2021-08-09T14:36:19.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[2021的小目标]]></title>
         <id>https://lafish.fun/my2021Goal/</id>
@@ -72,12 +79,5 @@
         <link href="https://lafish.fun/mu3Y7y8Gt/">
         </link>
         <updated>2020-03-01T14:00:40.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[一次在jQuery中input绑定keyup等事件的错误记录]]></title>
-        <id>https://lafish.fun/Fd2bot3Xf/</id>
-        <link href="https://lafish.fun/Fd2bot3Xf/">
-        </link>
-        <updated>2020-02-24T13:42:03.000Z</updated>
     </entry>
 </feed>

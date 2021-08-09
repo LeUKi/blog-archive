@@ -6,7 +6,7 @@
 <meta name="keywords" content="lafish,辣鱼,秋刀辣鱼,LeUKi,leuki,blog">
 <meta name="description" content="这里是Lafish的自留地，记录某小白的一旬成长。">
 <meta name="theme-color" content="#121518">
-<title>往后一旬，请多指教！ | Lafish的部落格</title>
+<title>暑期算法 第一题 | Lafish的部落格</title>
 <link rel="shortcut icon" href="https://lafish.fun/favicon.ico?v=1628523799538">
 <link rel="stylesheet" href="https://lafish.fun/styles/main.css">
 
@@ -25,8 +25,8 @@
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
     onload="renderMathInElement(document.body);"></script>
 
-    <meta name="description" content="往后一旬，请多指教！" />
-    <meta name="keywords" content="日常" />
+    <meta name="description" content="暑期算法 第一题" />
+    <meta name="keywords" content="算法" />
   </head>
   <body>
     <div class="head-top-line"></div>
@@ -128,9 +128,17 @@
 <div class="sidebar">
     <div class="sidebar-box box-shadow-wrapper bg-color right-motion" id="sidebar">
       
+        <div class="post-list-sidebar">
+          <div class="sidebar-title">
+            <span id="tocSideBar" class="sidebar-title-item sidebar-title-active">文章目录</span>
+            <span id="metaSideBar" class="sidebar-title-item">站点概览</span>
+          </div>
+        </div>
+      
       <div class="sidebar-body gemini" id="sidebar_body">
         
-          
+          <div class="post-side-meta" id="post_side_meta">
+            
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="https://lafish.fun/images/avatar.png"/>
@@ -196,6 +204,180 @@
   </div>
 
 </div>
+          </div>
+          <div class="post-toc sidebar-body-active" id="post_toc" style="opacity: 1;">
+            <div class="toc-box right-motion">
+  <div class="toc-wrapper auto-number auto" id="toc_wrapper">
+    <ul class="markdownIt-TOC">
+<li><a href="#%E9%A2%98%E7%9B%AE">题目</a></li>
+<li><a href="#%E9%A2%98%E8%A7%A3">题解</a></li>
+<li><a href="#%E9%A2%98%E6%9E%90">题析</a></li>
+<li><a href="#%E9%A2%98%E5%A4%96">题外</a></li>
+</ul>
+
+  </div>
+</div>
+
+<script>
+
+let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1; 
+let active = 'active-show', activeClass = 'active-current';
+let tocWrapper = document.querySelector('#toc_wrapper');
+let tocContent = tocWrapper.children[0];
+let autoNumber = tocWrapper&&tocWrapper.classList.contains('auto-number');
+
+function addTocNumber(elem, deep) {
+  if (!elem) {
+    return;
+  }
+  let prop = elem.__proto__;
+
+  if (prop === HTMLUListElement.prototype) {
+    for (let i = 0; i < elem.children.length; i++) {
+      addTocNumber(elem.children[i], deep + (i + 1) + '.');
+    }
+  } else if (prop === HTMLLIElement.prototype) {
+    // 保存li元素
+    lList.push(elem);
+    for (let i = 0; i < elem.children.length; i++) {
+      let cur = elem.children[i];
+      if (cur.__proto__ === HTMLAnchorElement.prototype) {
+        if (autoNumber) {
+          cur.text =  deep + ' ' + cur.text;
+        }
+      } else if (cur.__proto__ === HTMLUListElement.prototype) {
+        addTocNumber(cur, deep);
+      }
+    }
+  }
+}
+
+
+document.addEventListener('scroll', function(e) {
+  if (lList.length <= 0) {
+    return;
+  }
+  let scrollTop = document.scrollingElement.scrollTop;
+  let dir;
+
+  if (lastTop - scrollTop > 0) {
+    dir = 'up';
+  } else {
+    dir = 'down';
+  }
+
+  lastTop = scrollTop;
+  if (scrollTop <= 0) {
+    if (lastIndex >= 0 && lastIndex < hList.length) {
+      lList[lastIndex].classList.remove(activeClass);
+    }
+    return;
+  }
+
+  let current = 0, hasFind = false;
+  for (let i = 0; i < hList.length; i++) {
+    if (hList[i].offsetTop > scrollTop) {
+      current = i;
+      hasFind = true;
+      break;
+    }
+  }
+  if (!hasFind && scrollTop > lList[lList.length - 1].offsetTop) {
+    current = hList.length - 1;
+  } else {
+    current--;
+  }
+  if (dir === 'down') {
+    if (current > lastIndex) {
+      addActiveClass(current);
+      removeActiveClass(lastIndex) 
+      lastIndex = current;
+      removeParentActiveClass();
+      lList[current] && addActiveLiElemment(lList[current].parentElement,tocContent);
+    }
+  } else {
+    if (current < lastIndex) {
+      addActiveClass(current);
+      removeActiveClass(lastIndex);
+      lastIndex = current;
+      removeParentActiveClass();
+      lList[current] && addActiveLiElemment(lList[current].parentElement,tocContent);
+    }
+  }
+});
+
+function removeParentActiveClass() {
+  let parents = tocContent.querySelectorAll('.'+active)
+  parents.forEach(function(elem) {
+    elem.classList.remove(active);
+  });
+}
+
+function addActiveClass(index) {
+  if (index >= 0 && index < hList.length) {
+    lList[index].classList.add(activeClass);
+  }
+}
+
+function removeActiveClass(index) {
+  if (index >= 0 && index < hList.length) {
+    lList[index].classList.remove(activeClass);
+  }
+}
+
+function addActiveLiElemment(elem, parent) {
+  if (!elem || elem === parent) {
+    return;
+  } else {
+    if (elem.__proto__ === HTMLLIElement.prototype) {
+      elem.classList.add(active);
+    }
+    addActiveLiElemment(elem.parentElement, parent);
+  }
+}
+
+function showToc() {
+  if (tocWrapper) {
+    postBody = document.querySelector('#post_body');
+    for (let i = 0; i < postBody.children.length; i++) {
+      if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
+        hList.push(postBody.children[i]);
+      }
+    }
+    if (tocWrapper.classList.contains('compress')) {
+        tocContent.classList.add('closed');
+    } else if (tocWrapper.classList.contains('no_compress')){
+      tocContent.classList.add('expanded');
+    } else {
+      if (hList.length > 10) {
+        active = 'active-hidden'
+        tocContent.classList.add('closed');
+      } else {
+        tocContent.classList.add('expanded');
+      }
+    }
+  }
+}
+addTocNumber(tocContent, '');
+
+window.addEventListener('load', function() {
+  showToc();
+  document.querySelector('#sidebar').style='display: block;';
+  tocWrapper.classList.add('toc-active');
+  setTimeout(function() {
+    if ("createEvent" in document) {
+      let evt = document.createEvent("HTMLEvents");
+      evt.initEvent("scroll", false, true);
+      document.dispatchEvent(evt);
+    }
+    else {
+      document.fireEvent("scroll");
+    }
+  }, 500)
+})
+
+</script>
+          </div>
         
       </div>
     </div>
@@ -281,8 +463,8 @@
               <div class="article-box">
     <header class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://lafish.fun/hello-world/">
-      往后一旬，请多指教！
+    <a class="post-title-link" href="https://lafish.fun/sqsf-1/">
+      暑期算法 第一题
     </a>
   </h1>
   <div class="post-meta">
@@ -290,7 +472,7 @@
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span>发布于</span>
-      <span>2019-10-06</span>
+      <span>2021-08-09</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
@@ -299,8 +481,8 @@
         <span class="pc-show">分类于</span>
         
           
-            <a href="https://lafish.fun/tag/RC/">
-              <span>日常</span>
+            <a href="https://lafish.fun/tag/suan-fa/">
+              <span>算法</span>
             </a>
           
         
@@ -309,20 +491,61 @@
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>1分钟</span>
+      <span>2分钟</span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>274<span class="pc-show">字数</span></span>
+      <span>419<span class="pc-show">字数</span></span>
     </span>
   </div>
 </header>
 </div>
               <div class="post-body next-md-body" id="post_body">
-                <p>这些年陆陆续续整了几十个域名，七八个空间，四五台主机，两三个博客系统，很遗憾没一个能长久。到了高三，巨大学习压力使我不得不放弃。到如今高考结束，长大成年了，却发现自己没有了当年折腾的热情。直到某天逛到一个Github托管网站的贴，下定决心，再次出发。<br>
-Github是个好东西，原谅我玩了这么久才意识到，把网站托管在这，永久运行，这是以前穷学生的我不敢想象的。域名当然也可以用免费的一二级域名，诸如.tk、.eu.org，但始终不是属于自己，被人拿捏的感觉始终是难受的。考虑再三，还是入了一个，正好阿里云搞优惠，170元10年的.fun域名，足够长也足够划算。<br>
-往后10年，我想在此写写学习上的心得、生活中的趣事，不为谁而写作，只希望10年后的我能回看这一旬青春，一路成长。</p>
+                <h1 id="题目">题目</h1>
+<p>求 1+2+...+n ，要求不能使用乘除法、for、while、if、else、switch、case等关键字及条件判断语句（A?B:C）</p>
+<p>来源：剑指offer 64</p>
+<h1 id="题解">题解</h1>
+<pre><code class="language-javascript">/**
+ * @param {number} n
+ * @return {number}
+ */
+var sumNums = function(n) {
+    var flag = n &gt; 1 &amp;&amp; (n += sumNums(n - 1)) &gt; 0
+    return n;
+};
+</code></pre>
+<h1 id="题析">题析</h1>
+<p>与运算 (A &amp;&amp; B) 有以下规则：</p>
+<ul>
+<li>
+<p>从左开始执行</p>
+</li>
+<li>
+<p>如果A执行后为False，则直接返回False.</p>
+</li>
+<li>
+<p>如果A执行后为True，则继续执行B并返回其值</p>
+</li>
+</ul>
+<p>将递归条件判断放在A，然后具体递归放在B执行，通过A来决定B是否可以运行。此题的A是<code>n &gt; 1</code>，B是<code>n += sumNums(n - 1)</code>，B后面紧跟着的<code>&gt; 0</code>是无意义的，只是用来凑足判断式，触发执行B的内容。</p>
+<h1 id="题外">题外</h1>
+<p>初看题目并没有思路，递归算法也不是很熟练，平时都是能不用就不用的，暴力解决一切。这次刚好撞上只能用递归解法，终于来一了次完整的递归展开。</p>
+<pre><code class="language-javascript">/*递归展开*/
+function(n = 3) {
+    var flag = 3 &gt; 1 &amp;&amp; (n = 3 + /*3*/
+    function (n = 2) {
+        var flag = 2 &gt; 1 &amp;&amp; (n = 2 + /*1*/
+        function (n = 1) {    
+            var flag = 1 &gt; 1 &amp;&amp; (n += sumNums(n - 1)) &gt; 0 /*不执行*/
+            return n; /*1*/
+            };) &gt; 0
+        return n; /*3*/
+    };) &gt; 0
+    return n; /*6*/
+};
+</code></pre>
+<p>结构递归应该从最里层开始看，一步一步往前推，这里的递归条件<code>n&gt;1</code>即<code>n=1</code>时递归开始崩溃，崩溃的第一个（最内层）函数返回值就是输入本身（n=1）。递归的思想很巧妙，脑内完整的运行一遍有点困难，所以写递归还是需要套路，需要多加练习。</p>
 
               </div>
               <div class="post-footer">
@@ -332,8 +555,8 @@ Github是个好东西，原谅我玩了这么久才意识到，把网站托管�
 		Lafish
     </li>
     <li class="post-copyright-link">
-      <strong>往后一旬，请多指教！：</strong><br/>
-      <a href="https://lafish.fun/hello-world/" title="往后一旬，请多指教！">https://lafish.fun/hello-world/</a>
+      <strong>暑期算法 第一题：</strong><br/>
+      <a href="https://lafish.fun/sqsf-1/" title="暑期算法 第一题">https://lafish.fun/sqsf-1/</a>
     </li>
     <li class="post-copyright-license">
       <strong>协议：MIT License</strong>
@@ -341,18 +564,18 @@ Github是个好东西，原谅我玩了这么久才意识到，把网站托管�
   </ul>
   <div class="tags">
     
-      <a href="https://lafish.fun/tag/RC/"># 日常</a>
+      <a href="https://lafish.fun/tag/suan-fa/"># 算法</a>
     
   </div>
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="大学团支书，真的不一样..." href="https://lafish.fun/6pu2g-gw-/">大学团支书，真的不一样...</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="大学团支书，真的不一样..." href="https://lafish.fun/6pu2g-gw-/">上一篇</a>
-      
     </div>
     <div class="nav-next">
+      
+        <a class="nav-pc-next" title="2021的小目标" href="https://lafish.fun/my2021Goal/">2021的小目标</a>
+        <a class="nav-mobile-next" title="2021的小目标" href="https://lafish.fun/my2021Goal/">下一篇</a>
+        <i class="fa fa-chevron-right"></i>
       
     </div>
   </div>
