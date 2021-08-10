@@ -6,7 +6,7 @@
 <meta name="keywords" content="lafish,辣鱼,秋刀辣鱼,LeUKi,leuki,blog">
 <meta name="description" content="这里是Lafish的自留地，记录某小白的一旬成长。">
 <meta name="theme-color" content="#121518">
-<title>行列式与矩阵的区别-线性代数学习小记 | Lafish的部落格</title>
+<title>暑期算法 第二题 | Lafish的部落格</title>
 <link rel="shortcut icon" href="https://lafish.fun/favicon.ico?v=1628605248914">
 <link rel="stylesheet" href="https://lafish.fun/styles/main.css">
 
@@ -25,8 +25,8 @@
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
     onload="renderMathInElement(document.body);"></script>
 
-    <meta name="description" content="行列式与矩阵的区别-线性代数学习小记" />
-    <meta name="keywords" content="学习" />
+    <meta name="description" content="暑期算法 第二题" />
+    <meta name="keywords" content="算法" />
   </head>
   <body>
     <div class="head-top-line"></div>
@@ -128,9 +128,17 @@
 <div class="sidebar">
     <div class="sidebar-box box-shadow-wrapper bg-color right-motion" id="sidebar">
       
+        <div class="post-list-sidebar">
+          <div class="sidebar-title">
+            <span id="tocSideBar" class="sidebar-title-item sidebar-title-active">文章目录</span>
+            <span id="metaSideBar" class="sidebar-title-item">站点概览</span>
+          </div>
+        </div>
+      
       <div class="sidebar-body gemini" id="sidebar_body">
         
-          
+          <div class="post-side-meta" id="post_side_meta">
+            
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="https://lafish.fun/images/avatar.png"/>
@@ -196,6 +204,180 @@
   </div>
 
 </div>
+          </div>
+          <div class="post-toc sidebar-body-active" id="post_toc" style="opacity: 1;">
+            <div class="toc-box right-motion">
+  <div class="toc-wrapper auto-number auto" id="toc_wrapper">
+    <ul class="markdownIt-TOC">
+<li><a href="#%E9%A2%98%E7%9B%AE">题目</a></li>
+<li><a href="#%E9%A2%98%E8%A7%A3">题解</a></li>
+<li><a href="#%E9%A2%98%E6%9E%90">题析</a></li>
+<li><a href="#%E9%A2%98%E5%A4%96">题外</a></li>
+</ul>
+
+  </div>
+</div>
+
+<script>
+
+let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1; 
+let active = 'active-show', activeClass = 'active-current';
+let tocWrapper = document.querySelector('#toc_wrapper');
+let tocContent = tocWrapper.children[0];
+let autoNumber = tocWrapper&&tocWrapper.classList.contains('auto-number');
+
+function addTocNumber(elem, deep) {
+  if (!elem) {
+    return;
+  }
+  let prop = elem.__proto__;
+
+  if (prop === HTMLUListElement.prototype) {
+    for (let i = 0; i < elem.children.length; i++) {
+      addTocNumber(elem.children[i], deep + (i + 1) + '.');
+    }
+  } else if (prop === HTMLLIElement.prototype) {
+    // 保存li元素
+    lList.push(elem);
+    for (let i = 0; i < elem.children.length; i++) {
+      let cur = elem.children[i];
+      if (cur.__proto__ === HTMLAnchorElement.prototype) {
+        if (autoNumber) {
+          cur.text =  deep + ' ' + cur.text;
+        }
+      } else if (cur.__proto__ === HTMLUListElement.prototype) {
+        addTocNumber(cur, deep);
+      }
+    }
+  }
+}
+
+
+document.addEventListener('scroll', function(e) {
+  if (lList.length <= 0) {
+    return;
+  }
+  let scrollTop = document.scrollingElement.scrollTop;
+  let dir;
+
+  if (lastTop - scrollTop > 0) {
+    dir = 'up';
+  } else {
+    dir = 'down';
+  }
+
+  lastTop = scrollTop;
+  if (scrollTop <= 0) {
+    if (lastIndex >= 0 && lastIndex < hList.length) {
+      lList[lastIndex].classList.remove(activeClass);
+    }
+    return;
+  }
+
+  let current = 0, hasFind = false;
+  for (let i = 0; i < hList.length; i++) {
+    if (hList[i].offsetTop > scrollTop) {
+      current = i;
+      hasFind = true;
+      break;
+    }
+  }
+  if (!hasFind && scrollTop > lList[lList.length - 1].offsetTop) {
+    current = hList.length - 1;
+  } else {
+    current--;
+  }
+  if (dir === 'down') {
+    if (current > lastIndex) {
+      addActiveClass(current);
+      removeActiveClass(lastIndex) 
+      lastIndex = current;
+      removeParentActiveClass();
+      lList[current] && addActiveLiElemment(lList[current].parentElement,tocContent);
+    }
+  } else {
+    if (current < lastIndex) {
+      addActiveClass(current);
+      removeActiveClass(lastIndex);
+      lastIndex = current;
+      removeParentActiveClass();
+      lList[current] && addActiveLiElemment(lList[current].parentElement,tocContent);
+    }
+  }
+});
+
+function removeParentActiveClass() {
+  let parents = tocContent.querySelectorAll('.'+active)
+  parents.forEach(function(elem) {
+    elem.classList.remove(active);
+  });
+}
+
+function addActiveClass(index) {
+  if (index >= 0 && index < hList.length) {
+    lList[index].classList.add(activeClass);
+  }
+}
+
+function removeActiveClass(index) {
+  if (index >= 0 && index < hList.length) {
+    lList[index].classList.remove(activeClass);
+  }
+}
+
+function addActiveLiElemment(elem, parent) {
+  if (!elem || elem === parent) {
+    return;
+  } else {
+    if (elem.__proto__ === HTMLLIElement.prototype) {
+      elem.classList.add(active);
+    }
+    addActiveLiElemment(elem.parentElement, parent);
+  }
+}
+
+function showToc() {
+  if (tocWrapper) {
+    postBody = document.querySelector('#post_body');
+    for (let i = 0; i < postBody.children.length; i++) {
+      if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
+        hList.push(postBody.children[i]);
+      }
+    }
+    if (tocWrapper.classList.contains('compress')) {
+        tocContent.classList.add('closed');
+    } else if (tocWrapper.classList.contains('no_compress')){
+      tocContent.classList.add('expanded');
+    } else {
+      if (hList.length > 10) {
+        active = 'active-hidden'
+        tocContent.classList.add('closed');
+      } else {
+        tocContent.classList.add('expanded');
+      }
+    }
+  }
+}
+addTocNumber(tocContent, '');
+
+window.addEventListener('load', function() {
+  showToc();
+  document.querySelector('#sidebar').style='display: block;';
+  tocWrapper.classList.add('toc-active');
+  setTimeout(function() {
+    if ("createEvent" in document) {
+      let evt = document.createEvent("HTMLEvents");
+      evt.initEvent("scroll", false, true);
+      document.dispatchEvent(evt);
+    }
+    else {
+      document.fireEvent("scroll");
+    }
+  }, 500)
+})
+
+</script>
+          </div>
         
       </div>
     </div>
@@ -281,8 +463,8 @@
               <div class="article-box">
     <header class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://lafish.fun/fGZB0vOKh/">
-      行列式与矩阵的区别-线性代数学习小记
+    <a class="post-title-link" href="https://lafish.fun/sqsf-2/">
+      暑期算法 第二题
     </a>
   </h1>
   <div class="post-meta">
@@ -290,7 +472,7 @@
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span>发布于</span>
-      <span>2019-12-02</span>
+      <span>2021-08-10</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
@@ -299,8 +481,8 @@
         <span class="pc-show">分类于</span>
         
           
-            <a href="https://lafish.fun/tag/XX/">
-              <span>学习</span>
+            <a href="https://lafish.fun/tag/suan-fa/">
+              <span>算法</span>
             </a>
           
         
@@ -309,24 +491,69 @@
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>1分钟</span>
+      <span>2分钟</span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>272<span class="pc-show">字数</span></span>
+      <span>257<span class="pc-show">字数</span></span>
     </span>
   </div>
 </header>
 </div>
               <div class="post-body next-md-body" id="post_body">
-                <ol>
-<li>矩阵是一个表格，行数和列数可以不一样；而行列式是一个数，且行数必须等于列数。只有方阵才可以定义它的行列式，而对于长方阵不能定义它的行列式。</li>
-<li>两个矩阵相等是指对应元素都相等；两个行列式相等不要求对应元素都相等，甚至阶数也可以不一样，只要运算代数和的结果一样就行了。</li>
-<li>两矩阵相加是将各对应元素相加；两行列式相加，是将运算结果相加，在特殊情况下(比如有行或列相同)，只能将一行(或列)的元素相加，其余元素照写。</li>
-<li>数乘矩阵是指该数乘以矩阵的每一个元素；而数乘行列式，只能用此数乘行列式的某一行或列，提公因数也如此。</li>
-<li>矩阵经初等变换，其秩不变；行列式经初等变换，其值可能改变：换法变换要变号，倍法变换差倍数；消法变换不改变。</li>
-</ol>
+                <h1 id="题目">题目</h1>
+<p>给你一个字符串 s，找到 s 中最长的回文子串。</p>
+<blockquote>
+<p>输入：s = &quot;babad&quot;<br>
+输出：&quot;bab&quot;<br>
+解释：&quot;aba&quot; 同样是符合题意的答案。</p>
+</blockquote>
+<blockquote>
+<p>输入：s = &quot;cbbd&quot;<br>
+输出：&quot;bb&quot;</p>
+</blockquote>
+<blockquote>
+<p>输入：s = &quot;a&quot;<br>
+输出：&quot;a&quot;</p>
+</blockquote>
+<blockquote>
+<p>输入：s = &quot;ac&quot;<br>
+输出：&quot;a&quot;</p>
+</blockquote>
+<p>来源：LeetCodeHOT100-5</p>
+<h1 id="题解">题解</h1>
+<pre><code class="language-javascript">/**
+ * @param {string} s
+ * @return {string}
+ */
+var longestPalindrome = function (s) {
+  if (s.length &lt; 2) {
+    return s;
+  }
+  var res = &quot;&quot;;
+  for (let i = 0; i &lt; s.length; i++) {
+    diff(i, i);//奇数回文扩散
+    diff(i, i + 1);//偶数回文扩散
+  }
+
+  function diff(m, n) {
+    while (m &gt;= 0 &amp;&amp; n &lt; s.length &amp;&amp; s[m] == s[n]) {
+      m--;
+      n++;
+    }
+    if (n - m - 1 &gt; res.length) {//保留最长回文子串
+      res = s.slice(m + 1, n);
+    }
+  }
+  return res;
+};
+</code></pre>
+<h1 id="题析">题析</h1>
+<p>中心扩散法：利用回文子串中心对称的特点，每一个字符都视作为中心，往两边扩散。</p>
+<p>偶数子串和奇数子串两种情况都需要考虑。</p>
+<h1 id="题外">题外</h1>
+<p>这题暴力也能做，但时间复杂度会到<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><msup><mi>n</mi><mn>3</mn></msup><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n^3)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>。</p>
 
               </div>
               <div class="post-footer">
@@ -336,8 +563,8 @@
 		Lafish
     </li>
     <li class="post-copyright-link">
-      <strong>行列式与矩阵的区别-线性代数学习小记：</strong><br/>
-      <a href="https://lafish.fun/fGZB0vOKh/" title="行列式与矩阵的区别-线性代数学习小记">https://lafish.fun/fGZB0vOKh/</a>
+      <strong>暑期算法 第二题：</strong><br/>
+      <a href="https://lafish.fun/sqsf-2/" title="暑期算法 第二题">https://lafish.fun/sqsf-2/</a>
     </li>
     <li class="post-copyright-license">
       <strong>协议：MIT License</strong>
@@ -345,21 +572,17 @@
   </ul>
   <div class="tags">
     
-      <a href="https://lafish.fun/tag/XX/"># 学习</a>
+      <a href="https://lafish.fun/tag/suan-fa/"># 算法</a>
     
   </div>
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="关于Minecraft(Java1.12.2)服务器中“删除”作浮空字盔甲架的新方法" href="https://lafish.fun/TCGjGElL3/">关于Minecraft(Java1.12.2)服务器中“删除”作浮空字盔甲架的新方法</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="关于Minecraft(Java1.12.2)服务器中“删除”作浮空字盔甲架的新方法" href="https://lafish.fun/TCGjGElL3/">上一篇</a>
-      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="高数课绝对不能睡啊啊啊啊" href="https://lafish.fun/qouTlDpCi/">高数课绝对不能睡啊啊啊啊</a>
-        <a class="nav-mobile-next" title="高数课绝对不能睡啊啊啊啊" href="https://lafish.fun/qouTlDpCi/">下一篇</a>
+        <a class="nav-pc-next" title="暑期算法 第一题" href="https://lafish.fun/sqsf-1/">暑期算法 第一题</a>
+        <a class="nav-mobile-next" title="暑期算法 第一题" href="https://lafish.fun/sqsf-1/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>
