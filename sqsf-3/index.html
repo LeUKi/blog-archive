@@ -6,7 +6,7 @@
 <meta name="keywords" content="lafish,辣鱼,秋刀辣鱼,LeUKi,leuki,blog">
 <meta name="description" content="这里是Lafish的自留地，记录某小白的一旬成长。">
 <meta name="theme-color" content="#121518">
-<title>记一个坑：黑苹果主机换硬盘、迁移系统 | Lafish的部落格</title>
+<title>暑期算法 第三题 | Lafish的部落格</title>
 <link rel="shortcut icon" href="https://lafish.fun/favicon.ico?v=1628698387966">
 <link rel="stylesheet" href="https://lafish.fun/styles/main.css">
 
@@ -25,8 +25,8 @@
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
     onload="renderMathInElement(document.body);"></script>
 
-    <meta name="description" content="记一个坑：黑苹果主机换硬盘、迁移系统" />
-    <meta name="keywords" content="黑苹果" />
+    <meta name="description" content="暑期算法 第三题" />
+    <meta name="keywords" content="算法" />
   </head>
   <body>
     <div class="head-top-line"></div>
@@ -209,16 +209,10 @@
             <div class="toc-box right-motion">
   <div class="toc-wrapper auto-number auto" id="toc_wrapper">
     <ul class="markdownIt-TOC">
-<li><a href="#%E5%BC%80%E7%AB%AF">开端</a></li>
-<li><a href="#%E5%99%A9%E6%A2%A6">噩梦</a>
-<ul>
-<li><a href="#1%E7%A1%AC%E7%9B%98%E5%AF%B9%E6%8B%B7">1.硬盘对拷</a></li>
-<li><a href="#2%E6%97%B6%E9%97%B4%E6%9C%BA%E5%99%A8">2.时间机器</a></li>
-<li><a href="#3%E5%85%A8%E6%96%B0%E5%AE%89%E8%A3%85">3.全新安装</a></li>
-</ul>
-</li>
-<li><a href="#%E7%BB%93%E6%9D%9F">结束</a></li>
-<li><a href="#%E6%95%99%E8%AE%AD">教训</a></li>
+<li><a href="#%E9%A2%98%E7%9B%AE">题目</a></li>
+<li><a href="#%E9%A2%98%E8%A7%A3">题解</a></li>
+<li><a href="#%E9%A2%98%E6%9E%90">题析</a></li>
+<li><a href="#%E9%A2%98%E5%A4%96">题外</a></li>
 </ul>
 
   </div>
@@ -469,8 +463,8 @@ window.addEventListener('load', function() {
               <div class="article-box">
     <header class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://lafish.fun/XopWfaM5l/">
-      记一个坑：黑苹果主机换硬盘、迁移系统
+    <a class="post-title-link" href="https://lafish.fun/sqsf-3/">
+      暑期算法 第三题
     </a>
   </h1>
   <div class="post-meta">
@@ -478,7 +472,7 @@ window.addEventListener('load', function() {
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span>发布于</span>
-      <span>2020-06-16</span>
+      <span>2021-08-12</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
@@ -487,8 +481,8 @@ window.addEventListener('load', function() {
         <span class="pc-show">分类于</span>
         
           
-            <a href="https://lafish.fun/tag/hei-ping-guo/">
-              <span>黑苹果</span>
+            <a href="https://lafish.fun/tag/suan-fa/">
+              <span>算法</span>
             </a>
           
         
@@ -497,44 +491,91 @@ window.addEventListener('load', function() {
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>3分钟</span>
+      <span>2分钟</span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>669<span class="pc-show">字数</span></span>
+      <span>353<span class="pc-show">字数</span></span>
     </span>
   </div>
 </header>
 </div>
               <div class="post-body next-md-body" id="post_body">
-                <blockquote>
-<p>记得是生日那天，在京东为给自己买了块杂牌固态硬盘。</p>
+                <h1 id="题目">题目</h1>
+<p>给定一个只包括<code>'('，')'，'{'，'}'，'['，']'</code>的字符串 s ，判断字符串是否有效。</p>
+<p>有效字符串需满足：</p>
+<ul>
+<li>左括号必须用相同类型的右括号闭合。</li>
+<li>左括号必须以正确的顺序闭合。</li>
+</ul>
+<blockquote>
+<p>输入：s = &quot;()&quot;<br>
+输出：true</p>
 </blockquote>
-<h1 id="开端">开端</h1>
-<p>800闲鱼淘得的笔电用上了京东买的256g杂牌固态，但主机却用着128g的二手盘。用着新装的主机却越想越气，凭什么让性能差的二手笔记本享受如此待遇？遂，换！故是噩梦的开端。</p>
-<h1 id="噩梦">噩梦</h1>
-<h2 id="1硬盘对拷">1.硬盘对拷</h2>
-<p>换盘大业开始了，先是想到了祖传的硬盘对拷大法。<br>
-玩过装系统的应该知道Ghost，原理就是硬盘对拷，只不过前者打包成了文件可以传播。<br>
-两边都插上，进pe，直接打开DG，一键对拷美滋滋，连efi都省了配。</p>
-<p>事实是，进入系统后储存空间没变化，256的盘成了128，打开磁盘工具删除未使用的分区，提示失败。很疑惑，用了半天突然死机，屏幕不动了，指针也卡住了。强制断电重启，不能启动，显示禁止符号。问相关群，答复是可能苹果系统会保存配置，不能强行对拷。</p>
-<p>第一次，卒。</p>
-<h2 id="2时间机器">2.时间机器</h2>
-<p>这也是个坑。<br>
-第一次，格式化磁盘然后直接恢复，花了一个下午完成，最后得到个禁止符号。<br>
-第二次，格式化磁盘，安装系统，再时间机器恢复，能进系统了，待机一晚上，第二天不能开机，但键盘灯是亮的，推测又是死机了，重启仍然是禁止符号。<br>
-能看出黑白苹果还是有点差别的，再也不弄时间机器了，不能拯救系统的对我没啥用，删文件还删了一晚。</p>
-<p>第二次，卒。</p>
-<h2 id="3全新安装">3.全新安装</h2>
-<p>我服了，我不想搞这么复杂，我只想好好用我的电脑。软件可以重装，资料可以再做，我停止了挣扎。<br>
-但问题还是出现了，依旧是走死机到禁止的流程，我才开始怀疑是硬盘问题。<br>
-因为笔电用的10.14.6，到主机则是10.15.4，考虑到这块硬盘可能对新系统水土不服，我安装了旧系统并配置了OC驱动。结果依旧，该走的流程一个不少。</p>
-<p>第三次，卒。</p>
-<h1 id="结束">结束</h1>
-<p>其实，128g够我用的了，删除点不必要的文件，把大文件搬到机械去，剩下40g还是挺好的。</p>
-<h1 id="教训">教训</h1>
-<p>绝对不要买杂牌硬盘！京东服务还是很不错的，但换了货后问题依旧，说明这就是硬盘质量问题。哪怕当时多付个10块钱，我绝对有更好的体验。</p>
+<blockquote>
+<p>输入：s = &quot;()[]{}&quot;<br>
+输出：true</p>
+</blockquote>
+<blockquote>
+<p>输入：s = &quot;(]&quot;<br>
+输出：false</p>
+</blockquote>
+<blockquote>
+<p>输入：s = &quot;([)]&quot;<br>
+输出：false</p>
+</blockquote>
+<blockquote>
+<p>输入：s = &quot;{[]}&quot;<br>
+输出：true</p>
+</blockquote>
+<p>来源：LeetCodeHOT100-20</p>
+<h1 id="题解">题解</h1>
+<pre><code class="language-javascript">var isValid = function (s) {
+  const stack = [];
+  for (let i = 0; i &lt; s.length; i++) {
+    let c = s[i];
+    switch (c) { //如果是左括号，对应有括号入栈
+      case '(':
+        stack.push(')');
+        break;
+      case '[':
+        stack.push(']');
+        break;
+      case '{':
+        stack.push('}');
+        break;
+      default: //如果是右括号，栈顶取出并比对
+        if (c !== stack.pop()) {
+          return false;
+        }
+    }
+  }
+  return stack.length === 0; //确保没有多余的括号
+};
+</code></pre>
+<h1 id="题析">题析</h1>
+<p>使用栈实现，遍历时直接压入对应的字符，等右括号来了再比对，符合的就出栈，最后检查剩余字符，确保没有左右括号多余的情况。</p>
+<h1 id="题外">题外</h1>
+<p>使用哈希表会有更简洁的写法。</p>
+<pre><code class="language-javascript">var isValid = function(s) {
+    const stack = [], 
+        map = {
+            &quot;(&quot;:&quot;)&quot;,
+            &quot;{&quot;:&quot;}&quot;,
+            &quot;[&quot;:&quot;]&quot;
+        };
+    for(const x of s) { //遍历s
+        if(x in map) { 
+            stack.push(x);
+            continue;
+        };
+        if(map[stack.pop()] !== x) return false; //此处使用了哈希表
+    }
+    return !stack.length;
+};
+</code></pre>
+<p>一道水题，但看完后大为惊讶，原来能这么简单，前次比赛有遇到，想着简单但就是写不出来，看来还是水平不够。</p>
 
               </div>
               <div class="post-footer">
@@ -544,8 +585,8 @@ window.addEventListener('load', function() {
 		Lafish
     </li>
     <li class="post-copyright-link">
-      <strong>记一个坑：黑苹果主机换硬盘、迁移系统：</strong><br/>
-      <a href="https://lafish.fun/XopWfaM5l/" title="记一个坑：黑苹果主机换硬盘、迁移系统">https://lafish.fun/XopWfaM5l/</a>
+      <strong>暑期算法 第三题：</strong><br/>
+      <a href="https://lafish.fun/sqsf-3/" title="暑期算法 第三题">https://lafish.fun/sqsf-3/</a>
     </li>
     <li class="post-copyright-license">
       <strong>协议：MIT License</strong>
@@ -553,21 +594,17 @@ window.addEventListener('load', function() {
   </ul>
   <div class="tags">
     
-      <a href="https://lafish.fun/tag/hei-ping-guo/"># 黑苹果</a>
+      <a href="https://lafish.fun/tag/suan-fa/"># 算法</a>
     
   </div>
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="实现Gridea同步Coding与Github两地仓库" href="https://lafish.fun/JXuv5fwl9/">实现Gridea同步Coding与Github两地仓库</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="实现Gridea同步Coding与Github两地仓库" href="https://lafish.fun/JXuv5fwl9/">上一篇</a>
-      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="把博客从github搬到coding" href="https://lafish.fun/github2coding/">把博客从github搬到coding</a>
-        <a class="nav-mobile-next" title="把博客从github搬到coding" href="https://lafish.fun/github2coding/">下一篇</a>
+        <a class="nav-pc-next" title="暑期算法 第二题" href="https://lafish.fun/sqsf-2/">暑期算法 第二题</a>
+        <a class="nav-mobile-next" title="暑期算法 第二题" href="https://lafish.fun/sqsf-2/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>
