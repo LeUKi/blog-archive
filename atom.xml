@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://lafish.fun</id>
     <title>Lafish的部落格</title>
-    <updated>2021-08-12T16:20:54.583Z</updated>
+    <updated>2021-08-13T15:54:43.202Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://lafish.fun"/>
     <link rel="self" href="https://lafish.fun/atom.xml"/>
@@ -10,6 +10,13 @@
     <logo>https://lafish.fun/images/avatar.png</logo>
     <icon>https://lafish.fun/favicon.ico</icon>
     <rights>All rights reserved 2021, Lafish的部落格</rights>
+    <entry>
+        <title type="html"><![CDATA[暑期算法 第五题]]></title>
+        <id>https://lafish.fun/sqsf-5/</id>
+        <link href="https://lafish.fun/sqsf-5/">
+        </link>
+        <updated>2021-08-13T15:54:06.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[暑期算法 第四题]]></title>
         <id>https://lafish.fun/sqsf-4/</id>
@@ -72,12 +79,5 @@
         <link href="https://lafish.fun/XopWfaM5l/">
         </link>
         <updated>2020-06-16T05:51:48.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[把博客从github搬到coding]]></title>
-        <id>https://lafish.fun/github2coding/</id>
-        <link href="https://lafish.fun/github2coding/">
-        </link>
-        <updated>2020-04-22T09:19:14.000Z</updated>
     </entry>
 </feed>

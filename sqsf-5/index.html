@@ -6,7 +6,7 @@
 <meta name="keywords" content="lafish,辣鱼,秋刀辣鱼,LeUKi,leuki,blog">
 <meta name="description" content="这里是Lafish的自留地，记录某小白的一旬成长。">
 <meta name="theme-color" content="#121518">
-<title>暑期算法 第一题 | Lafish的部落格</title>
+<title>暑期算法 第五题 | Lafish的部落格</title>
 <link rel="shortcut icon" href="https://lafish.fun/favicon.ico?v=1628870080626">
 <link rel="stylesheet" href="https://lafish.fun/styles/main.css">
 
@@ -25,7 +25,7 @@
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
     onload="renderMathInElement(document.body);"></script>
 
-    <meta name="description" content="暑期算法 第一题" />
+    <meta name="description" content="暑期算法 第五题" />
     <meta name="keywords" content="算法" />
   </head>
   <body>
@@ -463,8 +463,8 @@ window.addEventListener('load', function() {
               <div class="article-box">
     <header class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://lafish.fun/sqsf-1/">
-      暑期算法 第一题
+    <a class="post-title-link" href="https://lafish.fun/sqsf-5/">
+      暑期算法 第五题
     </a>
   </h1>
   <div class="post-meta">
@@ -472,7 +472,7 @@ window.addEventListener('load', function() {
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span>发布于</span>
-      <span>2021-08-09</span>
+      <span>2021-08-13</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
@@ -496,56 +496,52 @@ window.addEventListener('load', function() {
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>419<span class="pc-show">字数</span></span>
+      <span>484<span class="pc-show">字数</span></span>
     </span>
   </div>
 </header>
 </div>
               <div class="post-body next-md-body" id="post_body">
                 <h1 id="题目">题目</h1>
-<p>求 1+2+...+n ，要求不能使用乘除法、for、while、if、else、switch、case等关键字及条件判断语句（A?B:C）</p>
-<p>来源：剑指offer 64</p>
+<p>给定一个数组 <code>prices</code> ，它的第 <code>i</code> 个元素 <code>prices[i]</code> 表示一支给定股票第 <code>i</code> 天的价格。</p>
+<p>你只能选择 <strong>某一天</strong> 买入这只股票，并选择在 <strong>未来的某一个不同的日子</strong> 卖出该股票。设计一个算法来计算你所能获取的最大利润。</p>
+<p>返回你可以从这笔交易中获取的最大利润。如果你不能获取任何利润，返回 <code>0</code> 。</p>
+<blockquote>
+<pre><code>输入：[7,1,5,3,6,4]
+输出：5
+解释：在第 2 天（股票价格 = 1）的时候买入，在第 5 天（股票价格 = 6）的时候卖出，最大利润 = 6-1 = 5 。
+     注意利润不能是 7-1 = 6, 因为卖出价格需要大于买入价格；同时，你不能在买入前卖出股票。
+</code></pre>
+</blockquote>
+<blockquote>
+<pre><code>输入：prices = [7,6,4,3,1]
+输出：0
+解释：在这种情况下, 没有交易完成, 所以最大利润为 0。
+</code></pre>
+</blockquote>
+<p>来源：LeetCodeHOT100-121</p>
 <h1 id="题解">题解</h1>
 <pre><code class="language-javascript">/**
- * @param {number} n
+ * @param {number[]} prices
  * @return {number}
  */
-var sumNums = function(n) {
-    var flag = n &gt; 1 &amp;&amp; (n += sumNums(n - 1)) &gt; 0
-    return n;
+var maxProfit = function(prices) {
+    let profit = 0 // 初始利润设为0
+    let min = prices[0] // 确定一个股票中的最小值
+    for(let i = 0; i &lt; prices.length; i++) {
+        if(prices[i] &lt; min) {  // 遍历时进行最小值赋值
+            min = prices[i]
+        }else if(prices[i]  - min &gt; profit){ // 如果出现比最大利润还要大的就进行重新赋值
+            profit = prices[i]  - min
+        }
+    }
+    return profit
 };
 </code></pre>
 <h1 id="题析">题析</h1>
-<p>与运算 (A &amp;&amp; B) 有以下规则：</p>
-<ul>
-<li>
-<p>从左开始执行</p>
-</li>
-<li>
-<p>如果A执行后为False，则直接返回False.</p>
-</li>
-<li>
-<p>如果A执行后为True，则继续执行B并返回其值</p>
-</li>
-</ul>
-<p>将递归条件判断放在A，然后具体递归放在B执行，通过A来决定B是否可以运行。此题的A是<code>n &gt; 1</code>，B是<code>n += sumNums(n - 1)</code>，B后面紧跟着的<code>&gt; 0</code>是无意义的，只是用来凑足判断式，触发执行B的内容。</p>
+<p>逆向思维，假设现在要卖出，目前卖出价格是确定的，想要获取最大的利润，买入就必须是从开始到目前的最低价。即每遍历一个价格时，不断比对取最小值作为买入价格，并与假设当前价格卖出能获取的利润取最大值。</p>
 <h1 id="题外">题外</h1>
-<p>初看题目并没有思路，递归算法也不是很熟练，平时都是能不用就不用的，暴力解决一切。这次刚好撞上只能用递归解法，终于来一了次完整的递归展开。</p>
-<pre><code class="language-javascript">/*递归展开*/
-function(n = 3) {
-    var flag = 3 &gt; 1 &amp;&amp; (n = 3 + /*3*/
-    function (n = 2) {
-        var flag = 2 &gt; 1 &amp;&amp; (n = 2 + /*1*/
-        function (n = 1) {    
-            var flag = 1 &gt; 1 &amp;&amp; (n += sumNums(n - 1)) &gt; 0 /*不执行*/
-            return n; /*1*/
-            };) &gt; 0
-        return n; /*3*/
-    };) &gt; 0
-    return n; /*6*/
-};
-</code></pre>
-<p>结构递归应该从最里层开始看，一步一步往前推，这里的递归条件<code>n&gt;1</code>即<code>n=1</code>时递归开始崩溃，崩溃的第一个（最内层）函数返回值就是输入本身（n=1）。递归的思想很巧妙，脑内完整的运行一遍有点困难，所以写递归还是需要套路，需要多加练习。</p>
+<p>类似的股价题型有很多，此题是最基础的。当买卖需要手续费、买入有冻结期、开放多次买卖等需求时，就需要动态规划更复杂的算法思想。</p>
 
               </div>
               <div class="post-footer">
@@ -555,8 +551,8 @@ function(n = 3) {
 		Lafish
     </li>
     <li class="post-copyright-link">
-      <strong>暑期算法 第一题：</strong><br/>
-      <a href="https://lafish.fun/sqsf-1/" title="暑期算法 第一题">https://lafish.fun/sqsf-1/</a>
+      <strong>暑期算法 第五题：</strong><br/>
+      <a href="https://lafish.fun/sqsf-5/" title="暑期算法 第五题">https://lafish.fun/sqsf-5/</a>
     </li>
     <li class="post-copyright-license">
       <strong>协议：MIT License</strong>
@@ -570,15 +566,11 @@ function(n = 3) {
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="暑期算法 第二题" href="https://lafish.fun/sqsf-2/">暑期算法 第二题</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="暑期算法 第二题" href="https://lafish.fun/sqsf-2/">上一篇</a>
-      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="2021的小目标" href="https://lafish.fun/my2021Goal/">2021的小目标</a>
-        <a class="nav-mobile-next" title="2021的小目标" href="https://lafish.fun/my2021Goal/">下一篇</a>
+        <a class="nav-pc-next" title="暑期算法 第四题" href="https://lafish.fun/sqsf-4/">暑期算法 第四题</a>
+        <a class="nav-mobile-next" title="暑期算法 第四题" href="https://lafish.fun/sqsf-4/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>
