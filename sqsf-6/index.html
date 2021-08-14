@@ -6,7 +6,7 @@
 <meta name="keywords" content="lafish,辣鱼,秋刀辣鱼,LeUKi,leuki,blog">
 <meta name="description" content="这里是Lafish的自留地，记录某小白的一旬成长。">
 <meta name="theme-color" content="#121518">
-<title>暑期算法 第五题 | Lafish的部落格</title>
+<title>暑期算法 第六题 | Lafish的部落格</title>
 <link rel="shortcut icon" href="https://lafish.fun/favicon.ico?v=1628955157346">
 <link rel="stylesheet" href="https://lafish.fun/styles/main.css">
 
@@ -25,7 +25,7 @@
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
     onload="renderMathInElement(document.body);"></script>
 
-    <meta name="description" content="暑期算法 第五题" />
+    <meta name="description" content="暑期算法 第六题" />
     <meta name="keywords" content="算法" />
   </head>
   <body>
@@ -211,7 +211,13 @@
     <ul class="markdownIt-TOC">
 <li><a href="#%E9%A2%98%E7%9B%AE">题目</a></li>
 <li><a href="#%E9%A2%98%E8%A7%A3">题解</a></li>
-<li><a href="#%E9%A2%98%E6%9E%90">题析</a></li>
+<li><a href="#%E9%A2%98%E6%9E%90">题析</a>
+<ul>
+<li><a href="#%E5%AE%9A%E4%B9%89%E6%95%B0%E7%BB%84%E5%85%83%E7%B4%A0%E7%9A%84%E5%90%AB%E4%B9%89">定义数组元素的含义</a></li>
+<li><a href="#%E6%89%BE%E5%87%BA%E6%95%B0%E7%BB%84%E5%85%83%E7%B4%A0%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB%E5%BC%8F">找出数组元素间的关系式</a></li>
+<li><a href="#%E6%89%BE%E5%87%BA%E5%88%9D%E5%A7%8B%E6%9D%A1%E4%BB%B6">找出初始条件</a></li>
+</ul>
+</li>
 <li><a href="#%E9%A2%98%E5%A4%96">题外</a></li>
 </ul>
 
@@ -463,8 +469,8 @@ window.addEventListener('load', function() {
               <div class="article-box">
     <header class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://lafish.fun/sqsf-5/">
-      暑期算法 第五题
+    <a class="post-title-link" href="https://lafish.fun/sqsf-6/">
+      暑期算法 第六题
     </a>
   </h1>
   <div class="post-meta">
@@ -472,7 +478,7 @@ window.addEventListener('load', function() {
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span>发布于</span>
-      <span>2021-08-13</span>
+      <span>2021-08-14</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
@@ -496,52 +502,53 @@ window.addEventListener('load', function() {
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>484<span class="pc-show">字数</span></span>
+      <span>419<span class="pc-show">字数</span></span>
     </span>
   </div>
 </header>
 </div>
               <div class="post-body next-md-body" id="post_body">
                 <h1 id="题目">题目</h1>
-<p>给定一个数组 <code>prices</code> ，它的第 <code>i</code> 个元素 <code>prices[i]</code> 表示一支给定股票第 <code>i</code> 天的价格。</p>
-<p>你只能选择 <strong>某一天</strong> 买入这只股票，并选择在 <strong>未来的某一个不同的日子</strong> 卖出该股票。设计一个算法来计算你所能获取的最大利润。</p>
-<p>返回你可以从这笔交易中获取的最大利润。如果你不能获取任何利润，返回 <code>0</code> 。</p>
-<blockquote>
-<pre><code>输入：[7,1,5,3,6,4]
-输出：5
-解释：在第 2 天（股票价格 = 1）的时候买入，在第 5 天（股票价格 = 6）的时候卖出，最大利润 = 6-1 = 5 。
-     注意利润不能是 7-1 = 6, 因为卖出价格需要大于买入价格；同时，你不能在买入前卖出股票。
-</code></pre>
-</blockquote>
-<blockquote>
-<pre><code>输入：prices = [7,6,4,3,1]
-输出：0
-解释：在这种情况下, 没有交易完成, 所以最大利润为 0。
-</code></pre>
-</blockquote>
-<p>来源：LeetCodeHOT100-121</p>
+<p>一只青蛙一次可以跳上1级台阶，也可以跳上2级。求该青蛙跳上一个n级的台阶总共有多少种跳法。</p>
+<p>来源：知乎</p>
 <h1 id="题解">题解</h1>
-<pre><code class="language-javascript">/**
- * @param {number[]} prices
- * @return {number}
- */
-var maxProfit = function(prices) {
-    let profit = 0 // 初始利润设为0
-    let min = prices[0] // 确定一个股票中的最小值
-    for(let i = 0; i &lt; prices.length; i++) {
-        if(prices[i] &lt; min) {  // 遍历时进行最小值赋值
-            min = prices[i]
-        }else if(prices[i]  - min &gt; profit){ // 如果出现比最大利润还要大的就进行重新赋值
-            profit = prices[i]  - min
-        }
+<pre><code class="language-c">int f( int n ){
+    if(n &lt;= 1)
+    return n;
+    // 先创建一个数组来保存历史数据
+    int[] dp = new int[n+1];
+    // 给出初始值
+    dp[0] = 0;//无意义
+  	dp[1] = 1;
+    dp[2] = 2;
+    // 通过关系式来计算出 dp[n]
+    for(int i = 3; i &lt;= n; i++){
+        dp[i] = dp[i-1] + dp[i-2];
     }
-    return profit
-};
+    // 把最终结果返回
+    return dp[n];
+}
 </code></pre>
 <h1 id="题析">题析</h1>
-<p>逆向思维，假设现在要卖出，目前卖出价格是确定的，想要获取最大的利润，买入就必须是从开始到目前的最低价。即每遍历一个价格时，不断比对取最小值作为买入价格，并与假设当前价格卖出能获取的利润取最大值。</p>
+<p>这是一道动态规划题，做此类题型必须抓住三个要点：</p>
+<h2 id="定义数组元素的含义">定义数组元素的含义</h2>
+<p>定义 dp[i] 的含义为：<strong>跳上一个 i 级的台阶总共有 dp[i] 种跳法</strong>。</p>
+<h2 id="找出数组元素间的关系式">找出数组元素间的关系式</h2>
+<p>由于情况可以选择跳一级，也可以选择跳两级，所以青蛙到达第 n 级的台阶有两种方式：</p>
+<ul>
+<li>
+<p>一种是从第 n-1 级跳上来</p>
+</li>
+<li>
+<p>一种是从第 n-2 级跳上来</p>
+</li>
+</ul>
+<p>由于我们是要算所有可能的跳法的，所以有 <code>dp[n] = dp[n-1] + dp[n-2]</code>。</p>
+<h2 id="找出初始条件">找出初始条件</h2>
+<p>不能通过公式得出的dp[i]值都应该提前给出。</p>
+<p>此题关系式中存在n-1与n-2，并且dp[0]是无意义的，所以应该提前给出n=1与n=2的初始值。通过简单计算可知dp[1]=1、dp[2]=2。</p>
 <h1 id="题外">题外</h1>
-<p>类似的股价题型有很多，此题是最基础的。当买卖需要手续费、买入有冻结期、开放多次买卖等需求时，就需要动态规划更复杂的算法思想。</p>
+<p>这是一道很基础的一维动态规划题，用以入门动态规划算法是不错的。做动态规划算法有三大要点：dp数组定义、关系式和初始条件。</p>
 
               </div>
               <div class="post-footer">
@@ -551,8 +558,8 @@ var maxProfit = function(prices) {
 		Lafish
     </li>
     <li class="post-copyright-link">
-      <strong>暑期算法 第五题：</strong><br/>
-      <a href="https://lafish.fun/sqsf-5/" title="暑期算法 第五题">https://lafish.fun/sqsf-5/</a>
+      <strong>暑期算法 第六题：</strong><br/>
+      <a href="https://lafish.fun/sqsf-6/" title="暑期算法 第六题">https://lafish.fun/sqsf-6/</a>
     </li>
     <li class="post-copyright-license">
       <strong>协议：MIT License</strong>
@@ -566,15 +573,11 @@ var maxProfit = function(prices) {
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="暑期算法 第六题" href="https://lafish.fun/sqsf-6/">暑期算法 第六题</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="暑期算法 第六题" href="https://lafish.fun/sqsf-6/">上一篇</a>
-      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="暑期算法 第四题" href="https://lafish.fun/sqsf-4/">暑期算法 第四题</a>
-        <a class="nav-mobile-next" title="暑期算法 第四题" href="https://lafish.fun/sqsf-4/">下一篇</a>
+        <a class="nav-pc-next" title="暑期算法 第五题" href="https://lafish.fun/sqsf-5/">暑期算法 第五题</a>
+        <a class="nav-mobile-next" title="暑期算法 第五题" href="https://lafish.fun/sqsf-5/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>
