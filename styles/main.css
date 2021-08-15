@@ -2006,7 +2006,7 @@ body {
     }
     .mist .site-title i {
       background: #fff;
-    }code{border:  2px solid aqua;}
+    }.next-md-body p code{background-color: #ffffff24;box-shadow: white 0px 1px 2px 0px;}
 blockquote:before{color: rgba(255, 255, 255, 0.6)}
 .next-md-body pre {background-color: #ffffff24;}
 .post-copyright {border-left: 3px solid #a9e34b;background-color: #ffffffc7;}
