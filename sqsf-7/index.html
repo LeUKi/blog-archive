@@ -6,7 +6,7 @@
 <meta name="keywords" content="lafish,辣鱼,秋刀辣鱼,LeUKi,leuki,blog">
 <meta name="description" content="这里是Lafish的自留地，记录某小白的一旬成长。">
 <meta name="theme-color" content="#121518">
-<title>目前互联网可支持教育优惠的产品汇集 | Lafish的部落格</title>
+<title>暑期算法 第七题 | Lafish的部落格</title>
 <link rel="shortcut icon" href="https://lafish.fun/favicon.ico?v=1629044155935">
 <link rel="stylesheet" href="https://lafish.fun/styles/main.css">
 
@@ -25,8 +25,8 @@
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
     onload="renderMathInElement(document.body);"></script>
 
-    <meta name="description" content="目前互联网可支持教育优惠的产品汇集" />
-    <meta name="keywords" content="分享" />
+    <meta name="description" content="暑期算法 第七题" />
+    <meta name="keywords" content="算法" />
   </head>
   <body>
     <div class="head-top-line"></div>
@@ -209,16 +209,16 @@
             <div class="toc-box right-motion">
   <div class="toc-wrapper auto-number auto" id="toc_wrapper">
     <ul class="markdownIt-TOC">
-<li>
+<li><a href="#%E9%A2%98%E7%9B%AE">题目</a></li>
+<li><a href="#%E9%A2%98%E8%A7%A3">题解</a></li>
+<li><a href="#%E9%A2%98%E6%9E%90">题析</a>
 <ul>
-<li><a href="#%E8%BD%AF%E4%BB%B6">软件</a></li>
-<li><a href="#vps">VPS</a></li>
-<li><a href="#github">Github</a></li>
-<li><a href="#%E4%BC%9A%E5%91%98%E8%B5%84%E6%A0%BC">会员资格</a></li>
-<li><a href="#%E9%98%85%E8%AF%BB%E6%95%99%E8%82%B2">阅读/教育</a></li>
-<li><a href="#%E5%85%B6%E4%BB%96">其他</a></li>
+<li><a href="#%E5%AE%9A%E4%B9%89%E6%95%B0%E7%BB%84%E5%85%83%E7%B4%A0%E7%9A%84%E5%90%AB%E4%B9%89">定义数组元素的含义</a></li>
+<li><a href="#%E6%89%BE%E5%87%BA%E6%95%B0%E7%BB%84%E5%85%83%E7%B4%A0%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB%E5%BC%8F">找出数组元素间的关系式</a></li>
+<li><a href="#%E6%89%BE%E5%87%BA%E5%88%9D%E5%A7%8B%E6%9D%A1%E4%BB%B6">找出初始条件</a></li>
 </ul>
 </li>
+<li><a href="#%E9%A2%98%E5%A4%96">题外</a></li>
 </ul>
 
   </div>
@@ -469,8 +469,8 @@ window.addEventListener('load', function() {
               <div class="article-box">
     <header class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://lafish.fun/EDUresources/">
-      目前互联网可支持教育优惠的产品汇集
+    <a class="post-title-link" href="https://lafish.fun/sqsf-7/">
+      暑期算法 第七题
     </a>
   </h1>
   <div class="post-meta">
@@ -478,7 +478,7 @@ window.addEventListener('load', function() {
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span>发布于</span>
-      <span>2020-03-27</span>
+      <span>2021-08-15</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
@@ -487,8 +487,8 @@ window.addEventListener('load', function() {
         <span class="pc-show">分类于</span>
         
           
-            <a href="https://lafish.fun/tag/fen-xiang/">
-              <span>分享</span>
+            <a href="https://lafish.fun/tag/suan-fa/">
+              <span>算法</span>
             </a>
           
         
@@ -497,194 +497,84 @@ window.addEventListener('load', function() {
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>6分钟</span>
+      <span>2分钟</span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>1363<span class="pc-show">字数</span></span>
+      <span>430<span class="pc-show">字数</span></span>
     </span>
   </div>
 </header>
 </div>
               <div class="post-body next-md-body" id="post_body">
-                <blockquote>
-<p>海大终于有教育邮箱啦！昨天刚刚上传学生证认证Apple Music，今天突然就有教育邮箱了。所以收集了些免费的教育资源分享给有教育邮箱的小可爱们！</p>
+                <h1 id="题目">题目</h1>
+<p>一个机器人位于一个 <code>m x n</code> 网格的左上角 （起始点在下图中标记为 “Start” ）。</p>
+<p>机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为 “Finish” ）。</p>
+<p>问总共有多少条不同的路径？</p>
+<figure data-type="image" tabindex="1"><img src="https://assets.leetcode.com/uploads/2018/10/22/robot_maze.png" alt="" loading="lazy"></figure>
+<blockquote>
+<pre><code>输入：m = 3, n = 7
+输出：28
+</code></pre>
 </blockquote>
-<h2 id="软件">软件</h2>
+<blockquote>
+<pre><code>输入：m = 3, n = 2
+输出：3
+解释：
+从左上角开始，总共有 3 条路径可以到达右下角。
+1. 向右 -&gt; 向下 -&gt; 向下
+2. 向下 -&gt; 向下 -&gt; 向右
+3. 向下 -&gt; 向右 -&gt; 向下
+</code></pre>
+</blockquote>
+<blockquote>
+<pre><code>输入：m = 7, n = 3
+输出：28
+</code></pre>
+</blockquote>
+<blockquote>
+<pre><code>输入：m = 3, n = 3
+输出：6
+</code></pre>
+</blockquote>
+<p>来源：LeetCodeHOT100-62</p>
+<h1 id="题解">题解</h1>
+<pre><code class="language-javascript">var uniquePaths = function(m, n) {
+    const f = new Array(m).fill(0).map(() =&gt; new Array(n).fill(0));
+    for (let i = 0; i &lt; m; i++) {
+        f[i][0] = 1;
+    }
+    for (let j = 0; j &lt; n; j++) {
+        f[0][j] = 1;
+    }
+    for (let i = 1; i &lt; m; i++) {
+        for (let j = 1; j &lt; n; j++) {
+            f[i][j] = f[i - 1][j] + f[i][j - 1];
+        }
+    }
+    return f[m - 1][n - 1];
+};
+</code></pre>
+<h1 id="题析">题析</h1>
+<p>这又是一道动态规划题，继续抓住三个要点：</p>
+<h2 id="定义数组元素的含义">定义数组元素的含义</h2>
+<p>定义 <code>dp[i][j]</code> 的含义为：从左上角走到 (<em>i</em>,<em>j</em>) 的路径数量。</p>
+<h2 id="找出数组元素间的关系式">找出数组元素间的关系式</h2>
+<p>到达(i,j)有两种方式：</p>
 <ul>
-<li><a href="https://setapp.com/educational-discount">Setapp</a>&nbsp;– 5折优惠，每月4.99刀，订阅制应用商店。查看<a href="https://setapp.com/apps">可用软件列表</a></li>
-<li><a href="https://www.jetbrains.com/student/">JetBrains</a>&nbsp;– 免费使用旗下大部分软件，如IntelliJ IDEA、WebStorm 等</li>
-<li><a href="https://education.github.com/">Github 高级账户</a>&nbsp;– Github教育礼包，免费两年高级账户</li>
-<li><a href="https://paw.cloud/purchase/students">Paw</a>&nbsp;– 7折，API调试工具</li>
-<li><a href="https://www.sketchapp.com/store/edu/">Sketch</a>&nbsp;– 5折，设计工具</li>
-<li><a href="https://ulyssesapp.com/students/">Ulysses</a>&nbsp;– 5折，Markdown写作软件</li>
-<li><a href="https://www.studentappcentre.com/discounts/paste">Paste</a>&nbsp;– 7折，剪切板工具，查找复制记录</li>
-<li><a href="https://www.xmind.cn/pricing/">XMind Pro</a>&nbsp;– 419人民币，原价899，思维导图软件</li>
-<li><a href="https://www.toketaware.com/discounts">iThoughts</a>&nbsp;– 5折，思维导图软件</li>
-<li><a href="https://tumult.com/store-edu/">Hype</a>&nbsp;– 6折，HTML5动画制作工具</li>
-<li><a href="https://imazing.com/store/educational">iMazing</a>&nbsp;– 7折，iOS设备数据管理软件</li>
-<li><a href="https://www.studentappcentre.com/discounts/1password">1Password</a>&nbsp;– 6个月免费试用, 密码管理</li>
-<li><a href="https://lastpass.com/edupromo.php">LastPass</a>&nbsp;– 6个月免费高级账户, 密码管理</li>
-<li><a href="https://todoist.com/education">TodoList</a>&nbsp;– 商务版5折优惠</li>
-<li><a href="https://support.apple.com/zh-cn/HT205928">Apple Music</a>&nbsp;– 5元/月</li>
-<li><a href="https://www.apple.com/cn-k12/shop/product/BMGE2CH/A/pro-app-%E6%95%99%E8%82%B2%E5%A5%97%E8%A3%85">Apple Pro App</a>&nbsp;– 1598元</li>
-<li><a href="https://www.studentappcentre.com/discounts/sanebox">SaneBox</a>&nbsp;– 15刀优惠劵，邮件管理</li>
-<li><a href="https://www.studentappcentre.com/discounts/activedock">ActiveDock</a>&nbsp;– 6.5折，Dock管理工具</li>
-<li><a href="https://www.studentappcentre.com/discounts/iringg">iRingg</a>&nbsp;– 9折，iPhone铃声制作工具</li>
-<li><a href="https://www.studentappcentre.com/discounts/command-tabplus">Command-Tab Plus</a>&nbsp;– 6.5折，应用程序切换增强式工具</li>
-<li><a href="https://www.studentappcentre.com/discounts/undistracted">UnDistracted</a>&nbsp;– 6.5折，效率工具</li>
-<li><a href="https://www.autodesk.com.cn/education/free-software/featured">AutoDesk</a>&nbsp;– 免费使用大部分软件</li>
-<li><a href="https://www.browserstack.com/open-source?ref=pricing">browserstack</a>&nbsp;– 开源项目免费</li>
-<li><a href="https://www.adriangranados.com/educational-discount">WiFi Explorer</a>&nbsp;– 5折，WiFi无线网络管理工具</li>
-<li><a href="https://community.findingsapp.com/t/student-discount-40/119">Findings</a>&nbsp;– 6折，笔记软件，侧重用实验记录</li>
-<li><a href="https://timingapp.com/contact">Timing</a>&nbsp;– 6折，时间管理软件</li>
-<li><a href="http://www.netsarang.com/download/free_license.html">Xshell</a>&nbsp;– 免费, 终端工具</li>
-<li><a href="http://www.netsarang.com/download/free_license.html">Xftp</a>&nbsp;– 免费，FTP工具</li>
-<li><a href="https://www.belightsoft.com/store/nonprofit">Printworks</a>&nbsp;– 7折，设计软件</li>
-<li><a href="https://www.belightsoft.com/store/nonprofit">Disc Cover</a>&nbsp;– 7折，CD设计软件</li>
-<li><a href="https://www.belightsoft.com/store/nonprofit">Swift Publisher</a>&nbsp;– 7折，版面设计工具</li>
-<li><a href="https://www.belightsoft.com/store/nonprofit">Business Card Composer</a>&nbsp;– 7折，名片设计软件</li>
-<li><a href="https://www.belightsoft.com/store/nonprofit">Art Text</a>&nbsp;– 7折，艺术字快速创作工具</li>
-<li><a href="https://www.belightsoft.com/store/nonprofit">Labels &amp; Addresses</a>&nbsp;– 7折，设计工具</li>
-<li><a href="https://www.belightsoft.com/store/nonprofit">Concealer</a>&nbsp;– 7折，加密软件</li>
-<li><a href="https://www.belightsoft.com/store/nonprofit">Image Tricks Pro</a>&nbsp;– 7折，图片编辑工具</li>
-<li><a href="https://www.belightsoft.com/store/nonprofit">Get Backup Pro</a>&nbsp;– 7折，数据备份软件</li>
-<li><a href="https://www.allegorithmic.com/buy/education">Substance</a>&nbsp;– 免费，游戏制作</li>
-<li><a href="https://www.studentappcentre.com/discounts/deskcoverpro">DeskCover Pro</a>&nbsp;– 6.5折</li>
-<li><a href="https://www.studentappcentre.com/discounts/maxsnap">MaxSnap</a>&nbsp;– 6.5折</li>
-<li><a href="https://www.decksetapp.com/edu/">Deckset</a>&nbsp;– 5折</li>
-<li><a href="https://www.studentappcentre.com/discounts/waltr2">WALTR 2</a>&nbsp;– 7折</li>
-<li><a href="https://www.studentappcentre.com/discounts/youtubeconverter2">Softorino YouTube Converter 2</a>&nbsp;– 8折</li>
-<li><a href="https://www.studentappcentre.com/discounts/betterzip">BetterZip</a>&nbsp;– 7折</li>
-<li><a href="https://www.studentappcentre.com/discounts/daisydisk">DaisyDisk</a>&nbsp;– 5折</li>
-<li><a href="http://www.acqualia.com/store/soulver?coupon=EduDiscount">Soulver</a>&nbsp;– 8折</li>
-<li><a href="https://www.studentappcentre.com/discounts/downie">Downie</a>&nbsp;– 5折</li>
-<li><a href="https://www.studentappcentre.com/discounts/witch">Witch</a>&nbsp;– 7.5折</li>
-<li><a href="https://www.studentappcentre.com/discounts/moom">Moom</a>&nbsp;– 7.5折</li>
-<li><a href="https://www.studentappcentre.com/discounts/timesink">Time Sink</a>&nbsp;– 7.5折</li>
-<li><a href="https://www.studentappcentre.com/discounts/desktopcurtain">Desktop Curtain</a>&nbsp;– 7.5折</li>
-<li><a href="https://www.studentappcentre.com/discounts/keymo">Keymo</a>&nbsp;– 7.5折</li>
-<li><a href="https://www.studentappcentre.com/discounts/leech">Leech</a>&nbsp;– 7.5折</li>
-<li><a href="https://www.studentappcentre.com/discounts/resolutionator">Resolutionator</a>&nbsp;– 7.5折</li>
-<li><a href="https://www.studentappcentre.com/discounts/butler">Butler</a>&nbsp;– 7.5折</li>
-<li><a href="https://www.studentappcentre.com/discounts/focus1">Focus</a>&nbsp;– 5折</li>
-<li><a href="https://www.studentappcentre.com/discounts/launchbar">LaunchBar</a>&nbsp;– 7折</li>
-<li><a href="https://www.studentappcentre.com/discounts/littlesnitch">Little Snitch</a>&nbsp;– 7折</li>
-<li><a href="https://www.studentappcentre.com/discounts/microsnitch">Micro Snitch</a>&nbsp;– 7折</li>
-<li><a href="https://www.studentappcentre.com/discounts/imageframer">ImageFramer</a>&nbsp;– 7折</li>
-<li><a href="https://www.studentappcentre.com/discounts/cashculator">Cashculator</a>&nbsp;– 7折</li>
-<li><a href="https://www.studentappcentre.com/discounts/trickster">Trickster</a>&nbsp;– 7折</li>
-<li><a href="https://www.studentappcentre.com/discounts/pdfexpert">PDF Expert</a>&nbsp;– 5折</li>
-<li><a href="https://cforum.marginnote.com/t/topic/457/48">MarginNote 3</a>&nbsp;– 6折, 国人开发的 PDF/EPUD 记录笔记、翻译、导出学习卡片的学习软件</li>
-<li><a href="https://www.studentappcentre.com/discounts/marked">Marked</a>&nbsp;– 5折</li>
-<li><a href="https://www.studentappcentre.com/discounts/noteplan">NotePlan</a>&nbsp;– 7折</li>
-<li><a href="https://www.studentappcentre.com/discounts/permute">Permute</a>&nbsp;– 5折</li>
-<li><a href="https://www.studentappcentre.com/discounts/soundsource">SoundSource</a>&nbsp;– 8.5折</li>
-<li><a href="https://www.studentappcentre.com/discounts/piezo">Piezo</a>&nbsp;– 8.5折</li>
-<li><a href="https://www.studentappcentre.com/discounts/loopback">Loopback</a>&nbsp;– 8.5折</li>
-<li><a href="https://www.studentappcentre.com/discounts/fission">Fission</a>&nbsp;– 8.5折</li>
-<li><a href="https://www.studentappcentre.com/discounts/audiohijack">Audio Hijack</a>&nbsp;– 8.5折</li>
-<li><a href="https://www.studentappcentre.com/discounts/airfoil">Airfoil</a>&nbsp;– 8.5折</li>
-<li><a href="https://www.studentappcentre.com/discounts/iconjar">IconJar</a>&nbsp;– 8折</li>
-<li><a href="https://www.zengobi.com/curio/#buyacademic">Curio Professional</a>&nbsp;– 6.5折</li>
-<li><a href="https://www.realmacsoftware.com/store/">RapidWeaver</a>&nbsp;– 5折</li>
-<li><a href="https://www.cleverfiles.com/noprofit.html">Disk Drill Pro</a>&nbsp;– 8折</li>
-<li><a href="https://www.studentappcentre.com/discounts/flume">Flume Pro</a>&nbsp;– 3折</li>
-<li><a href="https://sites.fastspring.com/smile/product/catalog?coupon=EDUDISC2">PDFpen Pro</a>&nbsp;– 7折</li>
-<li><a href="https://www.iggsoftware.com/contact_support.php">Banktivity</a>&nbsp;– 8折</li>
-<li><a href="https://www.studentappcentre.com/discounts/mailmate">MailMate</a>&nbsp;– 7.5折</li>
-<li><a href="https://www.git-tower.com/support/contact?category=Sales%20Issue">Tower</a>&nbsp;– 5折</li>
-<li><a href="https://www.studentappcentre.com/discounts/apptamer">App Tamer</a>&nbsp;– 5折</li>
-<li><a href="https://www.studentappcentre.com/discounts/defaultfolderx">Default Folder X</a>&nbsp;– 5折</li>
-<li><a href="https://www.studentappcentre.com/discounts/boom?rq=boom">Boom 2</a>&nbsp;– 7折</li>
-<li><a href="https://macpaw.com/macpaw-educational-discount">CleanMyMac</a>&nbsp;– 7折</li>
-<li><a href="https://macpaw.com/macpaw-educational-discount">CleanMyPC</a>&nbsp;– 7折</li>
-<li><a href="https://macpaw.com/macpaw-educational-discount">Gemini</a>&nbsp;– 7折</li>
-<li><a href="https://macpaw.com/macpaw-educational-discount">Wallpaper Wizard 2</a>&nbsp;– 7折</li>
-<li><a href="https://macpaw.com/macpaw-educational-discount">Hider 2</a>&nbsp;– 7折</li>
-<li><a href="https://evernote.com/students">Evernote</a>&nbsp;– 5折</li>
-<li><a href="https://www.studentappcentre.com/discounts/hazel">Hazel 4</a>&nbsp;– 8折</li>
-<li><a href="https://store.omnigroup.com/edu/f9120b1a58d1d6e1ffffffff">OmniOutliner</a>&nbsp;– 6折</li>
-<li><a href="https://store.omnigroup.com/edu/f91f0b1a58d1d6e1ffffffff">OmniPlan</a>&nbsp;– 5.5折</li>
-<li><a href="https://store.omnigroup.com/edu/f9150b1a58d1d6e1ffffffff">OmniFocus</a>&nbsp;– 6折</li>
-<li><a href="https://store.omnigroup.com/edu/f9130b1a58d1d6e1ffffffff">OmniGraffle</a>&nbsp;– 6折</li>
-<li><a href="https://flexibits.com/store?coupon=education">Fantastical</a>&nbsp;– 8折</li>
-<li>Namecheap – Github教育礼包，免费一年SSL证书，一年.me域名</li>
-<li><a href="https://www.globaldelight.com/capto/educators">Capto</a>&nbsp;– 屏幕录像与视频编辑</li>
-<li><a href="https://trello.com/education">Trello</a>&nbsp;– 免费</li>
-<li><a href="https://get.slack.help/hc/en-us/articles/206646877-Slack-for-Education">Slack</a>&nbsp;– 1.5折</li>
-<li><a href="https://www.goabstract.com/pricing/">abstract</a>&nbsp;– 非商业与教育需用邮件申请</li>
-<li><a href="https://ww2.mathworks.cn/academia/tah-support-program/eligibility.html?s_tid=tfa_student_licenseCheck">MATLAB</a>&nbsp;– 高校授权</li>
-<li><a href="https://ww2.mathworks.cn/academia/tah-support-program/eligibility.html?s_tid=tfa_student_licenseCheck">Simulink</a>&nbsp;– 高校授权</li>
-<li><a href="https://www.netlify.com/education/">Netlify</a></li>
-<li><a href="https://www.dropbox.com/education">dropbox</a></li>
-<li><a href="http://www.gurobi.com/academia/for-universities">Gurobi</a></li>
-<li><a href="https://coding.net/campus">Coding.net</a>&nbsp;– 99元/年黄金会员，Git代码托管服务</li>
-<li><a href="https://www.axure.com/edu">Axure</a>&nbsp;– 免费，产品原型工具</li>
-</ul>
-<h2 id="vps">VPS</h2>
-<ul>
-<li><a href="https://www.digitalocean.com/github-students">DigitalOcean</a>&nbsp;– 使用Github教育包赠送50美元优惠码，现在用信用卡认证不需要额外冲5美元了，直接可用</li>
-<li><a href="https://cloud.tencent.com/act/campus">腾讯云</a>&nbsp;– 10元/月</li>
-<li><a href="https://promotion.aliyun.com/ntms/campus2017.html">阿里云</a>&nbsp;– 9.5元/月</li>
-<li><a href="https://developer.huaweicloud.com/campus">华为云</a>&nbsp;– 可以以9元/月的价格购买云服务器（1C2G1M40G）。并可购买数据库/容器等服务</li>
-<li><a href="https://www.ctyun.cn/esurfing/index">天翼云</a>&nbsp;– 可以以9.9元/月的价格购买云服务器（1C2G1M40G）</li>
-<li><a href="https://cloud.baidu.com/campaign/campus-2018/index.html">百度云</a>&nbsp;– 可以以18元/3月的价格购买云服务器（1C2G1M40G）</li>
-</ul>
-<h2 id="github">Github</h2>
-<ul>
-<li>Github 高级账户</li>
-<li>DigitalOcean</li>
-<li>Travis CI</li>
-<li>ATOM</li>
-<li>AWS Educate</li>
-<li>Bitnami</li>
-<li>CARTO</li>
-<li>CrowdFlower</li>
-<li>Datadog</li>
-<li>Flatiron School</li>
-<li>GitKraken</li>
-<li>HackHands</li>
-<li>Microsoft Imagine</li>
-<li>Namecheap</li>
-<li>SendGrid</li>
-<li>Sentry</li>
-<li>Stripe</li>
-<li>Taplytics</li>
-<li>Thinkful</li>
-<li>transifex</li>
-<li>Unreal Engine</li>
-</ul>
-<h2 id="会员资格">会员资格</h2>
-<ul>
-<li><a href="https://www.ccf.org.cn/c/2017-02-22/582915.shtml">中国计算机学会（CCF）</a>&nbsp;– 学生可以以优惠价格加入会员，并免费获取学会通讯电子版。
-<ul>
-<li><a href="https://www.ccf.org.cn/tjjracm/">美国计算机学会（ACM）</a>&nbsp;– 在成为CCF会员后，学生会员可以以优惠价格成为ACM会员。</li>
-<li><a href="https://www.ccf.org.cn/membership/tjjrieeecs-acm/">美国电子与电气工程师协会计算机学会（IEEE CS）</a>&nbsp;– 在成为CCF会员后，学生会员可以以优惠价格成为IEEE CS会员。</li>
-</ul>
+<li>
+<p>一种是从上往下</p>
+</li>
+<li>
+<p>一种是从左往右</p>
 </li>
 </ul>
-<h2 id="阅读教育">阅读/教育</h2>
-<ul>
-<li><a href="https://www.safaribooksonline.com/">Safari Books Online</a>&nbsp;– O’Reilly（动物书的出版社）创办的在线教育平台。成为ACM会员后可以免费使用</li>
-</ul>
-<h2 id="其他">其他</h2>
-<ul>
-<li><a href="https://www.apple.com/cn-k12/shop">Apple 教育商店</a>&nbsp;以优惠价格购买苹果产品
-<ul>
-<li>台式电脑或笔记本：每学年共可以购买两（2）台</li>
-<li>Mac mini：每学年可以购买一（1）台</li>
-<li>iPad: 每学年可以购买两（2）台</li>
-<li>显示器：每学年最多可以购买两（2）台</li>
-<li>iPod：每学年购买 iPod 没有数量限制</li>
-</ul>
-</li>
-<li><a href="https://www.microsoftstore.com.cn/student">Microsoft 教育商店</a>&nbsp;以优惠价格购买微软产品</li>
-<li><a href="https://imagine.microsoft.com/zh-cn">Microsoft 教育优惠</a>&nbsp;可获取部分免费开发工具以及教育资源</li>
-<li><a href="https://signup.microsoft.com/signup?sku=Education">Office 365教育版</a>&nbsp;– OneDrive 1TB免费存储</li>
-<li><a href="https://store.dji.com/cn/education">大疆商城</a>&nbsp;– 可领产品优惠码</li>
-</ul>
+<p>算所有可能的路径，所以有 <code>dp[i，j] = dp[i-1][j] + dp[i][j-1]</code>。</p>
+<h2 id="找出初始条件">找出初始条件</h2>
+<p><code>dp[0][0]</code>、<code>dp[0][j]</code>、<code>dp[i][0]</code>都为1。</p>
+<h1 id="题外">题外</h1>
+<p>这是一道很基础的二维动态规划题，与一维的思想是相似的，二维动态规划是在寻找<code>dp[i][j]</code>与<code>dp[i-1][j]</code>、<code>dp[i][j-1]</code>、<code>dp[i-1][j-1]</code>的关系。</p>
 
               </div>
               <div class="post-footer">
@@ -694,8 +584,8 @@ window.addEventListener('load', function() {
 		Lafish
     </li>
     <li class="post-copyright-link">
-      <strong>目前互联网可支持教育优惠的产品汇集：</strong><br/>
-      <a href="https://lafish.fun/EDUresources/" title="目前互联网可支持教育优惠的产品汇集">https://lafish.fun/EDUresources/</a>
+      <strong>暑期算法 第七题：</strong><br/>
+      <a href="https://lafish.fun/sqsf-7/" title="暑期算法 第七题">https://lafish.fun/sqsf-7/</a>
     </li>
     <li class="post-copyright-license">
       <strong>协议：MIT License</strong>
@@ -703,21 +593,17 @@ window.addEventListener('load', function() {
   </ul>
   <div class="tags">
     
-      <a href="https://lafish.fun/tag/fen-xiang/"># 分享</a>
+      <a href="https://lafish.fun/tag/suan-fa/"># 算法</a>
     
   </div>
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="记录第一次黑苹果主机的组装经历" href="https://lafish.fun/HackintoshDiary/">记录第一次黑苹果主机的组装经历</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="记录第一次黑苹果主机的组装经历" href="https://lafish.fun/HackintoshDiary/">上一篇</a>
-      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="DW1820A黑苹果网卡简单折腾记录" href="https://lafish.fun/mu3Y7y8Gt/">DW1820A黑苹果网卡简单折腾记录</a>
-        <a class="nav-mobile-next" title="DW1820A黑苹果网卡简单折腾记录" href="https://lafish.fun/mu3Y7y8Gt/">下一篇</a>
+        <a class="nav-pc-next" title="博客回迁Github Pages" href="https://lafish.fun/back-to-github-pages/">博客回迁Github Pages</a>
+        <a class="nav-mobile-next" title="博客回迁Github Pages" href="https://lafish.fun/back-to-github-pages/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>
