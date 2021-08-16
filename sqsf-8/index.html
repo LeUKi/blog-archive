@@ -6,7 +6,7 @@
 <meta name="keywords" content="lafish,辣鱼,秋刀辣鱼,LeUKi,leuki,blog">
 <meta name="description" content="这里是Lafish的自留地，记录某小白的一旬成长。">
 <meta name="theme-color" content="#121518">
-<title>暑期算法 第七题 | Lafish的部落格</title>
+<title>暑期算法 第八题 | Lafish的部落格</title>
 <link rel="shortcut icon" href="https://lafish.fun/favicon.ico?v=1629132349143">
 <link rel="stylesheet" href="https://lafish.fun/styles/main.css">
 
@@ -25,7 +25,7 @@
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
     onload="renderMathInElement(document.body);"></script>
 
-    <meta name="description" content="暑期算法 第七题" />
+    <meta name="description" content="暑期算法 第八题" />
     <meta name="keywords" content="算法" />
   </head>
   <body>
@@ -469,8 +469,8 @@ window.addEventListener('load', function() {
               <div class="article-box">
     <header class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://lafish.fun/sqsf-7/">
-      暑期算法 第七题
+    <a class="post-title-link" href="https://lafish.fun/sqsf-8/">
+      暑期算法 第八题
     </a>
   </h1>
   <div class="post-meta">
@@ -478,7 +478,7 @@ window.addEventListener('load', function() {
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span>发布于</span>
-      <span>2021-08-15</span>
+      <span>2021-08-16</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
@@ -497,69 +497,64 @@ window.addEventListener('load', function() {
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>2分钟</span>
+      <span>3分钟</span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>430<span class="pc-show">字数</span></span>
+      <span>463<span class="pc-show">字数</span></span>
     </span>
   </div>
 </header>
 </div>
               <div class="post-body next-md-body" id="post_body">
                 <h1 id="题目">题目</h1>
-<p>一个机器人位于一个 <code>m x n</code> 网格的左上角 （起始点在下图中标记为 “Start” ）。</p>
-<p>机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为 “Finish” ）。</p>
-<p>问总共有多少条不同的路径？</p>
-<figure data-type="image" tabindex="1"><img src="https://assets.leetcode.com/uploads/2018/10/22/robot_maze.png" alt="" loading="lazy"></figure>
+<p>给定一个包含非负整数的 <code>*m* x *n*</code> 网格 <code>grid</code> ，请找出一条从左上角到右下角的路径，使得路径上的数字总和为最小。</p>
+<p>**说明：**每次只能向下或者向右移动一步。</p>
+<figure data-type="image" tabindex="1"><img src="https://assets.leetcode.com/uploads/2020/11/05/minpath.jpg" alt="" loading="lazy"></figure>
 <blockquote>
-<pre><code>输入：m = 3, n = 7
-输出：28
+<pre><code>输入：grid = [[1,3,1],[1,5,1],[4,2,1]]
+输出：7
+解释：因为路径 1→3→1→1→1 的总和最小。
 </code></pre>
 </blockquote>
 <blockquote>
-<pre><code>输入：m = 3, n = 2
-输出：3
-解释：
-从左上角开始，总共有 3 条路径可以到达右下角。
-1. 向右 -&gt; 向下 -&gt; 向下
-2. 向下 -&gt; 向下 -&gt; 向右
-3. 向下 -&gt; 向右 -&gt; 向下
+<pre><code>输入：grid = [[1,2,3],[4,5,6]]
+输出：12
 </code></pre>
 </blockquote>
-<blockquote>
-<pre><code>输入：m = 7, n = 3
-输出：28
-</code></pre>
-</blockquote>
-<blockquote>
-<pre><code>输入：m = 3, n = 3
-输出：6
-</code></pre>
-</blockquote>
-<p>来源：LeetCodeHOT100-62</p>
+<p>来源：LeetCodeHOT100-64</p>
 <h1 id="题解">题解</h1>
-<pre><code class="language-javascript">var uniquePaths = function(m, n) {
-    const f = new Array(m).fill(0).map(() =&gt; new Array(n).fill(0));
-    for (let i = 0; i &lt; m; i++) {
-        f[i][0] = 1;
-    }
-    for (let j = 0; j &lt; n; j++) {
-        f[0][j] = 1;
-    }
-    for (let i = 1; i &lt; m; i++) {
-        for (let j = 1; j &lt; n; j++) {
-            f[i][j] = f[i - 1][j] + f[i][j - 1];
+<pre><code class="language-javascript">var minPathSum3 = function(grid) {
+    const m = grid.length, n = grid[0].length
+
+    // 状态定义：dp[i][j] 表示从 [0,0] 到 [i,j] 的最小路径和
+    const dp = new Array(m).fill(0).map(() =&gt; new Array(n).fill(0))
+
+    // 状态初始化
+    dp[0][0] = grid[0][0]
+
+    // 状态转移
+    for (let i = 0; i &lt; m ; i++) {
+        for (let j = 0; j &lt; n ; j++) {
+            if (i == 0 &amp;&amp; j != 0) {
+                dp[i][j] = grid[i][j] + dp[i][j - 1]
+            } else if (i != 0 &amp;&amp; j == 0) {
+                dp[i][j] = grid[i][j] + dp[i - 1][j]
+            } else if (i != 0 &amp;&amp; j != 0) {
+                dp[i][j] = grid[i][j] + Math.min(dp[i - 1][j], dp[i][j - 1])
+            }
         }
     }
-    return f[m - 1][n - 1];
-};
+
+    // 返回结果
+    return dp[m - 1][n - 1]
+}
 </code></pre>
 <h1 id="题析">题析</h1>
-<p>这又是一道动态规划题，继续抓住三个要点：</p>
+<p>这又又是一道动态规划题，这次是带权规划，继续抓住三个要点：</p>
 <h2 id="定义数组元素的含义">定义数组元素的含义</h2>
-<p>定义 <code>dp[i][j]</code> 的含义为：从左上角走到 (<em>i</em>,<em>j</em>) 的路径数量。</p>
+<p>定义 <code>dp[i][j]</code> 的含义为：从左上角走到 (<em>i</em>,<em>j</em>) 的最小路径和。</p>
 <h2 id="找出数组元素间的关系式">找出数组元素间的关系式</h2>
 <p>到达(i,j)有两种方式：</p>
 <ul>
@@ -570,11 +565,12 @@ window.addEventListener('load', function() {
 <p>一种是从左往右</p>
 </li>
 </ul>
-<p>算所有可能的路径，所以有 <code>dp[i，j] = dp[i-1][j] + dp[i][j-1]</code>。</p>
+<p>每一次只选择上或左最小的路径和，所以有 <code>dp[i，j] = min(dp[i-1][j],dp[i][j-1])+grid[i][j]</code>。二维数组grid是权值矩阵。</p>
+<figure data-type="image" tabindex="2"><img src="https://assets.leetcode-cn.com/solution-static/64/17.png" alt="" loading="lazy"></figure>
 <h2 id="找出初始条件">找出初始条件</h2>
-<p><code>dp[0][0]</code>、<code>dp[0][j]</code>、<code>dp[i][0]</code>都为1。</p>
+<p><code>dp[0][0]=grid[0][0]</code>、<code>dp[0][j]=dp[0][j−1]+grid[0][j]</code>、<code>dp[i][0]=dp[i−1][0]+grid[i][0]</code>。</p>
 <h1 id="题外">题外</h1>
-<p>这是一道很基础的二维动态规划题，与一维的思想是相似的，二维动态规划是在寻找<code>dp[i][j]</code>与<code>dp[i-1][j]</code>、<code>dp[i][j-1]</code>、<code>dp[i-1][j-1]</code>的关系。</p>
+<p>带权值的动态规划是很常见的题型，需要使用<code>Min()</code>或<code>Max()</code>等判断式做最佳的选择。</p>
 
               </div>
               <div class="post-footer">
@@ -584,8 +580,8 @@ window.addEventListener('load', function() {
 		Lafish
     </li>
     <li class="post-copyright-link">
-      <strong>暑期算法 第七题：</strong><br/>
-      <a href="https://lafish.fun/sqsf-7/" title="暑期算法 第七题">https://lafish.fun/sqsf-7/</a>
+      <strong>暑期算法 第八题：</strong><br/>
+      <a href="https://lafish.fun/sqsf-8/" title="暑期算法 第八题">https://lafish.fun/sqsf-8/</a>
     </li>
     <li class="post-copyright-license">
       <strong>协议：MIT License</strong>
@@ -599,15 +595,11 @@ window.addEventListener('load', function() {
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="暑期算法 第八题" href="https://lafish.fun/sqsf-8/">暑期算法 第八题</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="暑期算法 第八题" href="https://lafish.fun/sqsf-8/">上一篇</a>
-      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="博客回迁Github Pages" href="https://lafish.fun/back-to-github-pages/">博客回迁Github Pages</a>
-        <a class="nav-mobile-next" title="博客回迁Github Pages" href="https://lafish.fun/back-to-github-pages/">下一篇</a>
+        <a class="nav-pc-next" title="暑期算法 第七题" href="https://lafish.fun/sqsf-7/">暑期算法 第七题</a>
+        <a class="nav-mobile-next" title="暑期算法 第七题" href="https://lafish.fun/sqsf-7/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>
