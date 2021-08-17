@@ -7,7 +7,7 @@
 <meta name="description" content="这里是Lafish的自留地，记录某小白的一旬成长。">
 <meta name="theme-color" content="#121518">
 <title>暑期算法 第八题 | Lafish的部落格</title>
-<link rel="shortcut icon" href="https://lafish.fun/favicon.ico?v=1629216743486">
+<link rel="shortcut icon" href="https://lafish.fun/favicon.ico?v=1629217095566">
 <link rel="stylesheet" href="https://lafish.fun/styles/main.css">
 
 <link rel="stylesheet" href="/media/css/gemini.css">
@@ -566,7 +566,7 @@ window.addEventListener('load', function() {
 </li>
 </ul>
 <p>每一次只选择上或左最小的路径和，所以有 <code>dp[i，j] = min(dp[i-1][j],dp[i][j-1])+grid[i][j]</code>。二维数组grid是权值矩阵。</p>
-<figure data-type="image" tabindex="2"><img src="https://assets.leetcode-cn.com/solution-static/64/17.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="https://i.loli.net/2021/08/18/THA2Ue8KwXykvls.png" alt="" loading="lazy"></figure>
 <h2 id="找出初始条件">找出初始条件</h2>
 <p><code>dp[0][0]=grid[0][0]</code>、<code>dp[0][j]=dp[0][j−1]+grid[0][j]</code>、<code>dp[i][0]=dp[i−1][0]+grid[i][0]</code>。</p>
 <h1 id="题外">题外</h1>
