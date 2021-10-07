@@ -6,7 +6,7 @@
 <meta name="keywords" content="lafish,辣鱼,秋刀辣鱼,LeUKi,leuki,blog">
 <meta name="description" content="这里是Lafish的自留地，记录某小白的一旬成长。">
 <meta name="theme-color" content="#121518">
-<title>关于Minecraft(Java1.12.2)服务器中“删除”作浮空字盔甲架的新方法 | Lafish的部落格</title>
+<title>初识 Babel | Lafish的部落格</title>
 <link rel="shortcut icon" href="https://lafish.fun/favicon.ico?v=1633616097335">
 <link rel="stylesheet" href="https://lafish.fun/styles/main.css">
 
@@ -25,8 +25,8 @@
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
     onload="renderMathInElement(document.body);"></script>
 
-    <meta name="description" content="关于Minecraft(Java1.12.2)服务器中“删除”作浮空字盔甲架的新方法" />
-    <meta name="keywords" content="Minecraft,学习" />
+    <meta name="description" content="初识 Babel" />
+    <meta name="keywords" content="Babel,学习" />
   </head>
   <body>
     <div class="head-top-line"></div>
@@ -213,8 +213,16 @@
             <div class="toc-box right-motion">
   <div class="toc-wrapper auto-number auto" id="toc_wrapper">
     <ul class="markdownIt-TOC">
-<li><a href="#%E5%89%8D%E8%A8%80">前言</a></li>
-<li><a href="#%E6%96%B0%E6%96%B9%E6%B3%95">新方法</a></li>
+<li><a href="#%E4%BB%80%E4%B9%88%E6%98%AF-babel">什么是 Babel</a></li>
+<li><a href="#%E8%AE%A9%E6%88%91%E4%BB%AC%E8%AF%95%E8%AF%95">让我们试试</a>
+<ul>
+<li><a href="#%E5%87%86%E5%A4%87%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83">准备测试环境</a></li>
+<li><a href="#%E9%85%8D%E7%BD%AEbabel">配置Babel</a></li>
+<li><a href="#%E5%90%AF%E5%8A%A8">启动！</a></li>
+</ul>
+</li>
+<li><a href="#%E5%8A%A0%E7%82%B9%E6%96%99">加点料</a></li>
+<li><a href="#%E7%BB%93%E6%9D%9F">结束</a></li>
 </ul>
 
   </div>
@@ -465,8 +473,8 @@ window.addEventListener('load', function() {
               <div class="article-box">
     <header class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://lafish.fun/TCGjGElL3/">
-      关于Minecraft(Java1.12.2)服务器中“删除”作浮空字盔甲架的新方法
+    <a class="post-title-link" href="https://lafish.fun/what-is-babel/">
+      初识 Babel
     </a>
   </h1>
   <div class="post-meta">
@@ -474,7 +482,7 @@ window.addEventListener('load', function() {
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span>发布于</span>
-      <span>2020-02-06</span>
+      <span>2021-10-07</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
@@ -483,8 +491,8 @@ window.addEventListener('load', function() {
         <span class="pc-show">分类于</span>
         
           
-            <a href="https://lafish.fun/tag/minecraft/">
-              <span>Minecraft</span>
+            <a href="https://lafish.fun/tag/babel/">
+              <span>Babel</span>
             </a>、
           
         
@@ -499,31 +507,125 @@ window.addEventListener('load', function() {
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>2分钟</span>
+      <span>5分钟</span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>336<span class="pc-show">字数</span></span>
+      <span>1224<span class="pc-show">字数</span></span>
     </span>
   </div>
 </header>
 </div>
               <div class="post-body next-md-body" id="post_body">
-                <blockquote>
-<p>单机作弊模式下也可参考！急的跳过前言看后面</p>
-</blockquote>
-<h1 id="前言">前言</h1>
-<p>利用summon指令生成了一个浮空字，原理是生成一个隐形的盔甲架并把其名字做常显示。</p>
-<pre><code class="language-java"> /summon minecraft:armor_stand ~ ~2 ~ {Marker:1,NoGravity:1,Invisible:1,CustomNameVisible:1,CustomName:&quot;这是串浮空的字&quot;}
+                <h1 id="什么是-babel">什么是 Babel</h1>
+<p>Babel 是一个 JavaScript 编译器，是当下前端工程化开发必不可缺的一环，它最主要的作用是语法降级和源码转换。有了 Babel ，写的 ES6 语法能跑在 IE，React 优雅的 JSX 语法开发才得以实现。</p>
+<p>使用 Vue / React 等框架的脚手架生成项目，无一例外集成了 Babel，你可以在项目目录中轻松找到 Babel 的存在。</p>
+<p><img src="https://lafish.fun/post-images/1633615964818.png" alt="react项目中的Babal配置" loading="lazy"><br>
+<img src="https://lafish.fun/post-images/1633615924098.png" alt="vue项目中的Babal配置" loading="lazy"></p>
+<p>通常情况下，脚手架作者已经将 Babel 配置妥当，无需二次调试。</p>
+<h1 id="让我们试试">让我们试试</h1>
+<h2 id="准备测试环境">准备测试环境</h2>
+<pre><code class="language-json">//package.json 新建
+{
+  &quot;devDependencies&quot;: {
+    &quot;@babel/cli&quot;: &quot;^7.15.7&quot;,
+    &quot;@babel/core&quot;: &quot;^7.15.5&quot;,
+    &quot;@babel/preset-env&quot;: &quot;^7.15.6&quot;
+  },
+  &quot;dependencies&quot;: {
+    &quot;@babel/polyfill&quot;: &quot;^7.12.1&quot;
+  }
+}
 </code></pre>
-<p>但当我们想删除它时，输入 <strong>/kill @e[type=armor_stand,c=10]</strong> 指令可能会出现 <strong>Error: Player not found.</strong> 的报错论坛也有说用 <strong>/killall</strong> 指令的，但实测无用。</p>
-<p>网上也没用人给出删除的办法，似乎这是个bug。有人给出下下策，删除区块甚至删除存档。我想这条生成指令正常玩家大概率不会用到。使用的大多数是地图制作者和服务器op，前者可以回档重来，后者一般用相关插件管理，用的人寥寥无几。似乎没有删除的需求，但真遇上了也是件恶心的事，所以下面给出方法。</p>
-<h1 id="新方法">新方法</h1>
-<p>利用<strong>entitydata</strong>指令更改实体的属性参数，这是1.8版本中加入的指令，一般用作给全地图怪物加装备。</p>
-<pre><code class="language-java">/entitydata @e[type=Armor_Stand,r=10] {CustomNameVisible:0}
+<p>使用 <code>npm i</code> 或 <code>yarn insatll</code> 安装好包依赖。</p>
+<h2 id="配置babel">配置Babel</h2>
+<p>常见的方法是将配置写入工程根目录的 <code>babel.config.json</code>（如上图Vue-Cli生成的文件）或 <code>.babelrc.json</code> ，再或者直接写进 <code>package.json</code>。</p>
+<pre><code class="language-json">//package.json 追加
+{
+  ...,
+  &quot;babel&quot;: {
+    &quot;presets&quot;: [
+      [
+        &quot;@babel/env&quot;,
+        {
+          &quot;targets&quot;: {
+            &quot;chrome&quot;: &quot;60&quot;
+          },
+          &quot;useBuiltIns&quot;: &quot;usage&quot;,
+          &quot;corejs&quot;: &quot;3.6.5&quot;
+        }
+      ]
+    ]
+  }
+}
 </code></pre>
-<p>将CustomNameVisible(名字可见度)设置为不可见(0)，实际上这个实体并没有被删除，而是完全隐藏了。</p>
+<ul>
+<li>
+<p>在这里我们指定 <code>&quot;presets&quot;</code> 的第一项为 <code>@babel/env</code>，这是上文安装好的 <code>@babel/preset-env</code> 的缩写，是官方提供的预设，提供了 ES2015+ 的语法转换。在 Vue-Cli 中，该项为 <code>@vue/cli-plugin-babel/preset</code>，由 Vue-Cli 作者开发。</p>
+</li>
+<li>
+<p><code>&quot;presets&quot;</code> 的第二项是该预设的参数，<code>@babel/env</code> 规定当无传参时，默认转换至 ES5 语法兼容。</p>
+<ul>
+<li>此处 <code>&quot;targets&quot;</code> 指定了代码最低兼容的环境是 chrome v60</li>
+<li><code>&quot;useBuiltIns&quot;: &quot;usage&quot;</code> 导入了作为依赖的<code>@babel/polyfill</code>，其为 ES6+ 的语法降级提供了替换代码</li>
+<li><code>corejs</code> 指定了babel核心 <code>@babel/core</code> 的具体版本</li>
+</ul>
+</li>
+</ul>
+<h2 id="启动">启动！</h2>
+<p>配置好 Babel 后，让我们研究下怎么启动它。</p>
+<p>作为开发依赖的 <code>@babel/cli</code> 提供了内部指令，使用 <code>node_modules/.bin/babel</code> 我们就可以启动 Babel 了，当然 node 为了内部模块的方便使用，增加了 npx 命令，你还可以这样调用它。</p>
+<pre><code class="language-bash"># npx babel =&gt; node_modules/.bin/babel
+npx babel src --out-dir dist
+</code></pre>
+<ul>
+<li>
+<p>第一项参数表示输入的源代码目标文件夹或文件，在这里我们指定编译 <code>src/</code> 下所有的文件</p>
+</li>
+<li>
+<p>第二项 <code>--out-dir</code> 可选参数表示编译后输出的文件目录，在这里我们指定编译输出至 <code>dist/</code> 文件夹中</p>
+</li>
+</ul>
+<p>现在让我们在 <code>src/</code> 中创建一个 <code>app.js</code>，输入一些 ES6+ 代码，保存文件，输入脚本指令，Babel 就会自动编译并保存在 <code>dist/</code> 了。</p>
+<figure data-type="image" tabindex="1"><img src="https://lafish.fun/post-images/1633616072839.png" alt="第一次手动编译" loading="lazy"></figure>
+<p>显示成功了，<code>dist/app.js</code> 也填充了编译后的代码，但我们发现并没有什么变化。这是因为我们在 <code>package.json</code> 中配置的转换目标是 chrome v60，它已经支持了 class 和箭头函数语法。想看点不一样的，让我们把配置拉低”亿“点。</p>
+<pre><code class="language-json">//package.json 新增
+{
+  ...,
+  &quot;babel&quot;: {
+    &quot;presets&quot;: [
+      [
+        &quot;@babel/env&quot;,
+        {
+          &quot;targets&quot;: {
+            &quot;chrome&quot;: &quot;60&quot;,
+            &quot;ie&quot;: &quot;11&quot;
+          },
+          &quot;useBuiltIns&quot;: &quot;usage&quot;,
+          &quot;corejs&quot;: &quot;3.6.5&quot;
+        }
+      ]
+    ]
+  }
+}
+</code></pre>
+<p>这次我们增加了臭名昭著的 IE 浏览器，版本是 2013 年最新推出的 IE11，它仍将持续服役至 2022 年。</p>
+<h1 id="加点料">加点料</h1>
+<p>暂停一下，带你认识一个好用的工具——nodemon。</p>
+<p>nodemon 的作用很简单，监听文件变化，并执行一些命令。使用 <code>npm i nodemon -D</code>或<code>yarn add nodemon -D</code> 安装，这里 <code>-D</code> 指将它作为开发依赖安装。</p>
+<pre><code class="language-bash">nodemon --watch src --exec npx babel src --out-dir dist
+</code></pre>
+<ul>
+<li><code>--watch</code> 指监听的文件或文件夹，这里我们要监听 <code>src/</code> 中的文件</li>
+<li><code>--exec</code> 指文件变动后运行的指令，这里就填入上文的指令</li>
+</ul>
+<p>将 nodemon 跑起来，现在当我们在 <code>src/</code> 中保存文件时，nodemon 就会触发指令，Babel 也会自动转换代码到 <code>dist/</code> 中了。</p>
+<figure data-type="image" tabindex="2"><img src="https://lafish.fun/post-images/1633616089808.gif" alt="保存自动编译" loading="lazy"></figure>
+<p>有内味了，就像是 Vue 和 React 一样。看编译后的代码可以发现，Babel 将箭头函数直接转换成了普通函数，class 语法则是引入了 Babel 的 <code>_createClass</code> 辅助函数，以ES5语法实现了 ES6 的功能。</p>
+<h1 id="结束">结束</h1>
+<p>这次测试，没有深入剖析 Babel 的原理，只是简单上手实现了基础的保存自动转换功能，但我们仍能从中窥见前端底层技术的魅力，新的标准未有确定，但我们依然能在现有的框架下实现新东西，正是这样的超前应用推动了前端不断发展、愈发繁华。</p>
+<p>实际项目中，我们很少会去调试 Babel，因为各种脚手架已经为我们铺垫好了道路。这篇文章希望能予你些启发，或许不会再有更多的调试，但它们确实为前端工程化发展打下了坚实的基础。</p>
 
               </div>
               <div class="post-footer">
@@ -533,8 +635,8 @@ window.addEventListener('load', function() {
 		Lafish
     </li> -->
     <li class="post-copyright-link">
-      <strong>关于Minecraft(Java1.12.2)服务器中“删除”作浮空字盔甲架的新方法：</strong>
-      <a href="https://lafish.fun/TCGjGElL3/" title="关于Minecraft(Java1.12.2)服务器中“删除”作浮空字盔甲架的新方法">https://lafish.fun/TCGjGElL3/</a>
+      <strong>初识 Babel：</strong>
+      <a href="https://lafish.fun/what-is-babel/" title="初识 Babel">https://lafish.fun/what-is-babel/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明：</strong>
@@ -543,7 +645,7 @@ window.addEventListener('load', function() {
   </ul>
   <div class="tags">
     
-      <a href="https://lafish.fun/tag/minecraft/"># Minecraft</a>
+      <a href="https://lafish.fun/tag/babel/"># Babel</a>
     
       <a href="https://lafish.fun/tag/XX/"># 学习</a>
     
@@ -551,15 +653,11 @@ window.addEventListener('load', function() {
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="2020 给自己定个小目标" href="https://lafish.fun/my2020Goal/">2020 给自己定个小目标</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="2020 给自己定个小目标" href="https://lafish.fun/my2020Goal/">上一篇</a>
-      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="行列式与矩阵的区别-线性代数学习小记" href="https://lafish.fun/fGZB0vOKh/">行列式与矩阵的区别-线性代数学习小记</a>
-        <a class="nav-mobile-next" title="行列式与矩阵的区别-线性代数学习小记" href="https://lafish.fun/fGZB0vOKh/">下一篇</a>
+        <a class="nav-pc-next" title="麻了" href="https://lafish.fun/ma-le/">麻了</a>
+        <a class="nav-mobile-next" title="麻了" href="https://lafish.fun/ma-le/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>
