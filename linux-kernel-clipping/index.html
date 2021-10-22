@@ -6,7 +6,7 @@
 <meta name="keywords" content="lafish,辣鱼,秋刀辣鱼,LeUKi,leuki,blog">
 <meta name="description" content="这里是Lafish的自留地，记录某小白的一旬成长。">
 <meta name="theme-color" content="#121518">
-<title>暑期算法 第七题 | Lafish的部落格</title>
+<title>Linux内核裁剪 | Lafish的部落格</title>
 <link rel="shortcut icon" href="https://lafish.fun/favicon.ico?v=1634910121197">
 <link rel="stylesheet" href="https://lafish.fun/styles/main.css">
 
@@ -25,8 +25,8 @@
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
     onload="renderMathInElement(document.body);"></script>
 
-    <meta name="description" content="暑期算法 第七题" />
-    <meta name="keywords" content="算法" />
+    <meta name="description" content="Linux内核裁剪" />
+    <meta name="keywords" content="嵌入式,linux,学习" />
   </head>
   <body>
     <div class="head-top-line"></div>
@@ -213,16 +213,11 @@
             <div class="toc-box right-motion">
   <div class="toc-wrapper auto-number auto" id="toc_wrapper">
     <ul class="markdownIt-TOC">
-<li><a href="#%E9%A2%98%E7%9B%AE">题目</a></li>
-<li><a href="#%E9%A2%98%E8%A7%A3">题解</a></li>
-<li><a href="#%E9%A2%98%E6%9E%90">题析</a>
-<ul>
-<li><a href="#%E5%AE%9A%E4%B9%89%E6%95%B0%E7%BB%84%E5%85%83%E7%B4%A0%E7%9A%84%E5%90%AB%E4%B9%89">定义数组元素的含义</a></li>
-<li><a href="#%E6%89%BE%E5%87%BA%E6%95%B0%E7%BB%84%E5%85%83%E7%B4%A0%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB%E5%BC%8F">找出数组元素间的关系式</a></li>
-<li><a href="#%E6%89%BE%E5%87%BA%E5%88%9D%E5%A7%8B%E6%9D%A1%E4%BB%B6">找出初始条件</a></li>
-</ul>
-</li>
-<li><a href="#%E9%A2%98%E5%A4%96">题外</a></li>
+<li><a href="#%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87">环境准备</a></li>
+<li><a href="#%E5%86%85%E6%A0%B8%E8%A3%81%E5%89%AA">内核裁剪</a></li>
+<li><a href="#%E7%94%9F%E6%88%90%E9%95%9C%E5%83%8F%E8%AF%AF">生成镜像（误）</a></li>
+<li><a href="#%E7%94%9F%E6%88%90%E9%95%9C%E5%83%8F">生成镜像</a></li>
+<li><a href="#%E6%80%BB%E7%BB%93%E4%B8%8E%E9%97%AE%E9%A2%98">总结与问题</a></li>
 </ul>
 
   </div>
@@ -473,8 +468,8 @@ window.addEventListener('load', function() {
               <div class="article-box">
     <header class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://lafish.fun/sqsf-7/">
-      暑期算法 第七题
+    <a class="post-title-link" href="https://lafish.fun/linux-kernel-clipping/">
+      Linux内核裁剪
     </a>
   </h1>
   <div class="post-meta">
@@ -482,7 +477,7 @@ window.addEventListener('load', function() {
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span>发布于</span>
-      <span>2021-08-15</span>
+      <span>2021-10-22</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
@@ -491,8 +486,20 @@ window.addEventListener('load', function() {
         <span class="pc-show">分类于</span>
         
           
-            <a href="https://lafish.fun/tag/suan-fa/">
-              <span>算法</span>
+            <a href="https://lafish.fun/tag/qian-ru-shi/">
+              <span>嵌入式</span>
+            </a>、
+          
+        
+          
+            <a href="https://lafish.fun/tag/linux/">
+              <span>linux</span>
+            </a>、
+          
+        
+          
+            <a href="https://lafish.fun/tag/XX/">
+              <span>学习</span>
             </a>
           
         
@@ -501,84 +508,96 @@ window.addEventListener('load', function() {
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>2分钟</span>
+      <span>5分钟</span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>430<span class="pc-show">字数</span></span>
+      <span>1115<span class="pc-show">字数</span></span>
     </span>
   </div>
 </header>
 </div>
               <div class="post-body next-md-body" id="post_body">
-                <h1 id="题目">题目</h1>
-<p>一个机器人位于一个 <code>m x n</code> 网格的左上角 （起始点在下图中标记为 “Start” ）。</p>
-<p>机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为 “Finish” ）。</p>
-<p>问总共有多少条不同的路径？</p>
-<figure data-type="image" tabindex="1"><img src="https://assets.leetcode.com/uploads/2018/10/22/robot_maze.png" alt="" loading="lazy"></figure>
-<blockquote>
-<pre><code>输入：m = 3, n = 7
-输出：28
-</code></pre>
+                <blockquote>
+<p>不知道最后能不能成功，但且先记录着，资料太多了，看得好迷茫。</p>
 </blockquote>
-<blockquote>
-<pre><code>输入：m = 3, n = 2
-输出：3
-解释：
-从左上角开始，总共有 3 条路径可以到达右下角。
-1. 向右 -&gt; 向下 -&gt; 向下
-2. 向下 -&gt; 向下 -&gt; 向右
-3. 向下 -&gt; 向右 -&gt; 向下
+<p>安装虚拟机过程略，系统是<code>Ubuntu 20.04.3 LTS</code>。</p>
+<h1 id="环境准备">环境准备</h1>
+<p>打开终端，下载 linux 源码，这里下载的版本是<code>5.4.0</code></p>
+<pre><code class="language-bash">sudo apt-get install linux-source-5.4.0
 </code></pre>
-</blockquote>
-<blockquote>
-<pre><code>输入：m = 7, n = 3
-输出：28
+<p>下载完后打开下载目录，解压到 <code>/home/USERNAME</code> 。</p>
+<p>值得一提的是这里的 <code>linux-source-5.4.0.tar.bz2</code> 是一个软链接，我们实际上是安装了一个软件包，这个软件包包含了源代码压缩包，并在 <code>/usr/src</code> 下创建了一个软链接，指向的是其同目录同名文件下的同名文件。</p>
+<pre><code class="language-bash">cd /usr/src #默认下载路径
+tar -jxv -f linux-source-5.4.0.tar.bz2 -C /home/lafish #解压
 </code></pre>
-</blockquote>
-<blockquote>
-<pre><code>输入：m = 3, n = 3
-输出：6
+<p>进入解压后的源码目录</p>
+<pre><code class="language-bash">cd /home/lafish/linux-source-5.4.0
 </code></pre>
-</blockquote>
-<p>来源：LeetCodeHOT100-62</p>
-<h1 id="题解">题解</h1>
-<pre><code class="language-javascript">var uniquePaths = function(m, n) {
-    const f = new Array(m).fill(0).map(() =&gt; new Array(n).fill(0));
-    for (let i = 0; i &lt; m; i++) {
-        f[i][0] = 1;
-    }
-    for (let j = 0; j &lt; n; j++) {
-        f[0][j] = 1;
-    }
-    for (let i = 1; i &lt; m; i++) {
-        for (let j = 1; j &lt; n; j++) {
-            f[i][j] = f[i - 1][j] + f[i][j - 1];
-        }
-    }
-    return f[m - 1][n - 1];
-};
+<p>安装交叉编译器，这里的 gcc 版本是 <code>9.3.0</code></p>
+<pre><code class="language-bash">sudo apt-get install gcc-arm-linux-gnueabi
+arm-linux-gnueabi-gcc -v #查看版本
 </code></pre>
-<h1 id="题析">题析</h1>
-<p>这又是一道动态规划题，继续抓住三个要点：</p>
-<h2 id="定义数组元素的含义">定义数组元素的含义</h2>
-<p>定义 <code>dp[i][j]</code> 的含义为：从左上角走到 (<em>i</em>,<em>j</em>) 的路径数量。</p>
-<h2 id="找出数组元素间的关系式">找出数组元素间的关系式</h2>
-<p>到达(i,j)有两种方式：</p>
+<p>编辑源码根目录下的 <code>makefile</code> 文件，检索 <code>ARCH</code> 字段，等于号后面填的是目标平台，可以在 <code>arch/</code> 下找到对应的文件夹名。这里我们不填 <code>arm64</code> 而是 <code>arm</code>，前者会使后面的编译部分出现大量报错，原因未知。同时，在下一行增加 <code>CROSS_COMPILE</code>  填的是交叉编译的工具。</p>
+<pre><code class="language-makefile">#原
+ARCH                    ?=
+
+#改
+ARCH                    ?= arm
+CROSS_COMPILE   ?= arm-linux-gnueabi- #这一条本来没有，需要自己加上
+</code></pre>
+<p>此时输入 <code>make menuconfig</code> 启动配置内核界面会报错，根据提示安装缺少的软件包就行了，我就缺了4个包。</p>
+<pre><code class="language-bash">apt-get install ncurses-dev
+apt-get install flex.
+apt-get install bison
+apt-get install libssl-dev
+</code></pre>
+<h1 id="内核裁剪">内核裁剪</h1>
+<p>学艺不精，内核配置先略过，下篇再讲。这里从默认配置出发，先走一遍流程。</p>
+<h1 id="生成镜像误">生成镜像（误）</h1>
+<p>配置完内核选项后，输入下面的命令生成镜像文件：</p>
+<pre><code class="language-bash">make zImage
+</code></pre>
+<p>出现报错：没有规则可制作目标“debian/canonical-certs.pem”</p>
+<p>这是应该是证书出了问题，编辑源码根目录下的 <code>.config</code> 文件，检索 <code>.pem</code>，将两行代码中的值删除即可。</p>
+<figure data-type="image" tabindex="1"><img src="https://lafish.fun/post-images/1634909750962.png" alt=".config检索.pem字段" loading="lazy"></figure>
+<pre><code>#原
+CONFIG_MODULE_SIG_KEY=&quot;certs/signing_key.pem&quot;
+CONFIG_SYSTEM_TRUSTED_KEYRING=y
+CONFIG_SYSTEM_TRUSTED_KEYS=&quot;debian/canonical-certs.pem&quot;
+
+#改
+CONFIG_MODULE_SIG_KEY=&quot;&quot;
+CONFIG_SYSTEM_TRUSTED_KEYRING=y
+CONFIG_SYSTEM_TRUSTED_KEYS=&quot;&quot;
+</code></pre>
+<p>再次生成，再报错：can't open file &quot;block/Kconfig&quot;</p>
+<p>看来是文件出了点问题，之前好奇动了很多东西，网上的笔记也看得很杂，改动也挺多的，下面重新解压代码重新搞。</p>
+<h1 id="生成镜像">生成镜像</h1>
+<p>有了之前的经历，例如源码下载、环境搭建等步骤就不用重新弄了。</p>
+<p>重新将代码解压到合适位置，重新修改 <code>makefile</code> 与 <code>.config</code> 文件。再次运行生成指令：</p>
+<pre><code class="language-bash">make zImage
+</code></pre>
+<p>这次一切正常，但编译的速度有点慢了，可以加上 <code>-j</code> 参数开启多核编译。</p>
+<pre><code class="language-bash">make zImage -j12 #后面的数字代表CPU核心数
+</code></pre>
+<p>看这喂饱的CPU，针不戳。大概7分钟就生成好了，如果不加参数可能是12倍之多了。</p>
+<figure data-type="image" tabindex="2"><img src="https://lafish.fun/post-images/1634909862236.png" alt="喂饱的CPU" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="https://lafish.fun/post-images/1634909823235.png" alt="镜像生成完毕" loading="lazy"></figure>
+<p>生成镜像的路径在 <code>arch/arm/boot/</code>，路径与文件都与师兄师姐们的笔记不一样，应该是代码版本不同导致的，<code>zimage</code> 是 <code>image</code> 压缩后的文件，即便按照默认配置生成，这也是小到出乎我意料。</p>
+<figure data-type="image" tabindex="4"><img src="https://lafish.fun/post-images/1634909883141.png" alt="生成的文件" loading="lazy"></figure>
+<h1 id="总结与问题">总结与问题</h1>
+<p>从<a href="https://www.kernel.org/doc/html/">linux官方文档库</a>中可以看到，最新linux源代码版本是5.15，apt获取的源码而是19年的版本，如果需要从新的源码编译，就得手动下载。之前一条条 <code>apt-get install</code> 安装的工具也一样，很可能是过时的，如果需要安装新的软件，就需要自行去官网下载已编译或甚至编译的软件源码自行安装。这个过程是可以预见的，希望后面的记录会有体验到。</p>
+<p>试过几次裁剪都以失败告终，例如中间提到的文件问题。但默认配置生成的镜像大小至少让我明白了，现阶段裁剪更多的是无用的驱动程序，在编译过程中出现了很多其他品牌的驱动都是无用的。</p>
+<p>最后，提出一些问题，希望后面的篇章能做出解答：</p>
 <ul>
-<li>
-<p>一种是从上往下</p>
-</li>
-<li>
-<p>一种是从左往右</p>
-</li>
+<li>Uboot相关制作的切入点</li>
+<li>根目录系统制作与Busybox的关系</li>
+<li>arch=arm64不可用的原因</li>
+<li>make menuconfig的大致流程</li>
+<li>启动裁剪系统的方法</li>
 </ul>
-<p>算所有可能的路径，所以有 <code>dp[i，j] = dp[i-1][j] + dp[i][j-1]</code>。</p>
-<h2 id="找出初始条件">找出初始条件</h2>
-<p><code>dp[0][0]</code>、<code>dp[0][j]</code>、<code>dp[i][0]</code>都为1。</p>
-<h1 id="题外">题外</h1>
-<p>这是一道很基础的二维动态规划题，与一维的思想是相似的，二维动态规划是在寻找<code>dp[i][j]</code>与<code>dp[i-1][j]</code>、<code>dp[i][j-1]</code>、<code>dp[i-1][j-1]</code>的关系。</p>
 
               </div>
               <div class="post-footer">
@@ -588,8 +607,8 @@ window.addEventListener('load', function() {
 		Lafish
     </li> -->
     <li class="post-copyright-link">
-      <strong>暑期算法 第七题：</strong>
-      <a href="https://lafish.fun/sqsf-7/" title="暑期算法 第七题">https://lafish.fun/sqsf-7/</a>
+      <strong>Linux内核裁剪：</strong>
+      <a href="https://lafish.fun/linux-kernel-clipping/" title="Linux内核裁剪">https://lafish.fun/linux-kernel-clipping/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明：</strong>
@@ -598,21 +617,21 @@ window.addEventListener('load', function() {
   </ul>
   <div class="tags">
     
-      <a href="https://lafish.fun/tag/suan-fa/"># 算法</a>
+      <a href="https://lafish.fun/tag/qian-ru-shi/"># 嵌入式</a>
+    
+      <a href="https://lafish.fun/tag/linux/"># linux</a>
+    
+      <a href="https://lafish.fun/tag/XX/"># 学习</a>
     
   </div>
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="暑期算法 第八题" href="https://lafish.fun/sqsf-8/">暑期算法 第八题</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="暑期算法 第八题" href="https://lafish.fun/sqsf-8/">上一篇</a>
-      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="博客回迁Github Pages" href="https://lafish.fun/back-to-github-pages/">博客回迁Github Pages</a>
-        <a class="nav-mobile-next" title="博客回迁Github Pages" href="https://lafish.fun/back-to-github-pages/">下一篇</a>
+        <a class="nav-pc-next" title="初识 Babel" href="https://lafish.fun/what-is-babel/">初识 Babel</a>
+        <a class="nav-mobile-next" title="初识 Babel" href="https://lafish.fun/what-is-babel/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>
