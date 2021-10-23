@@ -6,7 +6,7 @@
 <meta name="keywords" content="lafish,辣鱼,秋刀辣鱼,LeUKi,leuki,blog">
 <meta name="description" content="这里是Lafish的自留地，记录某小白的一旬成长。">
 <meta name="theme-color" content="#121518">
-<title>实现Gridea同步Coding与Github两地仓库 | Lafish的部落格</title>
+<title>利用 MongoDB Atlas 与 Heroku 架设 Free 的后台服务 | Lafish的部落格</title>
 <link rel="shortcut icon" href="https://lafish.fun/favicon.ico?v=1634999706787">
 <link rel="stylesheet" href="https://lafish.fun/styles/main.css">
 
@@ -25,8 +25,8 @@
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
     onload="renderMathInElement(document.body);"></script>
 
-    <meta name="description" content="实现Gridea同步Coding与Github两地仓库" />
-    <meta name="keywords" content="分享,学习" />
+    <meta name="description" content="利用 MongoDB Atlas 与 Heroku 架设 Free 的后台服务" />
+    <meta name="keywords" content="nodejs,分享" />
   </head>
   <body>
     <div class="head-top-line"></div>
@@ -213,7 +213,16 @@
             <div class="toc-box right-motion">
   <div class="toc-wrapper auto-number auto" id="toc_wrapper">
     <ul class="markdownIt-TOC">
-<li><a href="#%E6%AD%A5%E9%AA%A4">步骤</a></li>
+<li><a href="#%E5%89%8D%E8%A8%80">前言</a></li>
+<li><a href="#%E5%BC%80%E5%A7%8B%E5%8A%A8%E6%89%8B">开始动手</a>
+<ul>
+<li><a href="#%E4%BB%A3%E7%A0%81%E8%B0%83%E6%95%B4">代码调整</a></li>
+<li><a href="#%E9%93%BE%E6%8E%A5github%E4%BB%93%E5%BA%93">链接Github仓库</a></li>
+<li><a href="#%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F">配置环境变量</a></li>
+<li><a href="#%E8%BF%90%E8%A1%8C">运行！</a></li>
+</ul>
+</li>
+<li><a href="#%E6%9C%80%E5%90%8E">最后</a></li>
 </ul>
 
   </div>
@@ -464,8 +473,8 @@ window.addEventListener('load', function() {
               <div class="article-box">
     <header class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://lafish.fun/JXuv5fwl9/">
-      实现Gridea同步Coding与Github两地仓库
+    <a class="post-title-link" href="https://lafish.fun/freedom-service/">
+      利用 MongoDB Atlas 与 Heroku 架设 Free 的后台服务
     </a>
   </h1>
   <div class="post-meta">
@@ -473,7 +482,7 @@ window.addEventListener('load', function() {
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span>发布于</span>
-      <span>2020-06-21</span>
+      <span>2021-10-23</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
@@ -482,14 +491,14 @@ window.addEventListener('load', function() {
         <span class="pc-show">分类于</span>
         
           
-            <a href="https://lafish.fun/tag/fen-xiang/">
-              <span>分享</span>
+            <a href="https://lafish.fun/tag/nodejs/">
+              <span>nodejs</span>
             </a>、
           
         
           
-            <a href="https://lafish.fun/tag/XX/">
-              <span>学习</span>
+            <a href="https://lafish.fun/tag/fen-xiang/">
+              <span>分享</span>
             </a>
           
         
@@ -498,52 +507,49 @@ window.addEventListener('load', function() {
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>2分钟</span>
+      <span>3分钟</span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>270<span class="pc-show">字数</span></span>
+      <span>568<span class="pc-show">字数</span></span>
     </span>
   </div>
 </header>
 </div>
               <div class="post-body next-md-body" id="post_body">
-                <p>Gridea有一点不好，就是不能同时推送到两个仓库。下面这个方法可以实现Coding与Github两地仓库的同步，解决不能异仓备份博客的问题。</p>
-<h1 id="步骤">步骤</h1>
-<p>1.登录coding账户<br>
-2.进入Coding博客仓库-持续集成-构建计划-新建-简易模板<br>
-（<a href="https://xn--6qqv7i14ofosyrb.coding.net/p/%E5%8D%9A%E5%AE%A2%E4%BB%93%E5%BA%93%E5%90%8D/ci/job/create/simple">https://你的用户名.coding.net/p/博客仓库名/ci/job/create/simple</a>）<br>
-<img src="https://pic.lafish.fun/20200621104214.png" alt="" loading="lazy"><br>
-3.随意起名，选择仓库，创建构建计划<br>
-4.进入创建的计划-流程配置-文本编辑器<br>
-5.删除全部代码，粘贴下面的代码后保存</p>
-<pre><code>pipeline {
-  agent any
-  stages {
-    stage('检出') {
-      steps {
-        checkout([
-          $class: 'GitSCM',
-          branches: [[name: env.GIT_BUILD_REF]],
-          userRemoteConfigs: [[url: env.GIT_REPO_URL, credentialsId: env.CREDENTIALS_ID]]
-        ])
-      }
-    }
-    stage('推送部署') {
-      steps {
-        echo '正在推送文件...'
-        sh 'git fetch https://[Github用户名]:[Github令牌]@github.com/[Github用户名]/[Github博客仓库名].git'
-        sh 'git push -f https://[Github用户名]:[Github令牌]@github.com/[Github用户名]/[Github博客仓库名].git HEAD:master'
-        echo '已完成文件推送.'
-      }
-    }
-  }
+                <blockquote>
+<p>Free：自由、开源、免费！白嫖！</p>
+</blockquote>
+<h1 id="前言">前言</h1>
+<p>MongoDB Atlas 是 MongoDB 官方提供的线上数据库服务，免费的 M0 Sandbox 档提供 512MB 的容量，有谷歌台湾和微软香港节点可选。</p>
+<p>Heroku 是一个云计算平台，注册用户每个月有550小时的免费计算资源，如果验证了新银行卡还能再加450小时和域名绑定。30分钟不活动就会进入睡眠状态，有新需求的时候就会自动重启。有很多语言环境可选，这里我们用到的是 nodejs。</p>
+<h1 id="开始动手">开始动手</h1>
+<p>我写了一个练手的后台项目，详情可以见后面发的文章，这次的目的就是把服务架设起来。</p>
+<h2 id="代码调整">代码调整</h2>
+<p>如果是 nodejs 项目，Heroku 启动程序会调用 npm start， 所以确保 package.js 中写好名为 start 的脚本。</p>
+<pre><code class="language-json">//package.js
+{
+  ...,
+  &quot;scripts&quot;: {
+  	...
+    &quot;start&quot;: &quot;node app.js&quot; //程序入口
+  },
+	...
 }
 </code></pre>
-<p>6.设置触发规则：<br>
-<img src="https://pic.lafish.fun/20200621105155.png" alt="" loading="lazy"><br>
-7.在Gridea中同步一下，看看github上的仓库有没有同步吧！</p>
+<h2 id="链接github仓库">链接Github仓库</h2>
+<p>Heroku 项目的 Deploy 选项中绑定 Github 仓库，如此当你提交代码后，Heroku 会自动拉取新代码并启用新的代码程序。</p>
+<figure data-type="image" tabindex="1"><img src="https://lafish.fun/post-images/1634999417834.png" alt="Deploy Github" loading="lazy"></figure>
+<h2 id="配置环境变量">配置环境变量</h2>
+<p>当存在私有代码例如数据库地址与秘钥、第三方 token 时，就可以用环境变量来解决。</p>
+<p>在项目使用私有代码地方填充 <code>process.env.XXX</code>，并在 Heroku 项目的 Setting - Config Vars 选项中填入对应的值，在运行程序前这些环境变量就会被替换。</p>
+<figure data-type="image" tabindex="2"><img src="https://lafish.fun/post-images/1634999401675.png" alt="Config Vars" loading="lazy"></figure>
+<h2 id="运行">运行！</h2>
+<p>可以看到接口服务跑起来了，也能成功对接数据库。当半小时没有访问流量，服务关闭，当我们再次访问接口时，Heroku 重启了程序，服务启动需要约3秒的时间，还是很理想的。<s>（毕竟白嫖的嘛）</s></p>
+<figure data-type="image" tabindex="3"><img src="https://lafish.fun/post-images/1634999351965.png" alt="Heroku Project Log" loading="lazy"></figure>
+<h1 id="最后">最后</h1>
+<p>对于类似这种性能要求不高、并发量不大的个人流量统计服务，架设到这种地方确实不失为<s>省钱小妙招</s>有趣的解决方案。希望国内的厂商能为个人提供类似的开源免费计算服务，虽然需要多折腾点，但当你的代码没有金钱的束缚，在广阔的网络中自由奔跑，那想想还真是不错呢。</p>
 
               </div>
               <div class="post-footer">
@@ -553,8 +559,8 @@ window.addEventListener('load', function() {
 		Lafish
     </li> -->
     <li class="post-copyright-link">
-      <strong>实现Gridea同步Coding与Github两地仓库：</strong>
-      <a href="https://lafish.fun/JXuv5fwl9/" title="实现Gridea同步Coding与Github两地仓库">https://lafish.fun/JXuv5fwl9/</a>
+      <strong>利用 MongoDB Atlas 与 Heroku 架设 Free 的后台服务：</strong>
+      <a href="https://lafish.fun/freedom-service/" title="利用 MongoDB Atlas 与 Heroku 架设 Free 的后台服务">https://lafish.fun/freedom-service/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明：</strong>
@@ -563,23 +569,23 @@ window.addEventListener('load', function() {
   </ul>
   <div class="tags">
     
-      <a href="https://lafish.fun/tag/fen-xiang/"># 分享</a>
+      <a href="https://lafish.fun/tag/nodejs/"># nodejs</a>
     
-      <a href="https://lafish.fun/tag/XX/"># 学习</a>
+      <a href="https://lafish.fun/tag/fen-xiang/"># 分享</a>
     
   </div>
   <div class="nav">
     <div class="nav-prev">
       
         <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="记微信小程序开发踩过的坑" href="https://lafish.fun/wechat-miniprogram-development-trouble/">记微信小程序开发踩过的坑</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="记微信小程序开发踩过的坑" href="https://lafish.fun/wechat-miniprogram-development-trouble/">上一篇</a>
+        <a class="nav-pc-next" title="利用 MongoDB Atlas 与 Heroku 架设 Free 的后台服务" href="https://lafish.fun/PzmtEOCBv/">利用 MongoDB Atlas 与 Heroku 架设 Free 的后台服务</a class="nav-pc-next">
+        <a class="nav-mobile-prev" title="利用 MongoDB Atlas 与 Heroku 架设 Free 的后台服务" href="https://lafish.fun/PzmtEOCBv/">上一篇</a>
       
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="记一个坑：黑苹果主机换硬盘、迁移系统" href="https://lafish.fun/XopWfaM5l/">记一个坑：黑苹果主机换硬盘、迁移系统</a>
-        <a class="nav-mobile-next" title="记一个坑：黑苹果主机换硬盘、迁移系统" href="https://lafish.fun/XopWfaM5l/">下一篇</a>
+        <a class="nav-pc-next" title="Linux内核裁剪" href="https://lafish.fun/linux-kernel-clipping/">Linux内核裁剪</a>
+        <a class="nav-mobile-next" title="Linux内核裁剪" href="https://lafish.fun/linux-kernel-clipping/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>
