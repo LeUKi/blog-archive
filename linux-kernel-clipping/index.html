@@ -7,7 +7,7 @@
 <meta name="description" content="这里是Lafish的自留地，记录某小白的一旬成长。">
 <meta name="theme-color" content="#121518">
 <title>Linux内核裁剪 | Lafish的部落格</title>
-<link rel="shortcut icon" href="https://lafish.fun/favicon.ico?v=1634999739166">
+<link rel="shortcut icon" href="https://lafish.fun/favicon.ico?v=1635433914582">
 <link rel="stylesheet" href="https://lafish.fun/styles/main.css">
 
 <link rel="stylesheet" href="/media/css/gemini.css">
@@ -549,7 +549,7 @@ CROSS_COMPILE   ?= arm-linux-gnueabi- #这一条本来没有，需要自己加�
 </code></pre>
 <p>此时输入 <code>make menuconfig</code> 启动配置内核界面会报错，根据提示安装缺少的软件包就行了，我就缺了4个包。</p>
 <pre><code class="language-bash">apt-get install ncurses-dev
-apt-get install flex.
+apt-get install flex
 apt-get install bison
 apt-get install libssl-dev
 </code></pre>
