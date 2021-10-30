@@ -7,7 +7,7 @@
 <meta name="description" content="这里是Lafish的自留地，记录某小白的一旬成长。">
 <meta name="theme-color" content="#121518">
 <title>Linux内核裁剪 | Lafish的部落格</title>
-<link rel="shortcut icon" href="https://lafish.fun/favicon.ico?v=1635433914582">
+<link rel="shortcut icon" href="https://lafish.fun/favicon.ico?v=1635578449707">
 <link rel="stylesheet" href="https://lafish.fun/styles/main.css">
 
 <link rel="stylesheet" href="/media/css/gemini.css">
@@ -513,7 +513,7 @@ window.addEventListener('load', function() {
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>1115<span class="pc-show">字数</span></span>
+      <span>1116<span class="pc-show">字数</span></span>
     </span>
   </div>
 </header>
@@ -528,7 +528,7 @@ window.addEventListener('load', function() {
 <pre><code class="language-bash">sudo apt-get install linux-source-5.4.0
 </code></pre>
 <p>下载完后打开下载目录，解压到 <code>/home/USERNAME</code> 。</p>
-<p>值得一提的是这里的 <code>linux-source-5.4.0.tar.bz2</code> 是一个软链接，我们实际上是安装了一个软件包，这个软件包包含了源代码压缩包，并在 <code>/usr/src</code> 下创建了一个软链接，指向的是其同目录同名文件下的同名文件。</p>
+<p>值得一提的是这里的 <code>linux-source-5.4.0.tar.bz2</code> 是一个软链接，我们实际上是安装了一个软件包，这个软件包包含了源代码压缩包，并在 <code>/usr/src</code> 下创建了一个软链接，指向的是其同目录同名文件夹下的同名文件。</p>
 <pre><code class="language-bash">cd /usr/src #默认下载路径
 tar -jxv -f linux-source-5.4.0.tar.bz2 -C /home/lafish #解压
 </code></pre>
