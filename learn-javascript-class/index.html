@@ -6,7 +6,7 @@
 <meta name="keywords" content="lafish,辣鱼,秋刀辣鱼,LeUKi,leuki,blog">
 <meta name="description" content="这里是Lafish的自留地，记录某小白的一旬成长。">
 <meta name="theme-color" content="#121518">
-<title>初识 Babel | Lafish的部落格</title>
+<title>JavaScript的类 | Lafish的部落格</title>
 <link rel="shortcut icon" href="https://lafish.fun/favicon.ico?v=1635850163109">
 <link rel="stylesheet" href="https://lafish.fun/styles/main.css">
 
@@ -25,8 +25,8 @@
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
     onload="renderMathInElement(document.body);"></script>
 
-    <meta name="description" content="初识 Babel" />
-    <meta name="keywords" content="Babel,学习" />
+    <meta name="description" content="JavaScript的类" />
+    <meta name="keywords" content="JavaScript,学习" />
   </head>
   <body>
     <div class="head-top-line"></div>
@@ -213,16 +213,21 @@
             <div class="toc-box right-motion">
   <div class="toc-wrapper auto-number auto" id="toc_wrapper">
     <ul class="markdownIt-TOC">
-<li><a href="#%E4%BB%80%E4%B9%88%E6%98%AF-babel">什么是 Babel</a></li>
-<li><a href="#%E8%AE%A9%E6%88%91%E4%BB%AC%E8%AF%95%E8%AF%95">让我们试试</a>
+<li><a href="#es5">ES5</a>
 <ul>
-<li><a href="#%E5%87%86%E5%A4%87%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83">准备测试环境</a></li>
-<li><a href="#%E9%85%8D%E7%BD%AEbabel">配置Babel</a></li>
-<li><a href="#%E5%90%AF%E5%8A%A8">启动！</a></li>
+<li><a href="#%E5%AE%9E%E7%8E%B0">实现</a></li>
+<li><a href="#%E9%9D%99%E6%80%81%E5%B1%9E%E6%80%A7%E5%92%8C%E6%96%B9%E6%B3%95">静态属性和方法</a></li>
+<li><a href="#%E5%8E%9F%E5%9E%8B%E5%B1%9E%E6%80%A7%E5%92%8C%E6%96%B9%E6%B3%95">原型属性和方法</a></li>
 </ul>
 </li>
-<li><a href="#%E5%8A%A0%E7%82%B9%E6%96%99">加点料</a></li>
-<li><a href="#%E7%BB%93%E6%9D%9F">结束</a></li>
+<li><a href="#es6">ES6</a>
+<ul>
+<li><a href="#%E5%AE%9E%E7%8E%B0-2">实现</a></li>
+<li><a href="#%E9%9D%99%E6%80%81%E5%B1%9E%E6%80%A7%E5%92%8C%E6%96%B9%E6%B3%95-2">静态属性和方法</a></li>
+<li><a href="#%E5%8E%9F%E5%9E%8B%E5%B1%9E%E6%80%A7%E5%92%8C%E6%96%B9%E6%B3%95-2">原型属性和方法</a></li>
+</ul>
+</li>
+<li><a href="#%E6%9C%80%E5%90%8E">最后</a></li>
 </ul>
 
   </div>
@@ -473,8 +478,8 @@ window.addEventListener('load', function() {
               <div class="article-box">
     <header class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://lafish.fun/what-is-babel/">
-      初识 Babel
+    <a class="post-title-link" href="https://lafish.fun/learn-javascript-class/">
+      JavaScript的类
     </a>
   </h1>
   <div class="post-meta">
@@ -482,7 +487,7 @@ window.addEventListener('load', function() {
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span>发布于</span>
-      <span>2021-10-07</span>
+      <span>2021-11-02</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
@@ -491,8 +496,8 @@ window.addEventListener('load', function() {
         <span class="pc-show">分类于</span>
         
           
-            <a href="https://lafish.fun/tag/babel/">
-              <span>Babel</span>
+            <a href="https://lafish.fun/tag/javascript/">
+              <span>JavaScript</span>
             </a>、
           
         
@@ -507,125 +512,122 @@ window.addEventListener('load', function() {
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>5分钟</span>
+      <span>4分钟</span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>1224<span class="pc-show">字数</span></span>
+      <span>766<span class="pc-show">字数</span></span>
     </span>
   </div>
 </header>
 </div>
               <div class="post-body next-md-body" id="post_body">
-                <h1 id="什么是-babel">什么是 Babel</h1>
-<p>Babel 是一个 JavaScript 编译器，是当下前端工程化开发必不可缺的一环，它最主要的作用是语法降级和源码转换。有了 Babel ，写的 ES6 语法能跑在 IE，React 优雅的 JSX 语法开发才得以实现。</p>
-<p>使用 Vue / React 等框架的脚手架生成项目，无一例外集成了 Babel，你可以在项目目录中轻松找到 Babel 的存在。</p>
-<p><img src="https://lafish.fun/post-images/1633615964818.png" alt="react项目中的Babal配置" loading="lazy"><br>
-<img src="https://lafish.fun/post-images/1633615924098.png" alt="vue项目中的Babal配置" loading="lazy"></p>
-<p>通常情况下，脚手架作者已经将 Babel 配置妥当，无需二次调试。</p>
-<h1 id="让我们试试">让我们试试</h1>
-<h2 id="准备测试环境">准备测试环境</h2>
-<pre><code class="language-json">//package.json 新建
-{
-  &quot;devDependencies&quot;: {
-    &quot;@babel/cli&quot;: &quot;^7.15.7&quot;,
-    &quot;@babel/core&quot;: &quot;^7.15.5&quot;,
-    &quot;@babel/preset-env&quot;: &quot;^7.15.6&quot;
-  },
-  &quot;dependencies&quot;: {
-    &quot;@babel/polyfill&quot;: &quot;^7.12.1&quot;
-  }
+                <blockquote>
+<p>最近项目中用到了类的概念，其实更早的时候已经接触到了，现在捡起来过一遍，还不晚</p>
+</blockquote>
+<h1 id="es5">ES5</h1>
+<h2 id="实现">实现</h2>
+<p>ES5 可以通过构造函数进行类的实现。</p>
+<pre><code class="language-javascript">function Person(name, age) {
+   this.name = name; //实例属性
+   this.age = age; //实例属性
+   this.run = function () { //实例方法
+       console.log(this.name + ' is running');
+   }
 }
 </code></pre>
-<p>使用 <code>npm i</code> 或 <code>yarn insatll</code> 安装好包依赖。</p>
-<h2 id="配置babel">配置Babel</h2>
-<p>常见的方法是将配置写入工程根目录的 <code>babel.config.json</code>（如上图Vue-Cli生成的文件）或 <code>.babelrc.json</code> ，再或者直接写进 <code>package.json</code>。</p>
-<pre><code class="language-json">//package.json 追加
-{
-  ...,
-  &quot;babel&quot;: {
-    &quot;presets&quot;: [
-      [
-        &quot;@babel/env&quot;,
-        {
-          &quot;targets&quot;: {
-            &quot;chrome&quot;: &quot;60&quot;
-          },
-          &quot;useBuiltIns&quot;: &quot;usage&quot;,
-          &quot;corejs&quot;: &quot;3.6.5&quot;
-        }
-      ]
-    ]
+<p>构造函数实际就是一个普通函数，但我们可以通过 new 关键词进行实例化。在构造函数中声明实例属性和方法，实例上就能读取调用。</p>
+<pre><code class="language-javascript">let person1 = new Person('张三', 18); //实例化
+let person2 = new Person('李四', 20); //实例化
+
+//读取实例属性
+console.log(person1.name); //张三 
+console.log(person2.age); //20
+//调用实例方法
+person1.run(); //张三 is running
+person2.run(); //李四 is running
+</code></pre>
+<h2 id="静态属性和方法">静态属性和方法</h2>
+<p>可以在类上添加静态属性和方法，我们能通过类名访问到它们。实例对象不能直接调用类的静态属性方法。</p>
+<pre><code class="language-javascript">Person.words = 'I am a person'; //类上添加静态属性
+Person.say = function () { //类上添加静态方法
+    console.log(`Person saying: \&quot;${Person.words}\&quot;`); 
+}
+
+//在类上读取静态属性
+console.log(Person.words); //Person say: I am a person
+//在类上调用静态方法
+Person.say(); //Person saying: &quot;I am a person&quot;
+
+//不可在实例上读取静态属性 
+//console.log(person1.words); //undefined
+//不可在实例上调用静态方法 
+//person1.say(); //TypeError: person1.say is not a function
+</code></pre>
+<h2 id="原型属性和方法">原型属性和方法</h2>
+<p>可以在类上添加原型属性和方法，我们能通过实例对象访问它们。类不能直接调用原型属性方法。</p>
+<pre><code class="language-javascript">Person.prototype.weight = 60; //类上添加原型属性
+Person.prototype.lostWeight = function () { //类上添加原型方法
+    this.weight--;
+    console.log(`${this.name}\'s weight is ${this.weight} now!`);
+}
+
+//在实例上读取原型属性
+console.log(person1.weight); //60
+//在实例上调用原型方法
+person1.lostWeight(); //张三 is saying
+
+//不可在类上读取原型属性 
+//console.log(Person.weight); //undefined
+//不可在类上调用原型方法
+//Person.lostWeight(); //TypeError: Person.lostWeight is not a function
+</code></pre>
+<h1 id="es6">ES6</h1>
+<h2 id="实现-2">实现</h2>
+<p>在 ES6 中，类由 class 关键词实现。</p>
+<pre><code class="language-javascript">class Animal {
+  constructor(name, age) { //实例属性创建
+    this.name = name;
+    this.age = age;
   }
+  speak() { //实例方法
+    console.log(this.name + ' makes a noise.');
+  }
+
+  static eat() { //静态方法
+    console.log(this.words);
+  }
+  static words = 'All animals eat food.'; //静态属性
 }
 </code></pre>
-<ul>
-<li>
-<p>在这里我们指定 <code>&quot;presets&quot;</code> 的第一项为 <code>@babel/env</code>，这是上文安装好的 <code>@babel/preset-env</code> 的缩写，是官方提供的预设，提供了 ES2015+ 的语法转换。在 Vue-Cli 中，该项为 <code>@vue/cli-plugin-babel/preset</code>，由 Vue-Cli 作者开发。</p>
-</li>
-<li>
-<p><code>&quot;presets&quot;</code> 的第二项是该预设的参数，<code>@babel/env</code> 规定当无传参时，默认转换至 ES5 语法兼容。</p>
-<ul>
-<li>此处 <code>&quot;targets&quot;</code> 指定了代码最低兼容的环境是 chrome v60</li>
-<li><code>&quot;useBuiltIns&quot;: &quot;usage&quot;</code> 导入了作为依赖的<code>@babel/polyfill</code>，其为 ES6+ 的语法降级提供了替换代码</li>
-<li><code>corejs</code> 指定了babel核心 <code>@babel/core</code> 的具体版本</li>
-</ul>
-</li>
-</ul>
-<h2 id="启动">启动！</h2>
-<p>配置好 Babel 后，让我们研究下怎么启动它。</p>
-<p>作为开发依赖的 <code>@babel/cli</code> 提供了内部指令，使用 <code>node_modules/.bin/babel</code> 我们就可以启动 Babel 了，当然 node 为了内部模块的方便使用，增加了 npx 命令，你还可以这样调用它。</p>
-<pre><code class="language-bash"># npx babel =&gt; node_modules/.bin/babel
-npx babel src --out-dir dist
+<p>调用方法与 ES5 无异。</p>
+<pre><code class="language-javascript">//调用静态方法
+Animal.eat(); //All animals eat food.
+
+let dog1 = new Animal('Teddy', 2); //实例化
+//调用实例方法
+dog1.speak(); //Teddy makes a noise.
 </code></pre>
-<ul>
-<li>
-<p>第一项参数表示输入的源代码目标文件夹或文件，在这里我们指定编译 <code>src/</code> 下所有的文件</p>
-</li>
-<li>
-<p>第二项 <code>--out-dir</code> 可选参数表示编译后输出的文件目录，在这里我们指定编译输出至 <code>dist/</code> 文件夹中</p>
-</li>
-</ul>
-<p>现在让我们在 <code>src/</code> 中创建一个 <code>app.js</code>，输入一些 ES6+ 代码，保存文件，输入脚本指令，Babel 就会自动编译并保存在 <code>dist/</code> 了。</p>
-<figure data-type="image" tabindex="1"><img src="https://lafish.fun/post-images/1633616072839.png" alt="第一次手动编译" loading="lazy"></figure>
-<p>显示成功了，<code>dist/app.js</code> 也填充了编译后的代码，但我们发现并没有什么变化。这是因为我们在 <code>package.json</code> 中配置的转换目标是 chrome v60，它已经支持了 class 和箭头函数语法。想看点不一样的，让我们把配置拉低”亿“点。</p>
-<pre><code class="language-json">//package.json 新增
-{
-  ...,
-  &quot;babel&quot;: {
-    &quot;presets&quot;: [
-      [
-        &quot;@babel/env&quot;,
-        {
-          &quot;targets&quot;: {
-            &quot;chrome&quot;: &quot;60&quot;,
-            &quot;ie&quot;: &quot;11&quot;
-          },
-          &quot;useBuiltIns&quot;: &quot;usage&quot;,
-          &quot;corejs&quot;: &quot;3.6.5&quot;
-        }
-      ]
-    ]
-  }
+<h2 id="静态属性和方法-2">静态属性和方法</h2>
+<p>与 ES5 无异。</p>
+<pre><code class="language-javascript">//类上添加静态方法
+Animal.sleep = function () {
+  console.log('All animals sleep.');
 }
+//在类上调用静态方法
+Animal.sleep(); //All animals sleep.
 </code></pre>
-<p>这次我们增加了臭名昭著的 IE 浏览器，版本是 2013 年最新推出的 IE11，它仍将持续服役至 2022 年。</p>
-<h1 id="加点料">加点料</h1>
-<p>暂停一下，带你认识一个好用的工具——nodemon。</p>
-<p>nodemon 的作用很简单，监听文件变化，并执行一些命令。使用 <code>npm i nodemon -D</code>或<code>yarn add nodemon -D</code> 安装，这里 <code>-D</code> 指将它作为开发依赖安装。</p>
-<pre><code class="language-bash">nodemon --watch src --exec npx babel src --out-dir dist
+<h2 id="原型属性和方法-2">原型属性和方法</h2>
+<p>与 ES5 无异。</p>
+<pre><code class="language-javascript">Animal.prototype.run = function () { //类上添加原型方法
+  console.log(this.name + ' is running.');
+}
+//在实例上调用原型方法
+dog1.run(); //Teddy is running.
 </code></pre>
-<ul>
-<li><code>--watch</code> 指监听的文件或文件夹，这里我们要监听 <code>src/</code> 中的文件</li>
-<li><code>--exec</code> 指文件变动后运行的指令，这里就填入上文的指令</li>
-</ul>
-<p>将 nodemon 跑起来，现在当我们在 <code>src/</code> 中保存文件时，nodemon 就会触发指令，Babel 也会自动转换代码到 <code>dist/</code> 中了。</p>
-<figure data-type="image" tabindex="2"><img src="https://lafish.fun/post-images/1633616089808.gif" alt="保存自动编译" loading="lazy"></figure>
-<p>有内味了，就像是 Vue 和 React 一样。看编译后的代码可以发现，Babel 将箭头函数直接转换成了普通函数，class 语法则是引入了 Babel 的 <code>_createClass</code> 辅助函数，以ES5语法实现了 ES6 的功能。</p>
-<h1 id="结束">结束</h1>
-<p>这次测试，没有深入剖析 Babel 的原理，只是简单上手实现了基础的保存自动转换功能，但我们仍能从中窥见前端底层技术的魅力，新的标准未有确定，但我们依然能在现有的框架下实现新东西，正是这样的超前应用推动了前端不断发展、愈发繁华。</p>
-<p>实际项目中，我们很少会去调试 Babel，因为各种脚手架已经为我们铺垫好了道路。这篇文章希望能予你些启发，或许不会再有更多的调试，但它们确实为前端工程化发展打下了坚实的基础。</p>
+<h1 id="最后">最后</h1>
+<p>静态属性和方法服务于类本身，原型函数在类上添加但服务于实例。ES6 的 class 关键词是 ES5 构造函数的语法糖，创建有别使用无异。要搞明白后面类的继承还得从构造函数入手。</p>
 
               </div>
               <div class="post-footer">
@@ -635,8 +637,8 @@ npx babel src --out-dir dist
 		Lafish
     </li> -->
     <li class="post-copyright-link">
-      <strong>初识 Babel：</strong>
-      <a href="https://lafish.fun/what-is-babel/" title="初识 Babel">https://lafish.fun/what-is-babel/</a>
+      <strong>JavaScript的类：</strong>
+      <a href="https://lafish.fun/learn-javascript-class/" title="JavaScript的类">https://lafish.fun/learn-javascript-class/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明：</strong>
@@ -645,7 +647,7 @@ npx babel src --out-dir dist
   </ul>
   <div class="tags">
     
-      <a href="https://lafish.fun/tag/babel/"># Babel</a>
+      <a href="https://lafish.fun/tag/javascript/"># JavaScript</a>
     
       <a href="https://lafish.fun/tag/XX/"># 学习</a>
     
@@ -653,15 +655,11 @@ npx babel src --out-dir dist
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="Linux内核裁剪" href="https://lafish.fun/linux-kernel-clipping/">Linux内核裁剪</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="Linux内核裁剪" href="https://lafish.fun/linux-kernel-clipping/">上一篇</a>
-      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="麻了" href="https://lafish.fun/ma-le/">麻了</a>
-        <a class="nav-mobile-next" title="麻了" href="https://lafish.fun/ma-le/">下一篇</a>
+        <a class="nav-pc-next" title="USTC Hackergame 2021 Writeup" href="https://lafish.fun/USTC-Hackergame-2021-Writeup/">USTC Hackergame 2021 Writeup</a>
+        <a class="nav-mobile-next" title="USTC Hackergame 2021 Writeup" href="https://lafish.fun/USTC-Hackergame-2021-Writeup/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>
