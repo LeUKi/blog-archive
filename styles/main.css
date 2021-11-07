@@ -2017,6 +2017,7 @@ tr {color: #fff;}
 .next-md-body table tr {background-color: #ffffff14;}
 .footer a {border-bottom: 0;color:#999}
 .footer a:hover {color:#66d9e8}
-.post-copyright a{color: #495057;}.box-shadow-wrapper {
+.post-copyright a{color: #495057;}
+.VCC_before{hidden;display:none}.box-shadow-wrapper {
       box-shadow: none !important;
     }
