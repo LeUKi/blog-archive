@@ -6,7 +6,7 @@
 <meta name="keywords" content="lafish,辣鱼,秋刀辣鱼,LeUKi,leuki,blog">
 <meta name="description" content="这里是Lafish的自留地，记录某小白的一旬成长。">
 <meta name="theme-color" content="#121518">
-<title>2021的小目标 | Lafish的部落格</title>
+<title>viewer-catch 基于Koa与MongoDB的站点统计平台 | Lafish的部落格</title>
 <link rel="shortcut icon" href="https://lafish.fun/favicon.ico?v=1636347545338">
 <link rel="stylesheet" href="https://lafish.fun/styles/main.css">
 
@@ -25,8 +25,8 @@
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
     onload="renderMathInElement(document.body);"></script>
 
-    <meta name="description" content="2021的小目标" />
-    <meta name="keywords" content="" />
+    <meta name="description" content="viewer-catch 基于Koa与MongoDB的站点统计平台" />
+    <meta name="keywords" content="项目,分享" />
   </head>
   <body>
     <div class="head-top-line"></div>
@@ -128,9 +128,17 @@
 <div class="sidebar">
     <div class="sidebar-box box-shadow-wrapper bg-color right-motion" id="sidebar">
       
+        <div class="post-list-sidebar">
+          <div class="sidebar-title">
+            <span id="tocSideBar" class="sidebar-title-item sidebar-title-active">文章目录</span>
+            <span id="metaSideBar" class="sidebar-title-item">站点概览</span>
+          </div>
+        </div>
+      
       <div class="sidebar-body gemini" id="sidebar_body">
         
-          
+          <div class="post-side-meta" id="post_side_meta">
+            
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="https://lafish.fun/images/avatar.png"/>
@@ -200,6 +208,186 @@
   </div>
 
 </div>
+          </div>
+          <div class="post-toc sidebar-body-active" id="post_toc" style="opacity: 1;">
+            <div class="toc-box right-motion">
+  <div class="toc-wrapper auto-number auto" id="toc_wrapper">
+    <ul class="markdownIt-TOC">
+<li><a href="#%E8%83%8C%E6%99%AF">背景</a></li>
+<li><a href="#%E5%BC%80%E5%A7%8B%E4%BD%BF%E7%94%A8">开始使用！</a>
+<ul>
+<li><a href="#%E5%BC%95%E7%94%A8">引用</a></li>
+<li><a href="#%E5%B1%95%E7%A4%BA">展示</a></li>
+<li><a href="#%E6%9B%B4%E7%AE%80%E5%8D%95%E7%9A%84%E4%BD%BF%E7%94%A8">更简单的使用</a></li>
+<li><a href="#%E6%9B%B4%E5%A4%8D%E6%9D%82%E7%9A%84%E4%BD%BF%E7%94%A8">更复杂的使用</a></li>
+</ul>
+</li>
+<li><a href="#%E5%85%B3%E4%BA%8E%E5%B9%B3%E5%8F%B0%E9%83%A8%E7%BD%B2">关于平台部署</a></li>
+</ul>
+
+  </div>
+</div>
+
+<script>
+
+let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1; 
+let active = 'active-show', activeClass = 'active-current';
+let tocWrapper = document.querySelector('#toc_wrapper');
+let tocContent = tocWrapper.children[0];
+let autoNumber = tocWrapper&&tocWrapper.classList.contains('auto-number');
+
+function addTocNumber(elem, deep) {
+  if (!elem) {
+    return;
+  }
+  let prop = elem.__proto__;
+
+  if (prop === HTMLUListElement.prototype) {
+    for (let i = 0; i < elem.children.length; i++) {
+      addTocNumber(elem.children[i], deep + (i + 1) + '.');
+    }
+  } else if (prop === HTMLLIElement.prototype) {
+    // 保存li元素
+    lList.push(elem);
+    for (let i = 0; i < elem.children.length; i++) {
+      let cur = elem.children[i];
+      if (cur.__proto__ === HTMLAnchorElement.prototype) {
+        if (autoNumber) {
+          cur.text =  deep + ' ' + cur.text;
+        }
+      } else if (cur.__proto__ === HTMLUListElement.prototype) {
+        addTocNumber(cur, deep);
+      }
+    }
+  }
+}
+
+
+document.addEventListener('scroll', function(e) {
+  if (lList.length <= 0) {
+    return;
+  }
+  let scrollTop = document.scrollingElement.scrollTop;
+  let dir;
+
+  if (lastTop - scrollTop > 0) {
+    dir = 'up';
+  } else {
+    dir = 'down';
+  }
+
+  lastTop = scrollTop;
+  if (scrollTop <= 0) {
+    if (lastIndex >= 0 && lastIndex < hList.length) {
+      lList[lastIndex].classList.remove(activeClass);
+    }
+    return;
+  }
+
+  let current = 0, hasFind = false;
+  for (let i = 0; i < hList.length; i++) {
+    if (hList[i].offsetTop > scrollTop) {
+      current = i;
+      hasFind = true;
+      break;
+    }
+  }
+  if (!hasFind && scrollTop > lList[lList.length - 1].offsetTop) {
+    current = hList.length - 1;
+  } else {
+    current--;
+  }
+  if (dir === 'down') {
+    if (current > lastIndex) {
+      addActiveClass(current);
+      removeActiveClass(lastIndex) 
+      lastIndex = current;
+      removeParentActiveClass();
+      lList[current] && addActiveLiElemment(lList[current].parentElement,tocContent);
+    }
+  } else {
+    if (current < lastIndex) {
+      addActiveClass(current);
+      removeActiveClass(lastIndex);
+      lastIndex = current;
+      removeParentActiveClass();
+      lList[current] && addActiveLiElemment(lList[current].parentElement,tocContent);
+    }
+  }
+});
+
+function removeParentActiveClass() {
+  let parents = tocContent.querySelectorAll('.'+active)
+  parents.forEach(function(elem) {
+    elem.classList.remove(active);
+  });
+}
+
+function addActiveClass(index) {
+  if (index >= 0 && index < hList.length) {
+    lList[index].classList.add(activeClass);
+  }
+}
+
+function removeActiveClass(index) {
+  if (index >= 0 && index < hList.length) {
+    lList[index].classList.remove(activeClass);
+  }
+}
+
+function addActiveLiElemment(elem, parent) {
+  if (!elem || elem === parent) {
+    return;
+  } else {
+    if (elem.__proto__ === HTMLLIElement.prototype) {
+      elem.classList.add(active);
+    }
+    addActiveLiElemment(elem.parentElement, parent);
+  }
+}
+
+function showToc() {
+  if (tocWrapper) {
+    postBody = document.querySelector('#post_body');
+    for (let i = 0; i < postBody.children.length; i++) {
+      if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
+        hList.push(postBody.children[i]);
+      }
+    }
+    if (tocWrapper.classList.contains('compress')) {
+        tocContent.classList.add('closed');
+    } else if (tocWrapper.classList.contains('no_compress')){
+      tocContent.classList.add('expanded');
+    } else {
+      if (hList.length > 10) {
+        active = 'active-hidden'
+        tocContent.classList.add('closed');
+      } else {
+        tocContent.classList.add('expanded');
+      }
+    }
+  }
+}
+addTocNumber(tocContent, '');
+
+window.addEventListener('load', function() {
+  showToc();
+  document.querySelector('#sidebar').style='display: block;';
+  tocWrapper.classList.add('toc-active');
+  setTimeout(function() {
+    if ("createEvent" in document) {
+      let evt = document.createEvent("HTMLEvents");
+      evt.initEvent("scroll", false, true);
+      document.dispatchEvent(evt);
+    }
+    else {
+      document.fireEvent("scroll");
+    }
+  }, 500)
+})
+
+</script>
+          </div>
         
       </div>
     </div>
@@ -285,8 +473,8 @@
               <div class="article-box">
     <header class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://lafish.fun/my2021Goal/">
-      2021的小目标
+    <a class="post-title-link" href="https://lafish.fun/viewer-catch/">
+      viewer-catch 基于Koa与MongoDB的站点统计平台
     </a>
   </h1>
   <div class="post-meta">
@@ -294,18 +482,37 @@
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span>发布于</span>
-      <span>2021-01-31</span>
+      <span>2021-11-08</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
+      <span class="meta-item">
+        <i class="fa fa-folder-o"></i>
+        <span class="pc-show">分类于</span>
+        
+          
+            <a href="https://lafish.fun/tag/xiang-mu/">
+              <span>项目</span>
+            </a>、
+          
+        
+          
+            <a href="https://lafish.fun/tag/fen-xiang/">
+              <span>分享</span>
+            </a>
+          
+        
+      </span>
+      <span class="post-meta-divider">|</span>
+    
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>1分钟</span>
+      <span>3分钟</span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>176<span class="pc-show">字数</span></span>
+      <span>646<span class="pc-show">字数</span></span>
     </span>
     <span class="meta-item VCC VCC_before" vcc_hidein="/">
       <span class="post-meta-divider">|</span>
@@ -316,21 +523,44 @@
 </header>
 </div>
               <div class="post-body next-md-body" id="post_body">
-                <p>一年前给自己定的9个目标的完成了七个，今年继续！</p>
-<blockquote>
-<p>上一年剩下的：</p>
-<ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6556745"><label class="task-list-item-label" for="task-item-6556745"> 过英语四级</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7488552"><label class="task-list-item-label" for="task-item-7488552"> 做一套Gridea主题</label></li>
-</ul>
+                <blockquote>
+<p>又是一个练手项目。看了一圈实习招聘条件，大多数前端都要掌握一门后台语言，nodejs 当然是前端开发者的首选。初入前端，我以为我能学成全栈，两年过去这才摸到门槛。<s>泪目</s></p>
 </blockquote>
-<p>英语四级第一次裸考，只背了两段作文模板，其实还没出成绩，自我感觉是要挂的了。中学吃小学老本，大学吃中学老本，单词没背几个，是该努力下了。对于博客的主题，自认为水平不够，试试今年能不能完成吧。</p>
-<ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7466426"><label class="task-list-item-label" for="task-item-7466426"> 拿奖学金（不能挂科不能挂科不能挂科）</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5043975"><label class="task-list-item-label" for="task-item-5043975"> 做一个产品（要达到理想的水平）</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2583925"><label class="task-list-item-label" for="task-item-2583925"> 减个50斤（身体真的很重要）</label></li>
+<h1 id="背景">背景</h1>
+<p>由于我的静态博客没有动态网站的访客统计功能，之前用的是友盟的站长统计，但这个平台 dns 污染严重，体验不是很好。我想要做一个平台，只要简单的引入就实现任意网站、任意页面的统计功能，还要能在页面中插入统计结果，再做一个点赞的功能就更好了。</p>
+<p>由此 <code>viewer-catch</code> ~~（原谅我起名废）~~应运而生！</p>
+<h1 id="开始使用">开始使用！</h1>
+<h2 id="引用">引用</h2>
+<p>只需要在网站头部添加这一段代码，每一个页面都能分开统计，还支持区分统计 UV 和 PV ，甚至有点赞统计功能！</p>
+<pre><code class="language-html">&lt;script defer src=&quot;https://viewer-catch.herokuapp.com/client.js&quot;&gt;
+</code></pre>
+<h2 id="展示">展示</h2>
+<p>在指定的地方加上类，它能自动替换统计数据，还能控制隐藏显示！</p>
+<p>如果需要控制显隐 <code>.VCC_before</code> 是必要提前准备的类，推荐是 <code>visibility: hidden;</code> 或者 <code>display: none;</code> ，当数据类替换完成时它会自动去除。</p>
+<pre><code class="language-html">&lt;style&gt;.VCC_before{visibility: hidden;}&lt;/style&gt;
+&lt;div class='VCC'&gt;
+  &lt;div&gt; 页面UV:&lt;span class='VCC_uv'&gt;正在获取&lt;/span&gt; &lt;/div&gt;
+  &lt;div&gt; 页面PV:&lt;span class='VCC_pv VCC_before'&gt;&lt;/span&gt; &lt;/div&gt;
+  &lt;div class='VCC_before'&gt; 页面点赞数:&lt;span class='VCC_like'&gt;&lt;/span&gt; &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class='VCC VCC_before VCC_uv_sum'&gt;&lt;/div&gt;
+&lt;div class='VCC VCC_before VCC_pv_sum' showin='/'&gt;&lt;/div&gt;
+&lt;div class='VCC VCC_before VCC_like_sum' hidein='/'&gt;&lt;/div&gt;
+</code></pre>
+<h2 id="更简单的使用">更简单的使用</h2>
+<p>对于不用展示数据、没有统计 UV 需求的网站或页面，以下简单引入是更好的方案。</p>
+<pre><code class="language-html">&lt;script sync src=&quot;https://viewer-catch.herokuapp.com/simpleCatch?d=xxx.com&amp;p=/path&quot;&gt;
+</code></pre>
+<p>因标准请求头限制，必须传参使用</p>
+<ul>
+<li>d:Doname 站点域名 必填</li>
+<li>p:Path 页面路径 选填 以 <code>/</code> 开头 缺省为 <code>&quot;/&quot;</code></li>
 </ul>
-<p>5个小目标，想到再加，期待达成！</p>
+<h2 id="更复杂的使用">更复杂的使用</h2>
+<p>项目预留了相关接口，可以访问 <code>/apis</code> 查看接口文档。</p>
+<h1 id="关于平台部署">关于平台部署</h1>
+<p><code>https://viewer-catch.herokuapp.com/</code> 是部署在 Heroku 上，每个月只有 550 小时的免费时长，数据库则是用的 <code>MongoDB Atlas</code> 的免费套餐 <s>（老白嫖怪了）</s>，如果你条件允许可以自己部署平台。你可以参考这篇文章：<a href="https://lafish.fun/freedom-service/">利用 MongoDB Atlas 与 Heroku 架设 Free 的后台服务</a></p>
+<figure data-type="image" tabindex="1"><a href="https://dashboard.heroku.com/new?template=https://github.com/LeUKi/viewer-catch"><img src="https://www.herokucdn.com/deploy/button.png" alt="Deploy" loading="lazy"></a></figure>
 
               </div>
               <div class="post-footer">
@@ -340,8 +570,8 @@
 		Lafish
     </li> -->
     <li class="post-copyright-link">
-      <strong>2021的小目标：</strong>
-      <a href="https://lafish.fun/my2021Goal/" title="2021的小目标">https://lafish.fun/my2021Goal/</a>
+      <strong>viewer-catch 基于Koa与MongoDB的站点统计平台：</strong>
+      <a href="https://lafish.fun/viewer-catch/" title="viewer-catch 基于Koa与MongoDB的站点统计平台">https://lafish.fun/viewer-catch/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明：</strong>
@@ -350,19 +580,19 @@
   </ul>
   <div class="tags">
     
+      <a href="https://lafish.fun/tag/xiang-mu/"># 项目</a>
+    
+      <a href="https://lafish.fun/tag/fen-xiang/"># 分享</a>
+    
   </div>
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="暑期算法 第一题" href="https://lafish.fun/sqsf-1/">暑期算法 第一题</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="暑期算法 第一题" href="https://lafish.fun/sqsf-1/">上一篇</a>
-      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="Electron入门随笔" href="https://lafish.fun/my-electron/">Electron入门随笔</a>
-        <a class="nav-mobile-next" title="Electron入门随笔" href="https://lafish.fun/my-electron/">下一篇</a>
+        <a class="nav-pc-next" title="JavaScript 类的继承" href="https://lafish.fun/learn-javascript-inheritance/">JavaScript 类的继承</a>
+        <a class="nav-mobile-next" title="JavaScript 类的继承" href="https://lafish.fun/learn-javascript-inheritance/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>
