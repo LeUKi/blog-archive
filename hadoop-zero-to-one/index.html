@@ -6,7 +6,7 @@
 <meta name="keywords" content="lafish,辣鱼,秋刀辣鱼,LeUKi,leuki,blog">
 <meta name="description" content="这里是Lafish的自留地，记录某小白的一旬成长。">
 <meta name="theme-color" content="#121518">
-<title>关于/友链 | Lafish的部落格</title>
+<title>hadoop伪分布式从零配置记录 | Lafish的部落格</title>
 <link rel="shortcut icon" href="https://lafish.fun/favicon.ico?v=1649064741162">
 <link rel="stylesheet" href="https://lafish.fun/styles/main.css">
 
@@ -25,8 +25,8 @@
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
     onload="renderMathInElement(document.body);"></script>
 
-    <meta name="description" content="关于/友链" />
-    <meta name="keywords" content="" />
+    <meta name="description" content="hadoop伪分布式从零配置记录" />
+    <meta name="keywords" content="hadoop,大数据,学习" />
   </head>
   <body>
     <div class="head-top-line"></div>
@@ -217,10 +217,29 @@
             <div class="toc-box right-motion">
   <div class="toc-wrapper auto-number auto" id="toc_wrapper">
     <ul class="markdownIt-TOC">
-<li>
+<li><a href="#%E6%96%87%E4%BB%B6">文件</a>
 <ul>
-<li><a href="#%E5%85%B3%E4%BA%8E-%E6%88%91">关于 我</a></li>
-<li><a href="#%E5%8F%8B%E9%93%BE-%E5%BF%97%E5%90%8C%E4%BC%99%E4%BC%B4">友链 志同伙伴</a></li>
+<li><a href="#jdk-8u321-linux-x64targz">jdk-8u321-linux-x64.tar.gz</a></li>
+<li><a href="#hadoop-323targz">hadoop-3.2.3.tar.gz</a></li>
+</ul>
+</li>
+<li><a href="#%E7%8E%AF%E5%A2%83">环境</a>
+<ul>
+<li><a href="#~bashrc">~/.bashrc</a></li>
+<li><a href="#%E5%AE%89%E8%A3%85jre">安装jre</a></li>
+</ul>
+</li>
+<li><a href="#%E9%85%8D%E7%BD%AE">配置</a>
+<ul>
+<li><a href="#usrlocalhadoopetchadoop">/usr/local/hadoop/etc/hadoop/</a>
+<ul>
+<li><a href="#core-sitexml">core-site.xml</a></li>
+<li><a href="#hdfs-sitexml">hdfs-site.xml</a></li>
+<li><a href="#hadoop-envsh">hadoop-env.sh</a></li>
+<li><a href="#yarn-sitexml">yarn-site.xml</a></li>
+</ul>
+</li>
+<li><a href="#%E5%88%9D%E5%A7%8B%E5%8C%96">初始化</a></li>
 </ul>
 </li>
 </ul>
@@ -473,8 +492,8 @@ window.addEventListener('load', function() {
               <div class="article-box">
     <header class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://lafish.fun/about/">
-      关于/友链
+    <a class="post-title-link" href="https://lafish.fun/hadoop-zero-to-one/">
+      hadoop伪分布式从零配置记录
     </a>
   </h1>
   <div class="post-meta">
@@ -482,9 +501,34 @@ window.addEventListener('load', function() {
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span>发布于</span>
-      <span>2019-10-01</span>
+      <span>2022-04-04</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
+    
+      <span class="meta-item">
+        <i class="fa fa-folder-o"></i>
+        <span class="pc-show">分类于</span>
+        
+          
+            <a href="https://lafish.fun/tag/hadoop/">
+              <span>hadoop</span>
+            </a>、
+          
+        
+          
+            <a href="https://lafish.fun/tag/da-shu-ju/">
+              <span>大数据</span>
+            </a>、
+          
+        
+          
+            <a href="https://lafish.fun/tag/XX/">
+              <span>学习</span>
+            </a>
+          
+        
+      </span>
+      <span class="post-meta-divider">|</span>
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
@@ -493,7 +537,7 @@ window.addEventListener('load', function() {
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>453<span class="pc-show">字数</span></span>
+      <span>497<span class="pc-show">字数</span></span>
     </span>
     <span class="meta-item VCC VCC_before" vcc_hidein="/">
       <span class="post-meta-divider">|</span>
@@ -504,46 +548,96 @@ window.addEventListener('load', function() {
 </header>
 </div>
               <div class="post-body next-md-body" id="post_body">
-                <blockquote>
-<p>由于主题限制（主要是技术不精，自己开发主题只到新建文件夹），在小屏幕设备上不能看到侧边栏上的友链列表，为统一观感，故单独列出。</p>
-</blockquote>
-<h2 id="关于-我">关于 我</h2>
-<p>目前就读于广东海洋大学物联网工程专业，<br>
-喜欢<s>唱跳rap篮</s>折腾计算机硬件、广交技术爱好者。<br>
-在这里记录一下我的大学学习心得，算是一个学习技术生活向的博客。<br>
-交换友链可在下方留言，欢迎技术交流~</p>
-<h2 id="友链-志同伙伴">友链 志同伙伴</h2>
-<ul id="flinks">
-<li>亚历克斯情报10处</li>
-<li>https://ai10.xyz/</li>
-<li>https://ai10.xyz/wp-content/uploads/2020/05/%E9%98%BF%E9%87%8C%E6%97%BA%E6%97%BA%E5%9B%BE%E7%89%8720200119173730.png</li>
-<li>ai10.xyz</li>
-<li>ITJoker</li>
-<li>https://blog.itjoker.cn/</li>
-<li>https://cdn.jsdelivr.net/gh/ITJoker233/ITJoker233.github.io/CDN/pic/avatar.png</li>
-<li>blog.itjoker.cn</li>
-<li>saowu</li>
-<li>https://saowu.github.io/</li>
-<li>https://cdn.jsdelivr.net/gh/saowu/saowu.github.io@1.0/images/avatar.png</li>
-<li>saowu.github.io</li>
-<li>DIY熙</li>
-<li>http://blog.diyxi.top/</li>
-<li>https://i.niupic.com/images/2021/08/13/9qXl.png</li>
-<li>blog.diyxi.top</li>
-<li>YuZhangWang的领域</li>
-<li>https://www.yuzhang.wang/</li>
-<li>https://cdn.jsdelivr.net/gh/YuZhangWang/Creative_pictures01@main/img/20210907012640.png</li>
-<li>yuzhang.wang</li>
-<li>ReverseSacle</li>
-<li>https://www.reversesacle.com/</li>
-<li>https://cdn.jsdelivr.net/gh/ReverseSacle/Gallery@main//blog-img/202111222032197.jpg</li>
-<li>reversesacle.com</li>
-<li>more..</li>
-<li>/</li>
-<li>https://lafish.fun/images/avatar.png</li>
-<li>会是你吗？</li>
-</ul>
-<style> .flink-item { width: 280px; height: 100px; position: relative; margin: 12px; background-color: #555; border-radius: 3px; float: left } .flink-title { left: 25px; top: 25px; position: absolute } .flink-title a { font-size: 17px; color: #a9e34b; line-height: 17px; word-break: break-all; text-decoration: none; outline: 0 } .flink-link { right: 0; bottom: 0; padding: 0 15px 15px; position: absolute; text-align: center } .flink-link-text { font-size: 12px; color: #f1f1f1 } .flink-link-ico { display: inline-block; width: 42px; height: 42px; border-radius: 50% } .bg-1 { background-color: #555 !important } </style> <script> (function() { let a = document.getElementById("flinks"); if (a) { let ns = a.querySelectorAll("li"); let str = '<div style="display:inline-block;">'; let bgid = 0; const bgs = ["bg-1"]; for (let i = 0; i < ns.length; i += 4) { str += (`<div class="flink-item ${bgs[Math.floor(Math.random() * 3)]}"><div class="flink-title"><a href="${ns[i+1].innerText}"target="_blank"rel="external nofollow ugc">${ns[i].innerText}</a></div><div class="flink-link"><div class="flink-link-ico"style="background: url(${ns[i+2].innerText});background-size: 42px auto;"></div><div class="flink-link-text">${ns[i+3].innerText}</div></div></div>`) } str += `</div>`; let n1 = document.createElement("div"); n1.innerHTML = str; a.parentNode.insertBefore(n1, a); a.style = "display: none;" } else { console.log('No such id "flinks"') } }()) </script>
+                <p>大数据课给的虚拟机文件只能在win上使用，其他系统引导都进不去，琢磨下怎么从零配置。</p>
+<p>虚拟机系统：Ubuntu 20.04.4</p>
+<h1 id="文件">文件</h1>
+<p>去镜像站下载比较快</p>
+<h2 id="jdk-8u321-linux-x64targz">jdk-8u321-linux-x64.tar.gz</h2>
+<p>解压到<code>/usr/local</code>，命名为java8</p>
+<h2 id="hadoop-323targz">hadoop-3.2.3.tar.gz</h2>
+<p>解压到<code>/usr/local</code>，命名为hadoop</p>
+<h1 id="环境">环境</h1>
+<p>系统新建了一个名为hadoop的账户，试了好多错，就按这样来吧</p>
+<h2 id="~bashrc">~/.bashrc</h2>
+<pre><code class="language-bash">export HADOOP_HOME=/usr/local/hadoop
+export PATH=$PATH:$HADOOP_HOME/bin
+export HADOOP_MAPRED_HOME=$HADOOP_HOME
+export HADOOP_COMMON_HOME=$HADOOP_HOME
+export HADOOP_HDFS_HOME=$HADOOP_HOME
+export YARN_HOME=$HADOOP_HOME
+export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
+export PATH=$PATH:$HADOOP_HOME/sbin:$HADOOP_HOME/bin
+export HADOOP_INSTALL=$HADOOP_HOME
+export JAVA_HOME=/usr/local/java8
+export JRE_HOME=$JAVA_HOME/jre
+export CLASSPATH=.:$CLASSPATH:$JAVA_HOME/lib:$JRE_HOME/lib
+export PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
+</code></pre>
+<h2 id="安装jre">安装jre</h2>
+<pre><code class="language-bash">sudo apt install default-jre
+</code></pre>
+<h1 id="配置">配置</h1>
+<h2 id="usrlocalhadoopetchadoop">/usr/local/hadoop/etc/hadoop/</h2>
+<h3 id="core-sitexml">core-site.xml</h3>
+<pre><code class="language-xml">&lt;configuration&gt;
+   &lt;property&gt;
+       &lt;name&gt;hadoop.tmp.dir&lt;/name&gt;
+       &lt;value&gt;file:/usr/local/hadoop/tmp&lt;/value&gt;
+       &lt;description&gt;Abase for other temporary directories.&lt;/description&gt;
+   &lt;/property&gt;
+   &lt;property&gt;
+       &lt;name&gt;fs.defaultFS&lt;/name&gt;
+       &lt;value&gt;hdfs://localhost:9000&lt;/value&gt;
+   &lt;/property&gt;
+    &lt;property&gt;
+       &lt;name&gt;hadoop.http.staticuser.user&lt;/name&gt;
+       &lt;value&gt;hadoop&lt;/value&gt;
+   &lt;/property&gt; 
+&lt;/configuration&gt;
+</code></pre>
+<h3 id="hdfs-sitexml">hdfs-site.xml</h3>
+<pre><code class="language-xml">&lt;configuration&gt;
+   &lt;property&gt;
+       &lt;name&gt;dfs.replication&lt;/name&gt;
+       &lt;value&gt;1&lt;/value&gt;
+   &lt;/property&gt;
+   &lt;property&gt;
+       &lt;name&gt;dfs.namenode.name.dir&lt;/name&gt;
+       &lt;value&gt;file:///usr/local/hadoop/tmp/dfs/name&lt;/value&gt;
+   &lt;/property&gt;
+   &lt;property&gt;
+       &lt;name&gt;dfs.datanode.data.dir&lt;/name&gt;
+       &lt;value&gt;file:///usr/local/hadoop/tmp/dfs/data&lt;/value&gt;
+   &lt;/property&gt;
+      &lt;property&gt;
+       &lt;name&gt;dfs.name.dir&lt;/name&gt;
+       &lt;value&gt;file:///usr/local/hadoop/tmp/dfs/name&lt;/value&gt;
+   &lt;/property&gt;
+   &lt;property&gt;
+       &lt;name&gt;dfs.data.dir&lt;/name&gt;
+       &lt;value&gt;file:///usr/local/hadoop/tmp/dfs/data&lt;/value&gt;
+   &lt;/property&gt;
+   &lt;property&gt;
+       &lt;name&gt;dfs.http.address&lt;/name&gt;
+       &lt;value&gt;0.0.0.0:50070&lt;/value&gt;
+   &lt;/property&gt;
+&lt;/configuration&gt;
+</code></pre>
+<h3 id="hadoop-envsh">hadoop-env.sh</h3>
+<pre><code class="language-bash">export JAVA_HOME=/usr/local/java8	
+</code></pre>
+<h3 id="yarn-sitexml">yarn-site.xml</h3>
+<pre><code class="language-xml">&lt;configuration&gt;
+   &lt;property&gt;
+      &lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt;
+      &lt;value&gt;mapreduce_shuffle&lt;/value&gt; 
+   &lt;/property&gt;
+&lt;/configuration&gt;
+</code></pre>
+<h2 id="初始化">初始化</h2>
+<pre><code class="language-bash">hadoop namenode -format
+</code></pre>
+
               </div>
               <div class="post-footer">
   <ul class="post-copyright">
@@ -552,8 +646,8 @@ window.addEventListener('load', function() {
 		Lafish
     </li> -->
     <li class="post-copyright-link">
-      <strong>关于/友链：</strong>
-      <a href="https://lafish.fun/about/" title="关于/友链">https://lafish.fun/about/</a>
+      <strong>hadoop伪分布式从零配置记录：</strong>
+      <a href="https://lafish.fun/hadoop-zero-to-one/" title="hadoop伪分布式从零配置记录">https://lafish.fun/hadoop-zero-to-one/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明：</strong>
@@ -562,12 +656,22 @@ window.addEventListener('load', function() {
   </ul>
   <div class="tags">
     
+      <a href="https://lafish.fun/tag/hadoop/"># hadoop</a>
+    
+      <a href="https://lafish.fun/tag/da-shu-ju/"># 大数据</a>
+    
+      <a href="https://lafish.fun/tag/XX/"># 学习</a>
+    
   </div>
   <div class="nav">
     <div class="nav-prev">
       
     </div>
     <div class="nav-next">
+      
+        <a class="nav-pc-next" title="近况小结" href="https://lafish.fun/2022-03-21/">近况小结</a>
+        <a class="nav-mobile-next" title="近况小结" href="https://lafish.fun/2022-03-21/">下一篇</a>
+        <i class="fa fa-chevron-right"></i>
       
     </div>
   </div>
