@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://lafish.fun</id>
     <title>Lafish的部落格</title>
-    <updated>2022-04-21T02:47:25.239Z</updated>
+    <updated>2022-04-21T03:29:42.800Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://lafish.fun"/>
     <link rel="self" href="https://lafish.fun/atom.xml"/>
@@ -10,6 +10,13 @@
     <logo>https://lafish.fun/images/avatar.png</logo>
     <icon>https://lafish.fun/favicon.ico</icon>
     <rights>All rights reserved 2022, Lafish的部落格</rights>
+    <entry>
+        <title type="html"><![CDATA[01背包问题小结]]></title>
+        <id>https://lafish.fun/0-1-knapsack/</id>
+        <link href="https://lafish.fun/0-1-knapsack/">
+        </link>
+        <updated>2022-04-21T02:47:53.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[hadoop伪分布式从零配置记录]]></title>
         <id>https://lafish.fun/hadoop-zero-to-one/</id>
@@ -72,12 +79,5 @@
         <link href="https://lafish.fun/freedom-service/">
         </link>
         <updated>2021-10-23T14:24:11.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Linux内核裁剪]]></title>
-        <id>https://lafish.fun/linux-kernel-clipping/</id>
-        <link href="https://lafish.fun/linux-kernel-clipping/">
-        </link>
-        <updated>2021-10-22T13:34:00.000Z</updated>
     </entry>
 </feed>
